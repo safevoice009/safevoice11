@@ -22,22 +22,24 @@
                 <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
             </div>
             
-            <div class="flex flex-wrap gap-2">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
-                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
-                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
-                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Crisis</button>
-                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Mental Health</button>
-                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Memorials</button>
+            <!-- UPDATED: Filter buttons with data-filter attribute -->
+            <div class="flex flex-wrap gap-2" id="filter-buttons">
+                <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
+                <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
+                <button data-filter="latest" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
+                <button data-filter="crisis" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Crisis</button>
+                <button data-filter="mental-health" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Mental Health</button>
+                <button data-filter="memorial" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Memorials</button>
             </div>
         </div>
 
         <!-- Main Feed Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Posts Column -->
-            <div class="lg:col-span-2 space-y-6">
-                <!-- Post Card 1 -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
+            <div class="lg:col-span-2 space-y-6" id="posts-container">
+                
+                <!-- UPDATED: Post Card 1 with data-topic -->
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
                             <i data-feather="user" class="text-white w-5 h-5"></i>
@@ -78,8 +80,8 @@
                     </div>
                 </div>
 
-                <!-- Post Card 2 -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
+                <!-- UPDATED: Post Card 2 with data-topic -->
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                             <i data-feather="user" class="text-white w-5 h-5"></i>
@@ -120,8 +122,8 @@
                     </div>
                 </div>
 
-                <!-- Post Card 3 - Memorial -->
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in">
+                <!-- UPDATED: Post Card 3 with data-topic -->
+                <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
                             <i data-feather="heart" class="text-white w-5 h-5"></i>
@@ -167,7 +169,8 @@
                             <i data-feather="award" class="w-5 h-5"></i>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
-                    <div class="text-3xl font-bold token-pulse">${window.safeVoiceApp?.tokenBalance || 0}</div>
+                    <!-- FIXED: Added id="tokenBalanceDisplay" and removed broken text -->
+                    <div class="text-3xl font-bold token-pulse" id="tokenBalanceDisplay">0</div>
                     <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
                     </div>
 
@@ -216,6 +219,58 @@
     <script src="./script.js"></script>
     <script>
         feather.replace();
+
+        // --- NEW SCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Fix Token Balance Display
+            // Wait for safeVoiceApp to be initialized by script.js
+            setTimeout(() => {
+                const tokenEl = document.getElementById('tokenBalanceDisplay');
+                if (tokenEl && window.safeVoiceApp) {
+                    tokenEl.textContent = window.safeVoiceApp.tokenBalance.toLocaleString();
+                }
+            }, 500); // Give script.js time to load
+
+            // 2. Implement Client-Side Filtering
+            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            const postsContainer = document.getElementById('posts-container');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+
+                    // Handle active button style
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-white', 'text-gray-700', 'border');
+                    });
+                    button.classList.add('bg-blue-600', 'text-white');
+                    button.classList.remove('bg-white', 'text-gray-700', 'border');
+
+                    // Filter logic
+                    if (filter === 'all' || filter === 'trending' || filter === 'latest') {
+                        if (filter === 'trending' || filter === 'latest') {
+                            alert('Trending and Latest filters are a future feature! Showing all posts.');
+                        }
+                        // Show all posts
+                        allPosts.forEach(post => {
+                            post.style.display = 'block';
+                        });
+                    } else {
+                        // Show only matching posts
+                        allPosts.forEach(post => {
+                            if (post.dataset.topic === filter) {
+                                post.style.display = 'block';
+                            } else {
+                                post.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        // --- END NEW SCRIPT ---
         
         // Simulate loading more posts
         let loading = false;
@@ -238,3 +293,4 @@
     </script>
 </body>
 </html>
+
