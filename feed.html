@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVoice Feed - Anonymous Student Discussions</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <!-- Corrected CSS path -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 min-h-screen pt-16">
+    <custom-navbar></custom-navbar>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Feed Header -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">SafeVoice Feed</h1>
+                <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
+            </div>
+            
+            <div class="flex flex-wrap gap-2">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Crisis</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Mental Health</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Memorials</button>
+            </div>
+        </div>
+
+        <!-- Main Feed Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Posts Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Post Card 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">The pressure of finals is overwhelming</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
+                    
+                    <!-- Reactions -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count">24</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count">18</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count">12</span>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <!-- Corrected relative path -->
+                            <a href="./post.html?id=1" class="flex items-center gap-1 hover:text-purple-600 transition-colors">
+                                <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>8 comments</span>
+                        </a>
+                        <button class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                <i data-feather="share-2" class="w-4 h-4"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Post Card 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Mental Health</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
+                    
+                    <!-- Reactions -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count">42</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count">31</span>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <!-- Corrected relative path -->
+                            <a href="./post.html?id=2" class="flex items-center gap-1 hover:text-purple-600 transition-colors">
+                                <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>15 comments</span>
+                        </a>
+                        <button class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                <i data-feather="share-2" class="w-4 h-4"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Post Card 3 - Memorial -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i data-feather="heart" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Memorial</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
+                    
+                    <!-- Memorial Reactions -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count">156</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count">89</span>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 text-sm text-gray-500">
+                            <!-- Corrected relative path -->
+                            <a href="./post.html?id=3" class="flex items-center gap-1 hover:text-purple-600 transition-colors">
+                                <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>47 comments</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Token Balance Card -->
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center gap-2 mb-2">
+                            <i data-feather="award" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
+                    <div class="text-3xl font-bold token-pulse">${window.safeVoiceApp?.tokenBalance || 0}</div>
+                    <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
+                    </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <!-- Corrected relative paths -->
+                        <a href="./create.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="edit-3" class="inline w-4 h-4 mr-2"></i>
+                            Create New Post
+                        </a>
+                        <a href="./memorials.html" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="heart" class="inline w-4 h-4 mr-2"></i>
+                            Visit Memorials
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Trending Topics</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#MentalHealthAwareness</span>
+                    <span class="text-blue-600 text-sm">342 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#ExamStress</span>
+                            <span class="text-blue-600 text-sm">287 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#StudentLife</span>
+                            <span class="text-blue-600 text-sm">215 posts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <!-- Corrected relative paths for scripts -->
+    <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        feather.replace();
+        
+        // Simulate loading more posts
+        let loading = false;
+        window.addEventListener('scroll', () => {
+            if (loading) return;
+            
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            
+            if (scrollTop + clientHeight >= scrollHeight - 100) {
+                loading = true;
+                // Simulate API call
+                setTimeout(() => {
+                    // In production, this would load actual posts
+                    loading = false;
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
