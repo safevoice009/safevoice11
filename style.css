@@ -1,5 +1,5 @@
 /* SafeVoice Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display.swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -10,25 +10,11 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    /* --- FIX: Added global padding-top. This pushes all content down 
-           so the fixed navbar doesn't cover it. This fixes the Android issue. --- */
-    padding-top: 68px; /* Height of the navbar */
+    padding-top: 68px; /* Height of the fixed navbar */
 }
-
-/* --- NEW: Button Press Feedback --- */
-/* Add transition to all buttons for smooth press */
-button, .btn, a[class*="bg-blue-600"], a[class*="border-blue-600"], a[class*="bg-purple-600"], a[class*="border-purple-600"] {
-    transition: transform 0.1s ease;
-}
-
-/* Add active state for press effect */
-button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blue-600"]:active, a[class*="bg-purple-600"]:active, a[class*="border-purple-600"]:active {
-    transform: scale(0.95);
-}
-/* --- END NEW --- */
-
 
 /* Custom scrollbar */
+/* ... existing scrollbar styles ... */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -46,7 +32,22 @@ button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blu
     background: linear-gradient(135deg, #2563eb, #7c3aed);
 }
 
+
+/* --- CORRECTED: Button Press Feedback --- */
+/* Apply transition to common button elements */
+button, .btn, a.bg-blue-600, a.border-blue-600, a.bg-purple-600, a.border-purple-600, .post-type-btn, .filter-btn, .reaction-btn {
+    transition: transform 0.1s ease;
+}
+
+/* Apply active state for press effect more specifically */
+button:active, .btn:active, a.bg-blue-600:active, a.border-blue-600:active, a.bg-purple-600:active, a.border-purple-600:active, .post-type-btn:active, .filter-btn:active, .reaction-btn:active {
+    transform: scale(0.95);
+}
+/* --- END CORRECTION --- */
+
+
 /* Animation classes */
+/* ... existing animation styles ... */
 .fade-in {
     animation: fadeIn 0.8s ease-in;
 }
@@ -65,14 +66,18 @@ button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blu
     to { opacity: 1; transform: translateY(0); }
 }
 
+
 /* Glass morphism effect */
+/* ... existing glass styles ... */
 .glass {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+
 /* Token pulse animation */
+/* ... existing token pulse styles ... */
 .token-pulse {
     animation: tokenPulse 2s infinite;
 }
@@ -83,13 +88,17 @@ button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blu
     100% { transform: scale(1); }
 }
 
+
 /* Reaction animations */
+/* ... existing reaction styles ... */
 .reaction-hover:hover {
     transform: scale(1.1);
     transition: transform 0.2s ease;
 }
 
+
 /* Loading skeleton */
+/* ... existing skeleton styles ... */
 .skeleton {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
@@ -101,7 +110,9 @@ button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blu
     100% { background-position: -200% 0; }
 }
 
-/* --- NEW: Image Modal Styles --- */
+
+/* Image Modal Styles */
+/* ... existing modal styles ... */
 .image-modal {
     position: fixed;
     top: 0;
@@ -139,23 +150,33 @@ button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blu
 
 .image-modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: -40px; /* Adjust if needed based on visual */
+    right: 0px; /* Adjust if needed */
     color: white;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
+    z-index: 2001; /* Above the image */
 }
-/* --- END NEW --- */
+.image-modal-close i {
+    width: 32px; /* Ensure icon size is sufficient */
+    height: 32px;
+}
 
 
 /* Accessibility improvements */
+/* ... existing accessibility styles ... */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        /* Also disable the active transform */
+        transform: none !important;
+    }
+     button:active, .btn:active, a.bg-blue-600:active, a.border-blue-600:active, a.bg-purple-600:active, a.border-purple-600:active, .post-type-btn:active, .filter-btn:active, .reaction-btn:active {
+        transform: none !important;
     }
 }
 
@@ -173,5 +194,3 @@ a:focus-visible {
         color: #fff !important;
     }
 }
-
-
