@@ -178,7 +178,7 @@ class CustomNavbar extends HTMLElement {
                         <li><a href="./create.html"><i data-feather="edit-3"></i> Create</a></li>
                         <li><a href="./memorials.html"><i data-feather="heart"></i> Memorials</a></li>
                         <li><a href="./resources.html"><i data-feather="life-buoy"></i> Resources</a></li>
-                        <!-- <li><a href="./profile.html"><i data-feather="user"></i> Profile</a></li> --> <!-- Profile page doesn't exist in repo -->
+                        <li><a href="./profile.html"><i data-feather="user"></i> Profile</a></li>
                     </ul>
                     
                     <div class="nav-actions">
@@ -233,3 +233,4 @@ class CustomNavbar extends HTMLElement {
 }
 
 customElements.define('custom-navbar', CustomNavbar);
+
