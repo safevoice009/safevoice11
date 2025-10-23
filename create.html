@@ -56,7 +56,7 @@
             <form id="createPostForm" class="space-y-6">
                 <!-- Content Type -->
                 <!-- ... existing content type buttons ... -->
-                 <div>
+                <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
                     <div class="flex gap-4">
                         <button type="button" id="btn-type-text" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2" data-type="text">
@@ -73,10 +73,10 @@
 
 
                 <!-- Dynamic Content Sections -->
-                <!-- Text Input -->
+                <!-- ... existing text, image, voice sections ... -->
+                 <!-- Text Input (Default) -->
                 <div id="content-text" class="content-section space-y-6">
-                     <!-- ... existing text area ... -->
-                      <div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
                         <textarea
                             id="postContent"
@@ -86,10 +86,9 @@
                     </div>
                 </div>
 
-                <!-- Image Input -->
+                <!-- Image Input (Hidden) -->
                 <div id="content-image" class="content-section space-y-6 hidden">
-                     <!-- ... existing image input and preview ... -->
-                      <div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
                         <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         <div id="imagePreview" class="mt-4 hidden max-w-sm h-auto rounded-lg shadow-md overflow-hidden">
@@ -106,10 +105,9 @@
                     </div>
                 </div>
 
-                <!-- Voice Input -->
+                <!-- Voice Input (Hidden) -->
                 <div id="content-voice" class="content-section space-y-6 hidden">
-                    <!-- ... existing voice placeholder ... -->
-                     <div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Record or Upload Voice Note</label>
                         <div class="p-6 border-2 border-dashed border-gray-300 rounded-xl text-center">
                             <i data-feather="mic" class="w-12 h-12 text-gray-400 mx-auto"></i>
@@ -119,9 +117,10 @@
                     </div>
                 </div>
 
+
                 <!-- Topic Selection -->
+                <!-- ... existing topic select ... -->
                 <div>
-                    <!-- ... existing topic select ... -->
                     <label class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
                     <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="">Choose a topic...</option>
@@ -136,9 +135,10 @@
                     </select>
                 </div>
 
+
                 <!-- "Other" Topic Input -->
+                <!-- ... existing other topic input ... -->
                 <div id="otherTopicWrapper" class="hidden">
-                    <!-- ... existing other topic input ... -->
                     <label class="block text-sm font-medium text-gray-700 mb-2">Your Custom Topic</label>
                     <input
                         type="text"
@@ -149,8 +149,8 @@
                 </div>
 
                 <!-- College Tagging -->
-                <div>
-                    <!-- ... existing college input ... -->
+                <!-- ... existing college input ... -->
+                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
                     <input
                         type="text"
@@ -159,6 +159,7 @@
                         class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                 </div>
+
 
                 <!-- Submit Section -->
                 <div class="border-t pt-6">
@@ -198,7 +199,7 @@
         feather.replace(); // Initial replace
 
         document.addEventListener('DOMContentLoaded', () => {
-             // Re-run feather after dynamic elements might appear
+            // Re-run feather after dynamic elements might load
             setTimeout(() => feather.replace(), 100);
 
             // --- 1. Content Type Toggle Logic ---
@@ -208,6 +209,8 @@
 
             typeButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
+                    activePostType = this.dataset.type; // Update active type
+
                     // Update button styles
                     typeButtons.forEach(b => {
                         b.classList.remove('bg-blue-600', 'text-white');
@@ -217,7 +220,6 @@
                     this.classList.remove('bg-white', 'text-gray-700', 'border');
 
                     // Show/hide content sections
-                    activePostType = this.dataset.type;
                     contentSections.forEach(section => {
                         if (section.id === `content-${activePostType}`) {
                             section.classList.remove('hidden');
@@ -225,196 +227,231 @@
                             section.classList.add('hidden');
                         }
                     });
-                     feather.replace(); // Ensure icons render correctly after visibility change
+                    feather.replace(); // Ensure icons render correctly
                 });
             });
 
             // --- 2. Image Preview Logic ---
-            // ... (keep existing image preview logic) ...
-            const imageUpload = document.getElementById('imageUpload');
-            const imagePreviewDiv = document.getElementById('imagePreview');
-            const imagePreviewImg = imagePreviewDiv.querySelector('img');
+             const imageUpload = document.getElementById('imageUpload');
+             const imagePreviewDiv = document.getElementById('imagePreview');
+             const imagePreviewImg = imagePreviewDiv.querySelector('img');
 
-            imageUpload.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        imagePreviewImg.src = e.target.result;
-                        imagePreviewDiv.classList.remove('hidden');
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    imagePreviewDiv.classList.add('hidden');
-                    imagePreviewImg.src = '';
-                }
-            });
-
-
-            // --- 3. "Other" Topic Logic ---
-            // ... (keep existing "Other" topic logic) ...
-            const topicSelect = document.getElementById('topicSelect');
-            const otherTopicWrapper = document.getElementById('otherTopicWrapper');
-
-            topicSelect.addEventListener('change', () => {
-                if (topicSelect.value === 'other') {
-                    otherTopicWrapper.classList.remove('hidden');
-                } else {
-                    otherTopicWrapper.classList.add('hidden');
-                }
-            });
-
-
-            // --- 4. "Save Draft" Logic ---
-            // ... (keep existing save draft logic) ...
-            const saveDraftBtn = document.getElementById('saveDraftBtn');
-            const draftToast = document.getElementById('draft-toast');
-            const postContent = document.getElementById('postContent');
-            const imageCaption = document.getElementById('imageCaption');
-            const otherTopicInput = document.getElementById('otherTopicInput');
-            const collegeTag = document.getElementById('collegeTag');
-
-            saveDraftBtn.addEventListener('click', () => {
-                const draft = {
-                    type: activePostType,
-                    content: postContent.value,
-                    imageCaption: imageCaption.value,
-                    topic: topicSelect.value,
-                    otherTopic: otherTopicInput.value,
-                    college: collegeTag.value,
-                    // Note: We don't save the image file itself, just the caption
-                };
-
-                localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
-
-                draftToast.classList.remove('hidden');
-                setTimeout(() => {
-                    draftToast.classList.add('hidden');
-                }, 2000);
-            });
-
-
-            // --- 5. "Load Draft" Logic ---
-            // ... (keep existing load draft logic) ...
-             const loadDraftToast = document.getElementById('load-draft-toast');
-            const restoreDraftBtn = document.getElementById('restoreDraftBtn');
-            const discardDraftBtn = document.getElementById('discardDraftBtn');
-            const savedDraft = localStorage.getItem('safeVoiceDraft');
-
-            if (savedDraft) {
-                loadDraftToast.classList.remove('hidden');
+             if(imageUpload && imagePreviewDiv && imagePreviewImg) { // Check elements exist
+                imageUpload.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            imagePreviewImg.src = e.target.result;
+                            imagePreviewDiv.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imagePreviewDiv.classList.add('hidden');
+                        imagePreviewImg.src = '';
+                    }
+                });
+            } else {
+                console.error("Image upload/preview elements not found!");
             }
 
-            restoreDraftBtn.addEventListener('click', () => {
-                const draft = JSON.parse(savedDraft);
+            // --- 3. "Other" Topic Logic ---
+             const topicSelect = document.getElementById('topicSelect');
+             const otherTopicWrapper = document.getElementById('otherTopicWrapper');
+             const otherTopicInput = document.getElementById('otherTopicInput'); // Added
 
-                // Restore type button and section visibility
-                const typeBtnToClick = document.querySelector(`.post-type-btn[data-type="${draft.type}"]`);
-                if(typeBtnToClick) typeBtnToClick.click();
+             if (topicSelect && otherTopicWrapper) { // Check elements exist
+                topicSelect.addEventListener('change', () => {
+                    if (topicSelect.value === 'other') {
+                        otherTopicWrapper.classList.remove('hidden');
+                    } else {
+                        otherTopicWrapper.classList.add('hidden');
+                        otherTopicInput.value = ''; // Clear custom topic if switching away
+                    }
+                });
+            } else {
+                 console.error("Topic select elements not found!");
+            }
 
-                // Restore content
-                postContent.value = draft.content || '';
-                imageCaption.value = draft.imageCaption || '';
-                topicSelect.value = draft.topic || '';
-                otherTopicInput.value = draft.otherTopic || '';
-                collegeTag.value = draft.college || '';
+            // --- 4. "Save Draft" Logic ---
+             const saveDraftBtn = document.getElementById('saveDraftBtn');
+             const draftToast = document.getElementById('draft-toast');
+             const postContent = document.getElementById('postContent');
+             const imageCaption = document.getElementById('imageCaption');
+             const collegeTag = document.getElementById('collegeTag');
+             const privacyTiers = document.querySelectorAll('input[name="privacyTier"]'); // Added
 
-                // Trigger "Other" input visibility if needed
-                if (draft.topic === 'other') {
-                    otherTopicWrapper.classList.remove('hidden');
-                } else {
-                    otherTopicWrapper.classList.add('hidden');
-                }
+            if (saveDraftBtn && draftToast) { // Check elements exist
+                saveDraftBtn.addEventListener('click', () => {
+                    let selectedPrivacy = 'standard';
+                    privacyTiers.forEach(radio => {
+                        if (radio.checked) {
+                            selectedPrivacy = radio.value;
+                        }
+                    });
 
-                // Clear the saved draft from localStorage
-                localStorage.removeItem('safeVoiceDraft');
-                loadDraftToast.classList.add('hidden');
-            });
+                    const draft = {
+                        type: activePostType,
+                        content: postContent.value,
+                        imageCaption: imageCaption.value,
+                        topic: topicSelect.value,
+                        otherTopic: otherTopicInput.value,
+                        college: collegeTag.value,
+                        privacy: selectedPrivacy
+                        // Image file is not saved, only caption and type
+                    };
 
-            discardDraftBtn.addEventListener('click', () => {
-                localStorage.removeItem('safeVoiceDraft');
-                loadDraftToast.classList.add('hidden');
-            });
+                    localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
+
+                    draftToast.classList.remove('hidden');
+                    setTimeout(() => {
+                        draftToast.classList.add('hidden');
+                    }, 2000);
+                });
+            } else {
+                 console.error("Save draft elements not found!");
+            }
+
+            // --- 5. "Load Draft" Logic ---
+             const loadDraftToast = document.getElementById('load-draft-toast');
+             const restoreDraftBtn = document.getElementById('restoreDraftBtn');
+             const discardDraftBtn = document.getElementById('discardDraftBtn');
+             const savedDraft = localStorage.getItem('safeVoiceDraft');
+
+            if (savedDraft && loadDraftToast && restoreDraftBtn && discardDraftBtn) { // Check elements exist
+                loadDraftToast.classList.remove('hidden');
+
+                restoreDraftBtn.addEventListener('click', () => {
+                    const draft = JSON.parse(savedDraft);
+
+                    // Restore type button and section visibility
+                    const typeBtnToClick = document.querySelector(`.post-type-btn[data-type="${draft.type}"]`);
+                    if(typeBtnToClick) typeBtnToClick.click();
+
+                    // Restore content
+                    postContent.value = draft.content || '';
+                    imageCaption.value = draft.imageCaption || '';
+                    topicSelect.value = draft.topic || '';
+                    otherTopicInput.value = draft.otherTopic || '';
+                    collegeTag.value = draft.college || '';
+
+                     // Restore privacy tier
+                    privacyTiers.forEach(radio => {
+                        if (radio.value === draft.privacy) {
+                            radio.checked = true;
+                        }
+                    });
+
+                    // Trigger "Other" input visibility if needed
+                    if (draft.topic === 'other') {
+                        otherTopicWrapper.classList.remove('hidden');
+                    } else {
+                        otherTopicWrapper.classList.add('hidden');
+                    }
+
+                    // Note: Cannot restore image file selection
+
+                    localStorage.removeItem('safeVoiceDraft');
+                    loadDraftToast.classList.add('hidden');
+                });
+
+                discardDraftBtn.addEventListener('click', () => {
+                    localStorage.removeItem('safeVoiceDraft');
+                    loadDraftToast.classList.add('hidden');
+                });
+            }
 
 
             // --- 6. Form Submission (Simulation) ---
-             // ... (keep existing form submission logic) ...
-             document.getElementById('createPostForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
+             const createPostForm = document.getElementById('createPostForm');
+             if(createPostForm) { // Check form exists
+                createPostForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
 
-                // Determine content based on active type
-                let contentValue = '';
-                if (activePostType === 'text') {
-                    contentValue = postContent.value.trim();
-                } else if (activePostType === 'image') {
-                    contentValue = imageCaption.value.trim(); // Use caption as content for now
-                     if (!imageUpload.files[0]) {
-                        alert('Please select an image to upload.');
+                    // Determine content based on active type
+                    let contentValue = '';
+                    if (activePostType === 'text') {
+                        contentValue = postContent.value.trim();
+                    } else if (activePostType === 'image') {
+                        contentValue = imageCaption.value.trim();
+                         if (!imageUpload.files[0] && !contentValue) { // Allow image OR caption, but need one
+                           alert('Please upload an image or add a caption.');
+                           return;
+                         }
+                    } else if (activePostType === 'voice') {
+                        alert('Voice posting is not yet implemented.');
                         return;
                     }
-                     if (!contentValue) { // Make caption optional maybe? For now, require it if image.
-                       // alert('Please add a caption for your image.');
-                       // return;
-                       contentValue = " "; // Allow image post without caption
-                     }
-                } else if (activePostType === 'voice') {
-                    alert('Voice posting is not yet implemented.');
-                    return; // Stop submission for voice
-                }
 
-
-                let topic = topicSelect.value;
-                if (topic === 'other') {
-                    topic = otherTopicInput.value.trim();
-                     if(!topic) {
-                        alert('Please enter your custom topic.');
+                    let topic = topicSelect.value;
+                    if (topic === 'other') {
+                        topic = otherTopicInput.value.trim();
+                        if(!topic) {
+                            alert('Please enter your custom topic.');
+                            return;
+                        }
+                    }
+                    if (!topic) {
+                        alert('Please select a topic.');
                         return;
                     }
-                }
-                 if (!topic) {
-                    alert('Please select a topic.');
-                    return;
-                }
 
-                if (!contentValue) {
-                    alert('Please enter your message or caption.');
-                    return;
-                }
-
-
-                const submitBtn = this.querySelector('button[type="submit"]');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i data-feather="loader" class="inline w-4 h-4 mr-2 animate-spin"></i> Posting...';
-                feather.replace(); // Re-render icon
-
-                try {
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-
-                    if (window.safeVoiceApp) {
-                        window.safeVoiceApp.awardTokens(10, 'post_created');
-                        alert('🎉 Post created successfully! +10 tokens awarded.');
+                    // No need to validate contentValue being empty if image is present
+                    if (activePostType === 'text' && !contentValue) {
+                       alert('Please enter your message.');
+                       return;
                     }
 
-                    // Clear draft and form
-                    localStorage.removeItem('safeVoiceDraft');
-                    this.reset(); // Reset form fields
-                    otherTopicWrapper.classList.add('hidden'); // Hide other topic input
-                    imagePreviewDiv.classList.add('hidden'); // Hide image preview
-                    imageUpload.value = ''; // Clear file input
-                    document.getElementById('btn-type-text').click(); // Reset to text type
+                    let selectedPrivacy = 'standard';
+                    privacyTiers.forEach(radio => {
+                        if (radio.checked) {
+                            selectedPrivacy = radio.value;
+                        }
+                    });
 
-                    window.location.href = './feed.html';
-                } catch (error) {
-                    console.error('Post creation failed:', error);
-                    alert('Failed to create post. Please try again.');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Post Anonymously';
-                     // No feather.replace() needed here, just text content
-                }
-            });
 
-        });
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i data-feather="loader" class="inline w-4 h-4 mr-2 animate-spin"></i> Posting...';
+                    feather.replace();
+
+                    try {
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+
+                        if (window.safeVoiceApp) {
+                            window.safeVoiceApp.awardTokens(10, 'post_created');
+                            alert('🎉 Post created successfully! +10 tokens awarded.');
+                        } else {
+                            alert('🎉 Post created successfully! (Tokens simulated)');
+                        }
+
+
+                        localStorage.removeItem('safeVoiceDraft');
+                        this.reset();
+                        otherTopicWrapper.classList.add('hidden');
+                        if(imagePreviewDiv) imagePreviewDiv.classList.add('hidden');
+                        if(imageUpload) imageUpload.value = '';
+                        document.getElementById('btn-type-text').click(); // Reset to text type
+
+                         // Reset privacy tier to standard
+                        privacyTiers.forEach(radio => radio.checked = (radio.value === 'standard'));
+
+
+                        window.location.href = './feed.html';
+                    } catch (error) {
+                        console.error('Post creation failed:', error);
+                        alert('Failed to create post. Please try again.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Anonymously';
+                    }
+                });
+            } else {
+                 console.error("Create post form not found!");
+            }
+
+        }); // End DOMContentLoaded
     </script>
 </body>
 </html>
+
