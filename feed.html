@@ -6,8 +6,7 @@
     <title>SafeVoice Feed - Anonymous Student Discussions</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="./style.css">
-    {/* <!-- Supabase CDN MUST be included before script.js --> */}
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    {/* <!-- NO Supabase CDN here --> */}
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -24,7 +23,7 @@
             </div>
 
             <div class="flex flex-wrap gap-2" id="filter-buttons">
-                {/* Filter buttons remain, logic will now fetch from Supabase */}
+                {/* <!-- Filter buttons restored --> */}
                 <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
                 <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
                 <button data-filter="latest" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
@@ -51,42 +50,133 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* <!-- Posts Column --> */}
             <div class="lg:col-span-2 space-y-6" id="posts-container">
-                {/* --- POSTS WILL BE RENDERED HERE DYNAMICALLY --- */}
+                {/* --- STATIC POSTS RESTORED FOR GOLDEN CODE --- */}
 
-                 {/* --- Loading State --- */}
-                 <div id="loading-indicator" class="text-center py-10">
-                     <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-                     <p class="mt-4 text-gray-600">Loading posts...</p>
-                 </div>
+                 {/* <!-- Post Card 1 --> */}
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis" data-content="the pressure of finals is overwhelming feeling completely burned out with finals approaching. the constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. anyone else struggling with this?">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                        </div>
+                        <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
+                    </div>
 
-                 {/* --- Empty State --- */}
-                 <div id="empty-state" class="hidden text-center py-10 bg-white rounded-2xl shadow p-6">
-                     <i data-feather="message-square" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
-                     <h3 class="text-xl font-semibold text-gray-800 mb-2">No Posts Yet</h3>
-                     <p class="text-gray-600 mb-4">Be the first to share your voice or check back later!</p>
-                     <a href="./create.html" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 text-center text-sm">
-                         <i data-feather="edit-3" class="w-5 h-5"></i>
-                         <span>Create a Post</span>
-                     </a>
-                 </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">The pressure of finals is overwhelming</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
 
-                 {/* --- Error State --- */}
-                 <div id="error-state" class="hidden text-center py-10 bg-red-50 rounded-2xl shadow p-6 border border-red-200">
-                     <i data-feather="alert-triangle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
-                     <h3 class="text-xl font-semibold text-red-800 mb-2">Error Loading Posts</h3>
-                     <p class="text-red-700 mb-4">Could not fetch posts from the server. Please try refreshing the page.</p>
-                     <button onclick="location.reload()" class="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 text-center text-sm">
-                         <i data-feather="refresh-cw" class="w-5 h-5"></i>
-                         <span>Refresh Page</span>
-                     </button>
+                    <div class="my-4 rounded-lg overflow-hidden border border-gray-200">
+                        <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Stressed+Student" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-4 mt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
+                            <i data-feather="heart" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">24</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
+                            <i data-feather="zap" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">18</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
+                            <i data-feather="feather" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">12</span>
+                        </button>
+                        <a href="./post.html?id=1" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                            <span class="font-medium">8</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 {/* <!-- Post Card 2 --> */}
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health" data-content="found this amazing meditation technique that helped my anxiety after struggling with panic attacks during exams, i discovered a simple breathing exercise that changed everything. want to share it with anyone who might benefit.">
+                     <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                        </div>
+                        <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">Mental Health</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
+
+                     <div class="flex items-center gap-4 pt-4 mt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
+                            <i data-feather="heart" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">42</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
+                            <i data-feather="zap" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">31</span>
+                        </button>
+                         <a href="./post.html?id=2" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                            <span class="font-medium">15</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 {/* <!-- Post Card 3 (Memorial) --> */}
+                <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial" data-content="remembering sarah - a light that burned too bright today marks one year since we lost our dear friend sarah to depression. she was brilliant, kind, and always there for others. let's honor her memory by being there for each other.">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                            <i data-feather="heart" class="w-5 h-5"></i>
+                        </div>
+                        <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full font-medium">Memorial</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
+
+                     <div class="flex items-center gap-4 pt-4 mt-4 border-t border-purple-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
+                            <i data-feather="heart" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">156</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
+                            <i data-feather="feather" class="w-5 h-5"></i>
+                            <span class="reaction-count text-sm font-medium">89</span>
+                        </button>
+                         <a href="./post.html?id=3" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                            <span class="font-medium">47</span>
+                        </a>
+                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+                 {/* --- END STATIC POSTS --- */}
+
+                 {/* <!-- Placeholder for No Posts Message --> */}
+                <div id="no-posts-message" class="hidden text-center py-10 bg-white rounded-2xl shadow p-6">
+                     <i data-feather="info" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+                     <h3 class="text-xl font-semibold text-gray-800 mb-2">No Matching Posts</h3>
+                     <p class="text-gray-600">Try adjusting your filter or search terms.</p>
                  </div>
 
             </div> {/* <!-- End Posts Column --> */}
 
-            {/* <!-- Sidebar --> */}
+            {/* <!-- Sidebar Restored --> */}
             <div class="space-y-6 lg:sticky lg:top-24 h-fit">
-                {/* Sidebar content remains the same, token balance updated via script.js event */}
-                 {/* <!-- Token Balance Card --> */}
+                {/* <!-- Token Balance Card --> */}
                 <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-feather="award" class="w-5 h-5"></i>
@@ -148,186 +238,41 @@
 
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <script src="./script.js"></script> {/* Supabase client is initialized here */}
+    <script src="./script.js"></script> {/* NO Supabase init here */}
     <script>
         // Use feather directly as modules aren't used here
-        // feather.replace(); // Initial replacement done in script.js now
+        if (typeof feather !== 'undefined') feather.replace();
 
-        document.addEventListener('DOMContentLoaded', async () => {
-             // Ensure feather icons are rendered initially and after dynamic content
-            const renderIcons = () => {
-                 if (typeof feather !== 'undefined') {
-                     feather.replace();
-                 } else {
-                     console.warn("Feather not ready for replacement.");
-                 }
+        document.addEventListener('DOMContentLoaded', () => {
+             // Re-run feather after dynamic content might load & for modal close button
+            setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 100);
+
+            // 1. Update Token Balance Display from global app state
+            const updateTokenDisplay = () => {
+                const tokenEl = document.getElementById('tokenBalanceDisplay');
+                if (tokenEl && window.safeVoiceApp) {
+                    const balance = typeof window.safeVoiceApp.tokenBalance === 'number'
+                        ? window.safeVoiceApp.tokenBalance.toLocaleString()
+                        : '0';
+                    tokenEl.textContent = balance;
+                } else if(tokenEl) {
+                    tokenEl.textContent = '0'; // Fallback
+                }
             };
-            renderIcons(); // Initial render
-            // setTimeout(renderIcons, 100); // Render again shortly after load
+            setTimeout(updateTokenDisplay, 200); // Initial update
+             window.addEventListener('safeVoiceTokenUpdate', updateTokenDisplay); // Listen for updates
 
+
+            // --- Filter and Search Logic (Client-Side for Golden Code) ---
             const postsContainer = document.getElementById('posts-container');
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const emptyState = document.getElementById('empty-state');
-            const errorState = document.getElementById('error-state');
+            const allPosts = postsContainer ? postsContainer.querySelectorAll('.post-card') : [];
             const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
             const searchInput = document.getElementById('feedSearchInput');
-
-            let currentFilter = 'all'; // Keep track of the active filter
-            let currentSearchQuery = ''; // Keep track of search
-
-            // --- Function to Render a Single Post ---
-            function renderPost(post) {
-                // Basic check for essential data
-                 if (!post || !post.id || !post.created_at || !post.content) {
-                    console.warn("Skipping invalid post object:", post);
-                    return ''; // Return empty string if post data is invalid
-                }
-
-                const timeAgo = SafeVoiceUtils.formatDate(post.created_at);
-                const escapedContent = SafeVoiceUtils.escapeHTML(post.content);
-                const escapedCollege = SafeVoiceUtils.escapeHTML(post.college || 'Unknown College');
-                const escapedTopic = SafeVoiceUtils.escapeHTML(post.topic || 'General');
-                // Use anonymous ID if available, otherwise a placeholder
-                const anonymousId = SafeVoiceUtils.escapeHTML(post.anonymous_id || 'AnonUser' + String(post.id).slice(-4));
-                const postTopic = post.topic || 'other'; // Default topic if null
-                const contentForSearch = escapedContent.toLowerCase(); // For data attribute
-
-                 // Simple topic-to-tag mapping
-                 const topicTags = {
-                    'mental-health': '<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">Mental Health</span>',
-                    'academics': '<span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full font-medium">Academics</span>',
-                    'relationships': '<span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full font-medium">Relationships</span>',
-                    'social-issues': '<span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium">Social Issues</span>',
-                    'memorials': '<span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full font-medium">Memorial</span>',
-                    'career': '<span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full font-medium">Career</span>',
-                    'crisis': '<span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full font-medium">Crisis</span>',
-                    'other': '<span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full font-medium">Other</span>'
-                 };
-                 const topicTagHtml = topicTags[postTopic] || topicTags['other']; // Fallback tag
+             const noPostsMessage = document.getElementById('no-posts-message');
 
 
-                return `
-                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="${postTopic}" data-content="${contentForSearch}">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center text-white">
-                            <i data-feather="user" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-semibold text-gray-800">${anonymousId}</div>
-                            <div class="text-xs text-gray-500">${timeAgo} • ${escapedCollege}</div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-2 mb-3">
-                        ${topicTagHtml}
-                    </div>
-
-                    <p class="text-gray-700 mb-4 leading-relaxed">${escapedContent}</p>
-
-                    ${post.image_url ? `
-                    <div class="my-4 rounded-lg overflow-hidden border border-gray-200">
-                        <img src="${SafeVoiceUtils.escapeHTML(post.image_url)}" alt="Post Image" class="w-full h-auto max-h-[400px] object-cover cursor-pointer post-image" loading="lazy" onerror="this.style.display='none'">
-                    </div>` : ''}
-
-                    <div class="flex items-center gap-4 pt-4 mt-4 border-t border-gray-100">
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="${post.id}" data-reaction="support">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">${post.reaction_support || 0}</span>
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="${post.id}" data-reaction="strong">
-                            <i data-feather="zap" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">${post.reaction_strong || 0}</span> {/* Assuming you add this column */}
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="${post.id}" data-reaction="healing">
-                            <i data-feather="feather" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">${post.reaction_healing || 0}</span> {/* Assuming you add this column */}
-                        </button>
-                        <a href="./post.html?id=${post.id}" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                            <span class="font-medium">${post.comment_count || 0}</span> {/* Assuming you add this column/join */}
-                        </a>
-                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-                </div>`;
-            }
-
-            // --- Function to Fetch and Render Posts ---
-            async function fetchAndRenderPosts(filter = 'all', query = '') {
-                if (!postsContainer || !loadingIndicator || !emptyState || !errorState) {
-                    console.error("Required elements for rendering posts are missing.");
-                    return;
-                }
-                if (!supabase) {
-                    console.error("Supabase client not initialized.");
-                     loadingIndicator.classList.add('hidden');
-                     errorState.classList.remove('hidden');
-                    return;
-                }
-
-                // Show loading state, hide others
-                loadingIndicator.classList.remove('hidden');
-                postsContainer.innerHTML = ''; // Clear previous posts (keep loading indicator separate)
-                emptyState.classList.add('hidden');
-                errorState.classList.add('hidden');
-
-                try {
-                    console.log(`Fetching posts with filter: ${filter}, query: ${query}`);
-                    let queryBuilder = supabase
-                        .from('posts')
-                        .select('*') // Select specific columns later for optimization
-                        .order('created_at', { ascending: false })
-                        .limit(50); // Add a limit
-
-                    // Apply topic filter if not 'all'
-                    if (filter !== 'all') {
-                         // Map UI filter names to potential DB topic values
-                         const filterMap = {
-                             'mental-health': 'mental-health', // Assuming DB value is the same
-                             'crisis': 'crisis',
-                             'memorial': 'memorials', // Example: UI 'memorial', DB 'memorials'
-                             // Add other mappings as needed
-                         };
-                         const dbFilter = filterMap[filter] || filter; // Use mapped value or original
-                        queryBuilder = queryBuilder.eq('topic', dbFilter);
-                    }
-
-                    // Apply search query (text search on 'content' column)
-                    if (query) {
-                        // Use '.ilike()' for case-insensitive partial matching
-                        queryBuilder = queryBuilder.ilike('content', `%${query}%`);
-                    }
-
-                    const { data: posts, error } = await queryBuilder;
-
-                    if (error) {
-                        throw error; // Throw error to be caught below
-                    }
-
-                    console.log("Posts fetched:", posts);
-
-                    loadingIndicator.classList.add('hidden'); // Hide loading
-
-                    if (posts && posts.length > 0) {
-                        postsContainer.innerHTML = posts.map(renderPost).join('');
-                        renderIcons(); // Render icons for the newly added posts
-                    } else {
-                        emptyState.classList.remove('hidden'); // Show empty state
-                        renderIcons(); // Render empty state icon
-                    }
-
-                } catch (error) {
-                    console.error('Error fetching posts:', error);
-                    loadingIndicator.classList.add('hidden');
-                    errorState.classList.remove('hidden'); // Show error state
-                    renderIcons(); // Render error state icon
-                }
-            }
-
-            // --- Event Listeners for Filters and Search ---
-             function setActiveFilterButton(activeButton) {
-                filterButtons.forEach(btn => {
+            function setActiveFilterButton(activeButton) {
+                 filterButtons.forEach(btn => {
                     btn.classList.remove('bg-blue-600', 'text-white');
                     btn.classList.add('bg-white', 'text-gray-700', 'border');
                 });
@@ -337,45 +282,62 @@
                 }
             }
 
+            function filterAndSearchPosts(filter = 'all', query = '') {
+                 if (filter === 'trending' || filter === 'latest') {
+                    alert('Trending and Latest filters are a future feature! Showing all posts.');
+                    filter = 'all';
+                    const allButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
+                    if (allButton) setActiveFilterButton(allButton);
+                 }
+
+                 let postsFound = false;
+                allPosts.forEach(post => {
+                    const topic = post.dataset.topic ? post.dataset.topic.toLowerCase() : '';
+                    const content = post.dataset.content ? post.dataset.content.toLowerCase() : '';
+                    const topicMatch = (filter === 'all' || topic === filter);
+                    const queryMatch = (query === '' || content.includes(query));
+
+                    if (topicMatch && queryMatch) {
+                        post.style.display = 'block';
+                        postsFound = true;
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+
+                 if (noPostsMessage) {
+                     noPostsMessage.style.display = postsFound ? 'none' : 'block';
+                 }
+            }
+
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const filter = button.dataset.filter;
-                    if (filter === 'trending' || filter === 'latest') {
-                         alert('Trending and Latest filters are coming soon!');
-                         return; // Don't fetch yet
-                    }
-                    currentFilter = filter;
-                    currentSearchQuery = ''; // Clear search when filter changes
                     if(searchInput) searchInput.value = '';
                     setActiveFilterButton(button);
-                    fetchAndRenderPosts(currentFilter, currentSearchQuery);
+                    filterAndSearchPosts(filter);
                 });
             });
 
-            if (searchInput) {
-                searchInput.addEventListener('input', SafeVoiceUtils.debounce(async (e) => {
-                    currentSearchQuery = e.target.value.toLowerCase().trim();
-                    currentFilter = 'all'; // Reset filter to 'all' when searching
-                    // Visually reset filter button to 'All'
+            if(searchInput) {
+                searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => {
+                    const query = e.target.value.toLowerCase().trim();
                     const allButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
-                    if (allButton) setActiveFilterButton(allButton);
-                    await fetchAndRenderPosts(currentFilter, currentSearchQuery);
-                }, 400)); // Increased debounce time slightly
+                     if (allButton) setActiveFilterButton(allButton);
+                    filterAndSearchPosts('all', query);
+                }, 300));
             }
 
-            // --- Initial Load ---
-             // Set 'All' button as active visually on load
+            // --- Image Modal Logic (uses global handler in script.js) ---
+            // No specific modal logic needed here anymore
+
+            // Initial Filter Application
             const initialAllButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
             if (initialAllButton) setActiveFilterButton(initialAllButton);
-            // Fetch posts on initial load
-            fetchAndRenderPosts(currentFilter, currentSearchQuery);
+            filterAndSearchPosts('all'); // Apply 'all' filter on load
 
-
-             // --- Update Token Display --- (Moved to global script.js listener)
-
-
-             // --- Image Modal Logic --- (Moved to global script.js listener)
-
+             // Re-render icons after potential filtering hides/shows elements
+             setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 400);
 
         }); // End DOMContentLoaded
     </script>
