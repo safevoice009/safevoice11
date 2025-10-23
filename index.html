@@ -12,11 +12,13 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+<!-- ADDED pt-16 TO BODY to fix mobile navbar overlap -->
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen pt-16">
     <custom-navbar></custom-navbar>
     
     <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- REMOVED pt-16 from here, as it's now on the body -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-16">
         <div class="absolute inset-0 z-0" id="vanta-bg"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
@@ -197,3 +199,4 @@
     </script>
 </body>
 </html>
+
