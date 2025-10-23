@@ -16,58 +16,62 @@
 
     <main class="max-w-4xl mx-auto px-4 py-8">
         <!-- Emergency Alert -->
-        <div class="bg-red-600 text-white p-6 rounded-2xl mb-8 text-center">
-            <h2 class="text-2xl font-bold mb-2">🚨 Immediate Crisis Support</h2>
-            <p class="text-red-100 mb-4">If you're in immediate danger or considering self-harm, please contact emergency services immediately.</h2>
+        <div class="bg-red-600 text-white p-6 rounded-2xl mb-8"> <!-- Removed text-center -->
+            <h2 class="text-2xl font-bold mb-2 text-center">🚨 Immediate Crisis Support</h2>
+            <p class="text-red-100 mb-6 text-center">If you're in immediate danger or considering self-harm, please contact emergency services immediately.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Emergency Contacts -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Emergency Contacts</h3>
-                <ul class="space-y-3 text-left">
-                    <li class="flex items-center gap-2">
-                        <i data-feather="phone" class="w-5 h-5"></i>
-                    </div>
-                    <li class="flex items-center gap-2">
-                        <i data-feather="globe" class="w-4 h-4"></i>
-                        <span class="font-medium">National Suicide Prevention Lifeline</span>
-                    <span class="text-blue-600 font-semibold">988</span>
-                </li>
-                <li class="flex items-center gap-2">
-                        <i data-feather="message-circle" class="w-4 h-4"></i>
-                        <span class="text-gray-600">Call or text 24/7</li>
-                    <li class="flex items-center gap-2">
-                        <i data-feather="heart" class="w-4 h-4"></i>
-                        <span class="font-medium">Crisis Text Line</span>
-                    <span class="text-blue-600 font-semibold">Text HOME to 741741</span>
-                </li>
-                <li class="flex items-center gap-2">
-                        <i data-feather="mail" class="w-4 h-4"></i>
-                        <span class="text-gray-600">Free 24/7 support</li>
-                </ul>
-            </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Emergency Contacts</h3>
+                    <ul class="space-y-3 text-left">
+                        <li class="flex items-center gap-3">
+                            <i data-feather="phone-call" class="w-5 h-5 text-blue-600"></i>
+                            <div>
+                                <span class="font-medium text-gray-800">National Suicide Prevention Lifeline</span>
+                                <!-- FIXED: Added text-white classes to links -->
+                                <a href="tel:988" class="block text-blue-600 font-semibold text-lg hover:underline">988</a>
+                                <span class="text-gray-600 text-sm">Call or text 24/7</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="message-circle" class="w-5 h-5 text-blue-600"></i>
+                            <div>
+                                <span class="font-medium text-gray-800">Crisis Text Line</span>
+                                <a href="sms:741741?&body=HOME" class="block text-blue-600 font-semibold text-lg hover:underline">Text HOME to 741741</a>
+                                <span class="text-gray-600 text-sm">Free 24/7 support</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             
-            <div class="bg-white p-6 rounded-xl shadow-lg">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">International Helplines</h3>
-                <div class="space-y-2 text-left">
-                    <div class="p-3 bg-gray-50 rounded-lg">
-                    <span class="font-medium">Your Local Emergency Services</span>
-                    <span class="text-blue-600 font-semibold">911</span>
+                <!-- International Helplines (Fixed contrast issue) -->
+                <div class="bg-red-700 p-6 rounded-xl shadow-lg"> <!-- Changed bg to be nested -->
+                    <h3 class="text-xl font-semibold text-white mb-4">Emergency Services</h3>
+                    <div class="space-y-2 text-left">
+                        <div class="p-3 bg-red-100 rounded-lg">
+                            <span class="font-medium text-red-900">Your Local Emergency Number</span>
+                            <a href="tel:911" class="block text-red-700 font-semibold text-lg hover:underline">911 (or local equivalent)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
         <!-- Mental Health Resources -->
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Mental Health Resources</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Therapy Resources -->
                 <div class="bg-white rounded-2xl shadow-lg p-6">
                     <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-feather="heart" class="text-white w-6 h-6"></i>
-                </div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Online Therapy Platforms</div>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">BetterHelp</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Talkspace</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">BetterHelp</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Open Path Collective</a></li>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2 text-center">Online Therapy Platforms</h3>
+                    <ul class="space-y-2 text-center">
+                        <li><a href="https://www.betterhelp.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">BetterHelp</a></li>
+                        <li><a href="https://www.talkspace.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">Talkspace</a></li>
+                        <li><a href="https://openpathcollective.org" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">Open Path Collective</a></li>
                     </ul>
                 </div>
 
@@ -75,40 +79,41 @@
                 <div class="bg-white rounded-2xl shadow-lg p-6">
                     <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-feather="book" class="text-white w-6 h-6"></i>
-                </div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Self-Help & Education</div>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Headspace (Meditation)</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Calm</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Calm</a></li>
-                        <li><a href="#" class="text-blue-600 hover:text-blue-700">7 Cups (Peer Support)</a></li>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2 text-center">Self-Help & Education</h3>
+                    <ul class="space-y-2 text-center">
+                        <li><a href="https://www.headspace.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">Headspace (Meditation)</a></li>
+                        <li><a href="https://www.calm.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">Calm</a></li>
+                        <li><a href="https://www.7cups.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 hover:underline">7 Cups (Peer Support)</a></li>
                     </ul>
                 </div>
-            </div>
+        </div>
 
         <!-- University Resources -->
         <div class="mt-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Campus-Specific Support</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Campus-Specific Support</h2>
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-6"> <!-- Made 1 column -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Find Your University Resources</div>
-            <div class="flex gap-4">
-                <input type="text" placeholder="Search for your university..." class="flex-1 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"">
-                    <button class="bg-blue-600 text-white px-6 py-4 rounded-xl font-medium">Search</button>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Find Your University Resources</h3>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" placeholder="Search for your university..." class="flex-1 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="bg-blue-600 text-white px-6 py-4 rounded-xl font-medium">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- AI Crisis Detection Info -->
         <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-2xl mt-8">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">How SafeVoice Protects You</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">How SafeVoice Protects You</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div class="text-center p-4">
-                    <i data-feather="shield" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
-                <p class="text-gray-700">
-                Our AI system automatically detects crisis language and provides immediate helpline suggestions. Your privacy is always protected.</p>
+                    <div class="text-center p-4 col-span-1 md:col-span-3"> <!-- Centered -->
+                        <i data-feather="shield" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+                        <p class="text-gray-700 max-w-2xl mx-auto">
+                        Our AI system is designed to detect crisis language and provide immediate helpline suggestions. Your privacy is always protected.
+                        </p>
+                    </div>
                 </div>
-            </div>
         </div>
     </main>
 
@@ -137,3 +142,4 @@
     </script>
 </body>
 </html>
+
