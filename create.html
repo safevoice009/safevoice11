@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeVoice Feed - Anonymous Student Discussions</title>
+    <title>Create Post - SafeVoice</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,222 +13,182 @@
 <body class="bg-gray-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Feed Header -->
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
-             <!-- ... existing header ... -->
-             <div>
-                <h1 class="text-3xl font-bold text-gray-800">SafeVoice Feed</h1>
-                <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Anonymous Post</h1>
+            <p class="text-gray-600 mb-8">Share your thoughts, experiences, or support others in complete privacy</p>
+
+            <!-- RESTORED: Privacy Tier Selector -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Privacy Level</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Standard Tier -->
+                    <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500">
+                            <label class="font-medium text-gray-800">Standard</label>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
+                        <div class="text-blue-600 font-semibold">Free</div>
+                    </div>
+                    <!-- PGP Tier -->
+                    <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500">
+                            <label class="font-medium text-gray-800">PGP Encrypted</label>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Client-side encryption</p>
+                        <div class="text-green-600 font-semibold">5 Tokens</div>
+                    </div>
+                    <!-- Tor Tier -->
+                    <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500">
+                            <label class="font-medium text-gray-800">Tor Routed</label>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Maximum privacy routing</p>
+                        <div class="text-purple-600 font-semibold">10 Tokens</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex flex-wrap gap-2" id="filter-buttons">
-                <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
-                <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
-                <button data-filter="latest" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
-                <button data-filter="crisis" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Crisis</button>
-                <button data-filter="mental-health" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Mental Health</button>
-                <button data-filter="memorial" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Memorials</button>
-            </div>
+            <!-- Post Form -->
+            <form id="createPostForm" class="space-y-6">
+                <!-- Content Type -->
+                <!-- ... existing content type buttons ... -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
+                    <div class="flex gap-4">
+                        <button type="button" id="btn-type-text" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2" data-type="text">
+                            <i data-feather="file-text" class="w-4 h-4"></i> Text
+                        </button>
+                        <button type="button" id="btn-type-image" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
+                            <i data-feather="image" class="w-4 h-4"></i> Image
+                        </button>
+                        <button type="button" id="btn-type-voice" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
+                            <i data-feather="mic" class="w-4 h-4"></i> Voice
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Dynamic Content Sections -->
+                <!-- ... existing text, image, voice sections ... -->
+                 <!-- Text Input (Default) -->
+                <div id="content-text" class="content-section space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                        <textarea
+                            id="postContent"
+                            placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)"
+                            class="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Image Input (Hidden) -->
+                <div id="content-image" class="content-section space-y-6 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                        <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        <div id="imagePreview" class="mt-4 hidden max-w-sm h-auto rounded-lg shadow-md overflow-hidden">
+                            <img src="" alt="Image Preview" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Image Caption (Optional)</label>
+                        <textarea
+                            id="imageCaption"
+                            placeholder="Add a caption for your image..."
+                            class="w-full h-24 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Voice Input (Hidden) -->
+                <div id="content-voice" class="content-section space-y-6 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Record or Upload Voice Note</label>
+                        <div class="p-6 border-2 border-dashed border-gray-300 rounded-xl text-center">
+                            <i data-feather="mic" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                            <p class="mt-4 text-gray-600">Voice recording and upload functionality is coming soon!</p>
+                            <!-- Placeholder for future Tone.js or MediaRecorder integration -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Topic Selection -->
+                <!-- ... existing topic select ... -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
+                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="">Choose a topic...</option>
+                        <option value="mental-health">Mental Health & Wellness</option>
+                        <option value="academics">Academics & Studies</option>
+                        <option value="relationships">Relationships & Friendships</option>
+                        <option value="social-issues">Social Justice & Issues</option>
+                        <option value="memorials">Memorials & Tributes</option>
+                        <option value="career">Career & Future</option>
+                        <option value="crisis">Crisis Support</option>
+                        <option value="other">Other (Please specify)</option>
+                    </select>
+                </div>
+
+
+                <!-- "Other" Topic Input -->
+                <!-- ... existing other topic input ... -->
+                <div id="otherTopicWrapper" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Custom Topic</label>
+                    <input
+                        type="text"
+                        id="otherTopicInput"
+                        placeholder="Type your custom topic..."
+                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                </div>
+
+                <!-- College Tagging -->
+                <!-- ... existing college input ... -->
+                 <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
+                    <input
+                        type="text"
+                        id="collegeTag"
+                        placeholder="e.g., Stanford University, Community College..."
+                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                </div>
+
+
+                <!-- Submit Section -->
+                <div class="border-t pt-6">
+                    <!-- ... existing submit buttons ... -->
+                    <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <button type="button" id="saveDraftBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Save Draft</button>
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Post Anonymously</button>
+                            </div>
+                        </div>
+                </div>
+            </form>
         </div>
 
-        <!-- Search Bar -->
-        <div class="mb-8 max-w-xl">
-             <!-- ... existing search bar ... -->
-             <div class="relative">
-                <input
-                    type="text"
-                    id="feedSearchInput"
-                    placeholder="Search posts by keyword..."
-                    class="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
-            </div>
+        <!-- Toast Notifications -->
+        <!-- ... existing toast elements ... -->
+        <div id="draft-toast" class="hidden fixed bottom-10 right-10 bg-gray-800 text-white p-4 rounded-lg shadow-lg">
+            Draft saved!
+        </div>
+        <div id="load-draft-toast" class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white p-4 rounded-lg shadow-lg flex items-center gap-4">
+            <p>We found a saved draft. Restore it?</p>
+            <button id="restoreDraftBtn" class="bg-blue-500 px-3 py-1 rounded">Yes</button>
+            <button id="discardDraftBtn" class="bg-gray-600 px-3 py-1 rounded">No</button>
         </div>
 
-        <!-- Main Feed Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Posts Column -->
-            <div class="lg:col-span-2 space-y-6" id="posts-container">
-
-                <!-- Post Card 1 -->
-                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis" data-content="the pressure of finals is overwhelming feeling completely burned out with finals approaching. the constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. anyone else struggling with this?">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                            <i data-feather="user" class="text-white w-5 h-5"></i>
-                        </div>
-                        <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">The pressure of finals is overwhelming</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                    Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
-
-                    <div class="my-4 rounded-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Example+Post+Image" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
-                    </div>
-
-                    <!-- RESTORED: Reactions & Actions -->
-                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
-                            <i data-feather="heart" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">24</span>
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
-                            <i data-feather="zap" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">18</span>
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
-                            <i data-feather="feather" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">12</span>
-                        </button>
-                        <a href="./post.html?id=1" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-4 h-4"></i>
-                            <span>8</span>
-                        </a>
-                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                 <!-- Post Card 2 -->
-                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health" data-content="found this amazing meditation technique that helped my anxiety after struggling with panic attacks during exams, i discovered a simple breathing exercise that changed everything. want to share it with anyone who might benefit.">
-                     <!-- ... existing post header & content ... -->
-                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                            <i data-feather="user" class="text-white w-5 h-5"></i>
-                    </div>
-                    <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
-                    </div>
-
-                    <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Mental Health</span>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                    After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
-
-
-                    <!-- RESTORED: Reactions & Actions -->
-                     <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
-                            <i data-feather="heart" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">42</span>
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
-                            <i data-feather="zap" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">31</span>
-                        </button>
-                         <a href="./post.html?id=2" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-4 h-4"></i>
-                            <span>15</span>
-                        </a>
-                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                 <!-- Post Card 3 (Memorial) -->
-                <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial" data-content="remembering sarah - a light that burned too bright today marks one year since we lost our dear friend sarah to depression. she was brilliant, kind, and always there for others. let's honor her memory by being there for each other.">
-                    <!-- ... existing post header & content ... -->
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
-                            <i data-feather="heart" class="text-white w-5 h-5"></i>
-                    </div>
-                    <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
-                    </div>
-
-                    <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Memorial</span>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                    Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
-
-                    <!-- RESTORED: Reactions & Actions -->
-                     <div class="flex items-center gap-4 pt-4 border-t border-purple-100">
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
-                            <i data-feather="heart" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">156</span>
-                        </button>
-                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
-                            <i data-feather="feather" class="w-4 h-4"></i>
-                            <span class="reaction-count text-xs">89</span>
-                        </button>
-                         <a href="./post.html?id=3" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-4 h-4"></i>
-                            <span>47</span>
-                        </a>
-                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RESTORED: Sidebar -->
-            <div class="space-y-6 lg:sticky lg:top-24"> <!-- Added sticky positioning -->
-                <!-- Token Balance Card -->
-                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
-                    <div class="flex items-center gap-2 mb-2">
-                        <i data-feather="award" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
-                    <div class="text-3xl font-bold token-pulse" id="tokenBalanceDisplay">0</div>
-                    <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
-                    <div class="space-y-3">
-                        <a href="./create.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
-                            <i data-feather="edit-3" class="inline w-4 h-4 mr-2"></i>
-                            Create New Post
-                        </a>
-                        <a href="./memorials.html" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
-                            <i data-feather="heart" class="inline w-4 h-4 mr-2"></i>
-                            Visit Memorials
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Trending Topics -->
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Trending Topics</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span class="font-medium">#MentalHealthAwareness</span>
-                            <span class="text-blue-600 text-sm">342 posts</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span class="font-medium">#ExamStress</span>
-                            <span class="text-blue-600 text-sm">287 posts</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span class="font-medium">#StudentLife</span>
-                            <span class="text-blue-600 text-sm">215 posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- End Sidebar -->
-        </div> <!-- End Grid -->
     </main>
-
-    <!-- Image Modal -->
-    <div id="imageModal" class="image-modal">
-        <!-- ... existing modal structure ... -->
-        <button id="imageModalClose" class="image-modal-close">
-            <i data-feather="x" class="w-8 h-8"></i>
-        </button>
-        <div class="image-modal-content">
-            <img id="modalImage" src="" alt="Full-screen post image">
-        </div>
-    </div>
 
     <custom-footer></custom-footer>
 
@@ -236,129 +196,259 @@
     <script src="./footer.js"></script>
     <script src="./script.js"></script>
     <script>
-        feather.replace(); // Initial replacement
+        feather.replace(); // Initial replace
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-run feather after dynamic content might load
+            // Re-run feather after dynamic elements might load
             setTimeout(() => feather.replace(), 100);
 
-            // 1. Fix Token Balance Display
-            setTimeout(() => {
-                const tokenEl = document.getElementById('tokenBalanceDisplay');
-                if (tokenEl && window.safeVoiceApp) {
-                    const balance = typeof window.safeVoiceApp.tokenBalance === 'number'
-                        ? window.safeVoiceApp.tokenBalance.toLocaleString()
-                        : '0';
-                    tokenEl.textContent = balance;
-                } else if(tokenEl) {
-                    tokenEl.textContent = '0'; // Fallback
-                }
-            }, 500); // Increased delay slightly
+            // --- 1. Content Type Toggle Logic ---
+            const typeButtons = document.querySelectorAll('.post-type-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+            let activePostType = 'text'; // Default
 
-            const postsContainer = document.getElementById('posts-container');
-            const allPosts = postsContainer.querySelectorAll('.post-card');
-            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
-            const searchInput = document.getElementById('feedSearchInput');
+            typeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    activePostType = this.dataset.type; // Update active type
 
-            // 2. Client-Side Topic Filtering
-            // ... (keep existing filter logic) ...
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.dataset.filter;
-                    searchInput.value = ''; // Clear search on topic filter click
-                    setActiveFilterButton(button);
-                    filterPosts(filter);
+                    // Update button styles
+                    typeButtons.forEach(b => {
+                        b.classList.remove('bg-blue-600', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700', 'border');
+                    });
+                    this.classList.add('bg-blue-600', 'text-white');
+                    this.classList.remove('bg-white', 'text-gray-700', 'border');
+
+                    // Show/hide content sections
+                    contentSections.forEach(section => {
+                        if (section.id === `content-${activePostType}`) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                    feather.replace(); // Ensure icons render correctly
                 });
             });
 
+            // --- 2. Image Preview Logic ---
+             const imageUpload = document.getElementById('imageUpload');
+             const imagePreviewDiv = document.getElementById('imagePreview');
+             const imagePreviewImg = imagePreviewDiv.querySelector('img');
 
-            // 3. Client-Side Search
-            // ... (keep existing search logic) ...
-            searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => { // Use debounce
-                const query = e.target.value.toLowerCase().trim();
-                // Deactivate topic filters visually when searching
-                setActiveFilterButton(filterButtons[0]); // Set 'All' as active
-                filterPosts('all', query);
-            }, 300)); // Debounce search input
-
-             function setActiveFilterButton(activeButton) {
-                 filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-blue-600', 'text-white');
-                    btn.classList.add('bg-white', 'text-gray-700', 'border');
-                });
-                activeButton.classList.add('bg-blue-600', 'text-white');
-                activeButton.classList.remove('bg-white', 'text-gray-700', 'border');
-            }
-
-            function filterPosts(filter, query = '') {
-                 if (filter === 'trending' || filter === 'latest') {
-                    alert('Trending and Latest filters are a future feature! Showing all posts.');
-                    filter = 'all'; // Show all if these are clicked
-                    setActiveFilterButton(filterButtons[0]); // Reset button to 'All'
-                 }
-
-                allPosts.forEach(post => {
-                    const topic = post.dataset.topic ? post.dataset.topic.toLowerCase() : '';
-                    const content = post.dataset.content ? post.dataset.content.toLowerCase() : '';
-
-                    const topicMatch = (filter === 'all' || topic === filter);
-                    const queryMatch = (query === '' || content.includes(query));
-
-                    if (topicMatch && queryMatch) {
-                        post.style.display = 'block';
+             if(imageUpload && imagePreviewDiv && imagePreviewImg) { // Check elements exist
+                imageUpload.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            imagePreviewImg.src = e.target.result;
+                            imagePreviewDiv.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
                     } else {
-                        post.style.display = 'none';
-                    }
-                });
-            }
-
-            // 4. Image Modal Logic
-            // ... (keep existing modal logic) ...
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const closeModal = document.getElementById('imageModalClose');
-
-            if (modal && modalImg && closeModal) { // Check elements exist
-                postsContainer.addEventListener('click', (e) => {
-                    const imageElement = e.target.closest('.post-image');
-                    if (imageElement) {
-                        modalImg.src = imageElement.src;
-                        modal.classList.add('show');
-                        feather.replace(); // Ensure close icon renders
-                    }
-                });
-
-                closeModal.addEventListener('click', () => {
-                    modal.classList.remove('show');
-                });
-
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove('show');
+                        imagePreviewDiv.classList.add('hidden');
+                        imagePreviewImg.src = '';
                     }
                 });
             } else {
-                console.error("Image modal elements not found!");
+                console.error("Image upload/preview elements not found!");
             }
 
-            // Make sure initial filter is applied (show all)
-            filterPosts('all');
+            // --- 3. "Other" Topic Logic ---
+             const topicSelect = document.getElementById('topicSelect');
+             const otherTopicWrapper = document.getElementById('otherTopicWrapper');
+             const otherTopicInput = document.getElementById('otherTopicInput'); // Added
 
-             // Listen for token updates to keep sidebar synced
-             window.addEventListener('safeVoiceTokenUpdate', (e) => {
-                 const tokenEl = document.getElementById('tokenBalanceDisplay');
-                 if(tokenEl) {
-                     tokenEl.textContent = (e.detail.newBalance || 0).toLocaleString();
-                 }
-            });
-             window.addEventListener('safeVoiceUserUpdate', (e) => {
-                 const tokenEl = document.getElementById('tokenBalanceDisplay');
-                 if(tokenEl && e.detail.currentUser) {
-                      tokenEl.textContent = (e.detail.currentUser.tokenBalance || 0).toLocaleString();
-                 } else if (tokenEl) {
-                      tokenEl.textContent = '0'; // Reset if user logs out
-                 }
-            });
+             if (topicSelect && otherTopicWrapper) { // Check elements exist
+                topicSelect.addEventListener('change', () => {
+                    if (topicSelect.value === 'other') {
+                        otherTopicWrapper.classList.remove('hidden');
+                    } else {
+                        otherTopicWrapper.classList.add('hidden');
+                        otherTopicInput.value = ''; // Clear custom topic if switching away
+                    }
+                });
+            } else {
+                 console.error("Topic select elements not found!");
+            }
+
+            // --- 4. "Save Draft" Logic ---
+             const saveDraftBtn = document.getElementById('saveDraftBtn');
+             const draftToast = document.getElementById('draft-toast');
+             const postContent = document.getElementById('postContent');
+             const imageCaption = document.getElementById('imageCaption');
+             const collegeTag = document.getElementById('collegeTag');
+             const privacyTiers = document.querySelectorAll('input[name="privacyTier"]'); // Added
+
+            if (saveDraftBtn && draftToast) { // Check elements exist
+                saveDraftBtn.addEventListener('click', () => {
+                    let selectedPrivacy = 'standard';
+                    privacyTiers.forEach(radio => {
+                        if (radio.checked) {
+                            selectedPrivacy = radio.value;
+                        }
+                    });
+
+                    const draft = {
+                        type: activePostType,
+                        content: postContent.value,
+                        imageCaption: imageCaption.value,
+                        topic: topicSelect.value,
+                        otherTopic: otherTopicInput.value,
+                        college: collegeTag.value,
+                        privacy: selectedPrivacy
+                        // Image file is not saved, only caption and type
+                    };
+
+                    localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
+
+                    draftToast.classList.remove('hidden');
+                    setTimeout(() => {
+                        draftToast.classList.add('hidden');
+                    }, 2000);
+                });
+            } else {
+                 console.error("Save draft elements not found!");
+            }
+
+            // --- 5. "Load Draft" Logic ---
+             const loadDraftToast = document.getElementById('load-draft-toast');
+             const restoreDraftBtn = document.getElementById('restoreDraftBtn');
+             const discardDraftBtn = document.getElementById('discardDraftBtn');
+             const savedDraft = localStorage.getItem('safeVoiceDraft');
+
+            if (savedDraft && loadDraftToast && restoreDraftBtn && discardDraftBtn) { // Check elements exist
+                loadDraftToast.classList.remove('hidden');
+
+                restoreDraftBtn.addEventListener('click', () => {
+                    const draft = JSON.parse(savedDraft);
+
+                    // Restore type button and section visibility
+                    const typeBtnToClick = document.querySelector(`.post-type-btn[data-type="${draft.type}"]`);
+                    if(typeBtnToClick) typeBtnToClick.click();
+
+                    // Restore content
+                    postContent.value = draft.content || '';
+                    imageCaption.value = draft.imageCaption || '';
+                    topicSelect.value = draft.topic || '';
+                    otherTopicInput.value = draft.otherTopic || '';
+                    collegeTag.value = draft.college || '';
+
+                     // Restore privacy tier
+                    privacyTiers.forEach(radio => {
+                        if (radio.value === draft.privacy) {
+                            radio.checked = true;
+                        }
+                    });
+
+                    // Trigger "Other" input visibility if needed
+                    if (draft.topic === 'other') {
+                        otherTopicWrapper.classList.remove('hidden');
+                    } else {
+                        otherTopicWrapper.classList.add('hidden');
+                    }
+
+                    // Note: Cannot restore image file selection
+
+                    localStorage.removeItem('safeVoiceDraft');
+                    loadDraftToast.classList.add('hidden');
+                });
+
+                discardDraftBtn.addEventListener('click', () => {
+                    localStorage.removeItem('safeVoiceDraft');
+                    loadDraftToast.classList.add('hidden');
+                });
+            }
+
+
+            // --- 6. Form Submission (Simulation) ---
+             const createPostForm = document.getElementById('createPostForm');
+             if(createPostForm) { // Check form exists
+                createPostForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    // Determine content based on active type
+                    let contentValue = '';
+                    if (activePostType === 'text') {
+                        contentValue = postContent.value.trim();
+                    } else if (activePostType === 'image') {
+                        contentValue = imageCaption.value.trim();
+                         if (!imageUpload.files[0] && !contentValue) { // Allow image OR caption, but need one
+                           alert('Please upload an image or add a caption.');
+                           return;
+                         }
+                    } else if (activePostType === 'voice') {
+                        alert('Voice posting is not yet implemented.');
+                        return;
+                    }
+
+                    let topic = topicSelect.value;
+                    if (topic === 'other') {
+                        topic = otherTopicInput.value.trim();
+                        if(!topic) {
+                            alert('Please enter your custom topic.');
+                            return;
+                        }
+                    }
+                    if (!topic) {
+                        alert('Please select a topic.');
+                        return;
+                    }
+
+                    // No need to validate contentValue being empty if image is present
+                    if (activePostType === 'text' && !contentValue) {
+                       alert('Please enter your message.');
+                       return;
+                    }
+
+                    let selectedPrivacy = 'standard';
+                    privacyTiers.forEach(radio => {
+                        if (radio.checked) {
+                            selectedPrivacy = radio.value;
+                        }
+                    });
+
+
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i data-feather="loader" class="inline w-4 h-4 mr-2 animate-spin"></i> Posting...';
+                    feather.replace();
+
+                    try {
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+
+                        if (window.safeVoiceApp) {
+                            window.safeVoiceApp.awardTokens(10, 'post_created');
+                            alert('🎉 Post created successfully! +10 tokens awarded.');
+                        } else {
+                            alert('🎉 Post created successfully! (Tokens simulated)');
+                        }
+
+
+                        localStorage.removeItem('safeVoiceDraft');
+                        this.reset();
+                        otherTopicWrapper.classList.add('hidden');
+                        if(imagePreviewDiv) imagePreviewDiv.classList.add('hidden');
+                        if(imageUpload) imageUpload.value = '';
+                        document.getElementById('btn-type-text').click(); // Reset to text type
+
+                         // Reset privacy tier to standard
+                        privacyTiers.forEach(radio => radio.checked = (radio.value === 'standard'));
+
+
+                        window.location.href = './feed.html';
+                    } catch (error) {
+                        console.error('Post creation failed:', error);
+                        alert('Failed to create post. Please try again.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Anonymously';
+                    }
+                });
+            } else {
+                 console.error("Create post form not found!");
+            }
 
         }); // End DOMContentLoaded
     </script>
