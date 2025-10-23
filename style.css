@@ -1,5 +1,5 @@
 /* SafeVoice Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display.swap');
 
 * {
     margin: 0;
@@ -10,6 +10,8 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+    /* Fixes content overlapping fixed navbar on some pages */
+    padding-top: 68px; 
 }
 
 /* Custom scrollbar */
@@ -29,6 +31,19 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
 }
+
+/* --- NEW: Button Press Feedback --- */
+/* Add transition to all buttons for smooth press */
+button, .btn, a[class*="bg-"] {
+    transition: transform 0.1s ease;
+}
+
+/* Add active state for press effect */
+button:active, .btn:active, a[class*="bg-"]:active {
+    transform: scale(0.95);
+}
+/* --- END NEW --- */
+
 
 /* Animation classes */
 .fade-in {
