@@ -16,11 +16,12 @@
     <main class="max-w-6xl mx-auto px-4 py-8">
         <!-- Feed Header -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
-            <div>
+             <!-- ... existing header ... -->
+             <div>
                 <h1 class="text-3xl font-bold text-gray-800">SafeVoice Feed</h1>
                 <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
             </div>
-            
+
             <div class="flex flex-wrap gap-2" id="filter-buttons">
                 <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
                 <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
@@ -31,13 +32,14 @@
             </div>
         </div>
 
-        <!-- NEW: Search Bar -->
+        <!-- Search Bar -->
         <div class="mb-8 max-w-xl">
-            <div class="relative">
-                <input 
-                    type="text" 
+             <!-- ... existing search bar ... -->
+             <div class="relative">
+                <input
+                    type="text"
                     id="feedSearchInput"
-                    placeholder="Search posts by keyword..." 
+                    placeholder="Search posts by keyword..."
                     class="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                 <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
@@ -48,8 +50,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Posts Column -->
             <div class="lg:col-span-2 space-y-6" id="posts-container">
-                
-                <!-- NEW: Added data-topic and data-content attributes -->
+
+                <!-- Post Card 1 -->
                 <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis" data-content="the pressure of finals is overwhelming feeling completely burned out with finals approaching. the constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. anyone else struggling with this?">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
@@ -57,64 +59,169 @@
                         </div>
                         <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
                     </div>
-                    
+
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">The pressure of finals is overwhelming</h3>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
-                    
-                    <!-- NEW: Example of a post with an image -->
+
                     <div class="my-4 rounded-lg overflow-hidden">
                         <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Example+Post+Image" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
                     </div>
 
-                    <!-- Reactions -->
-                    <div class="flex items-center gap-4 mb-4">
-                        <!-- ... existing reaction buttons ... -->
-                    </div>
-                    
-                    <div class="flex items-center gap-4 text-sm text-gray-500">
-                        <!-- ... existing comment/share links ... -->
+                    <!-- RESTORED: Reactions & Actions -->
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">24</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">18</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">12</span>
+                        </button>
+                        <a href="./post.html?id=1" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>8</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- NEW: Added data-topic and data-content attributes -->
+                 <!-- Post Card 2 -->
                 <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health" data-content="found this amazing meditation technique that helped my anxiety after struggling with panic attacks during exams, i discovered a simple breathing exercise that changed everything. want to share it with anyone who might benefit.">
-                    <div class="flex items-center gap-3 mb-4">
-                        <!-- ... existing card content ... -->
+                     <!-- ... existing post header & content ... -->
+                     <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
                     </div>
-                    
+                    <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Mental Health</span>
+                    </div>
+
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
-                    
-                    <!-- Reactions -->
-                    <!-- ... existing card content ... -->
+
+
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">42</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">31</span>
+                        </button>
+                         <a href="./post.html?id=2" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>15</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- NEW: Added data-topic and data-content attributes -->
+                 <!-- Post Card 3 (Memorial) -->
                 <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial" data-content="remembering sarah - a light that burned too bright today marks one year since we lost our dear friend sarah to depression. she was brilliant, kind, and always there for others. let's honor her memory by being there for each other.">
+                    <!-- ... existing post header & content ... -->
                     <div class="flex items-center gap-3 mb-4">
-                        <!-- ... existing card content ... -->
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i data-feather="heart" class="text-white w-5 h-5"></i>
                     </div>
-                    
+                    <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Memorial</span>
+                    </div>
+
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
-                    
-                    <!-- Memorial Reactions -->
-                    <!-- ... existing card content ... -->
+
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-purple-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">156</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">89</span>
+                        </button>
+                         <a href="./post.html?id=3" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>47</span>
+                        </a>
+                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="space-y-6">
-                <!-- ... existing sidebar content ... -->
-            </div>
-        </div>
+            <!-- RESTORED: Sidebar -->
+            <div class="space-y-6 lg:sticky lg:top-24"> <!-- Added sticky positioning -->
+                <!-- Token Balance Card -->
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-feather="award" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
+                    <div class="text-3xl font-bold token-pulse" id="tokenBalanceDisplay">0</div>
+                    <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <a href="./create.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="edit-3" class="inline w-4 h-4 mr-2"></i>
+                            Create New Post
+                        </a>
+                        <a href="./memorials.html" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="heart" class="inline w-4 h-4 mr-2"></i>
+                            Visit Memorials
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Trending Topics</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#MentalHealthAwareness</span>
+                            <span class="text-blue-600 text-sm">342 posts</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#ExamStress</span>
+                            <span class="text-blue-600 text-sm">287 posts</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#StudentLife</span>
+                            <span class="text-blue-600 text-sm">215 posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Sidebar -->
+        </div> <!-- End Grid -->
     </main>
 
-    <!-- NEW: Image Modal -->
+    <!-- Image Modal -->
     <div id="imageModal" class="image-modal">
+        <!-- ... existing modal structure ... -->
         <button id="imageModalClose" class="image-modal-close">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
@@ -129,49 +236,73 @@
     <script src="./footer.js"></script>
     <script src="./script.js"></script>
     <script>
-        feather.replace();
+        feather.replace(); // Initial replacement
 
-        // --- NEW SCRIPT ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Re-run feather after dynamic content might load
+            setTimeout(() => feather.replace(), 100);
+
             // 1. Fix Token Balance Display
             setTimeout(() => {
                 const tokenEl = document.getElementById('tokenBalanceDisplay');
                 if (tokenEl && window.safeVoiceApp) {
-                    tokenEl.textContent = window.safeVoiceApp.tokenBalance.toLocaleString();
+                    const balance = typeof window.safeVoiceApp.tokenBalance === 'number'
+                        ? window.safeVoiceApp.tokenBalance.toLocaleString()
+                        : '0';
+                    tokenEl.textContent = balance;
+                } else if(tokenEl) {
+                    tokenEl.textContent = '0'; // Fallback
                 }
-            }, 500);
+            }, 500); // Increased delay slightly
 
             const postsContainer = document.getElementById('posts-container');
             const allPosts = postsContainer.querySelectorAll('.post-card');
-
-            // 2. Implement Client-Side Topic Filtering
             const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            const searchInput = document.getElementById('feedSearchInput');
+
+            // 2. Client-Side Topic Filtering
+            // ... (keep existing filter logic) ...
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const filter = button.dataset.filter;
-                    document.getElementById('feedSearchInput').value = ''; // Clear search
+                    searchInput.value = ''; // Clear search on topic filter click
+                    setActiveFilterButton(button);
                     filterPosts(filter);
                 });
             });
 
-            // 3. Implement Client-Side Search
-            const searchInput = document.getElementById('feedSearchInput');
-            searchInput.addEventListener('input', (e) => {
+
+            // 3. Client-Side Search
+            // ... (keep existing search logic) ...
+            searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => { // Use debounce
                 const query = e.target.value.toLowerCase().trim();
-                // Deactivate topic filters when searching
-                filterButtons.forEach(btn => {
+                // Deactivate topic filters visually when searching
+                setActiveFilterButton(filterButtons[0]); // Set 'All' as active
+                filterPosts('all', query);
+            }, 300)); // Debounce search input
+
+             function setActiveFilterButton(activeButton) {
+                 filterButtons.forEach(btn => {
                     btn.classList.remove('bg-blue-600', 'text-white');
                     btn.classList.add('bg-white', 'text-gray-700', 'border');
                 });
-                filterButtons[0].classList.add('bg-blue-600', 'text-white'); // Set 'All' to active
-                
-                filterPosts('all', query);
-            });
+                activeButton.classList.add('bg-blue-600', 'text-white');
+                activeButton.classList.remove('bg-white', 'text-gray-700', 'border');
+            }
 
             function filterPosts(filter, query = '') {
+                 if (filter === 'trending' || filter === 'latest') {
+                    alert('Trending and Latest filters are a future feature! Showing all posts.');
+                    filter = 'all'; // Show all if these are clicked
+                    setActiveFilterButton(filterButtons[0]); // Reset button to 'All'
+                 }
+
                 allPosts.forEach(post => {
-                    const topicMatch = (filter === 'all' || post.dataset.topic === filter);
-                    const queryMatch = (query === '' || post.dataset.content.includes(query));
+                    const topic = post.dataset.topic ? post.dataset.topic.toLowerCase() : '';
+                    const content = post.dataset.content ? post.dataset.content.toLowerCase() : '';
+
+                    const topicMatch = (filter === 'all' || topic === filter);
+                    const queryMatch = (query === '' || content.includes(query));
 
                     if (topicMatch && queryMatch) {
                         post.style.display = 'block';
@@ -182,28 +313,54 @@
             }
 
             // 4. Image Modal Logic
+            // ... (keep existing modal logic) ...
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModal = document.getElementById('imageModalClose');
 
-            postsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('post-image')) {
-                    modalImg.src = e.target.src;
-                    modal.classList.add('show');
-                }
-            });
+            if (modal && modalImg && closeModal) { // Check elements exist
+                postsContainer.addEventListener('click', (e) => {
+                    const imageElement = e.target.closest('.post-image');
+                    if (imageElement) {
+                        modalImg.src = imageElement.src;
+                        modal.classList.add('show');
+                        feather.replace(); // Ensure close icon renders
+                    }
+                });
 
-            closeModal.addEventListener('click', () => {
-                modal.classList.remove('show');
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+                closeModal.addEventListener('click', () => {
                     modal.classList.remove('show');
-                }
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            } else {
+                console.error("Image modal elements not found!");
+            }
+
+            // Make sure initial filter is applied (show all)
+            filterPosts('all');
+
+             // Listen for token updates to keep sidebar synced
+             window.addEventListener('safeVoiceTokenUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl) {
+                     tokenEl.textContent = (e.detail.newBalance || 0).toLocaleString();
+                 }
             });
-        });
-        // --- END NEW SCRIPT ---
+             window.addEventListener('safeVoiceUserUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl && e.detail.currentUser) {
+                      tokenEl.textContent = (e.detail.currentUser.tokenBalance || 0).toLocaleString();
+                 } else if (tokenEl) {
+                      tokenEl.textContent = '0'; // Reset if user logs out
+                 }
+            });
+
+        }); // End DOMContentLoaded
     </script>
 </body>
 </html>
