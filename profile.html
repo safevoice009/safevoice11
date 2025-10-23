@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SafeVoice</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 min-h-screen pt-16">
+    <custom-navbar></custom-navbar>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <!-- Profile Header -->
+            <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
+                <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i data-feather="user" class="text-white w-16 h-16"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800" id="profileUsername">Anonymous User</h1>
+                    <p class="text-gray-600" id="profileWallet">Wallet not connected</p>
+                    <button id="connectWalletBtn" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">
+                        Connect Wallet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Token Balance -->
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6 text-center">
+                    <i data-feather="award" class="w-8 h-8 mx-auto mb-2"></i>
+                    <h3 class="text-lg font-semibold mb-1">Token Balance</h3>
+                    <div class="text-4xl font-bold token-pulse" id="profileTokenBalance">0</div>
+                </div>
+                <!-- Total Posts -->
+                <div class="bg-gradient-to-br from-blue-400 to-purple-500 text-white rounded-2xl shadow-lg p-6 text-center">
+                    <i data-feather="edit-3" class="w-8 h-8 mx-auto mb-2"></i>
+                    <h3 class="text-lg font-semibold mb-1">Total Posts</h3>
+                    <div class="text-4xl font-bold" id="profileTotalPosts">0</div>
+                </div>
+                <!-- Reactions Given -->
+                <div class="bg-gradient-to-br from-green-400 to-teal-500 text-white rounded-2xl shadow-lg p-6 text-center">
+                    <i data-feather="heart" class="w-8 h-8 mx-auto mb-2"></i>
+                    <h3 class="text-lg font-semibold mb-1">Reactions Given</h3>
+                    <div class="text-4xl font-bold" id="profileReactionsGiven">0</div>
+                </div>
+            </div>
+
+            <!-- My Posts Section -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
+                <div class="space-y-6">
+                    <!-- Placeholder for posts -->
+                    <div class="bg-gray-100 p-6 rounded-2xl text-center text-gray-500">
+                        <i data-feather="loader" class="w-8 h-8 mx-auto mb-2 animate-spin"></i>
+                        <p>Loading your posts...</p>
+                        <p class="text-sm">(Post loading will be implemented with Supabase)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        feather.replace();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for the global app to initialize
+            setTimeout(() => {
+                if (window.safeVoiceApp && window.safeVoiceApp.currentUser) {
+                    const user = window.safeVoiceApp.currentUser;
+                    
+                    const usernameEl = document.getElementById('profileUsername');
+                    const walletEl = document.getElementById('profileWallet');
+                    const tokenEl = document.getElementById('profileTokenBalance');
+                    const connectBtn = document.getElementById('connectWalletBtn');
+
+                    // Update token balance
+                    tokenEl.textContent = window.safeVoiceApp.tokenBalance.toLocaleString() || '0';
+
+                    if (user.isAnonymous) {
+                        usernameEl.textContent = user.anonymousId || 'Anonymous User';
+                        walletEl.textContent = 'Anonymous Mode';
+                        connectBtn.textContent = 'Connect Wallet';
+                    } else if (user.walletAddress) {
+                        usernameEl.textContent = 'Wallet Connected';
+                        // Shorten wallet address for display
+                        walletEl.textContent = `${user.walletAddress.substring(0, 6)}...${user.walletAddress.substring(user.walletAddress.length - 4)}`;
+                        connectBtn.style.display = 'none'; // Hide button if already connected
+                    }
+
+                    // Simulate stats
+                    document.getElementById('profileTotalPosts').textContent = '0'; // Would be a DB query
+                    document.getElementById('profileReactionsGiven').textContent = '0'; // Would be a DB query
+
+                } else {
+                    console.log('SafeVoiceApp not ready, using defaults.');
+                }
+            }, 500); // Give script.js time to load and init
+
+            // Connect wallet button logic
+            const connectBtn = document.getElementById('connectWalletBtn');
+            if(connectBtn) {
+                connectBtn.addEventListener('click', () => {
+                    if (window.safeVoiceApp) {
+                        window.safeVoiceApp.connectWallet().then(success => {
+                            if (success) {
+                                // Reload page to reflect new state
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
