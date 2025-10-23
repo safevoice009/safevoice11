@@ -16,20 +16,32 @@
     <main class="max-w-6xl mx-auto px-4 py-8">
         <!-- Memorials Hero -->
         <div class="text-center mb-12">
-            <!-- ... existing hero content ... -->
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">In Loving Memory</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                A sacred space to honor students we've lost, share memories, and find comfort in community support 💜
+            </p>
         </div>
 
-        <!-- Search Bar -->
+        <!-- RESTORED: Search Bar -->
         <div class="mb-8 max-w-lg mx-auto">
-            <!-- ... existing search bar ... -->
+            <div class="relative">
+                <input
+                    type="text"
+                    id="memorialSearchInput"
+                    placeholder="Search for a name or university..."
+                    class="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            </div>
         </div>
 
         <!-- Memorials Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="memorials-container">
-            
-            <!-- UPDATED: Memorial 1 with Image -->
+
+            <!-- Memorial Card 1 -->
             <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="sarah johnson university of california">
-                <img src="https://placehold.co/500x500/f3e8ff/4c1d95?text=Sarah+J." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
+                 <!-- ... existing card structure with image ... -->
+                 <img src="https://placehold.co/500x500/f3e8ff/4c1d95?text=Sarah+J." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Sarah Johnson</h3>
                     <p class="text-gray-600 mb-4 text-sm">
@@ -38,8 +50,9 @@
                 </div>
             </div>
 
-            <!-- UPDATED: Memorial 2 with Image -->
-            <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="michael chen mit">
+            <!-- Memorial Card 2 -->
+             <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="michael chen mit">
+                <!-- ... existing card structure with image ... -->
                 <img src="https://placehold.co/500x500/e0f2fe/0c4a6e?text=Michael+C." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Michael Chen</h3>
@@ -49,9 +62,10 @@
                 </div>
             </div>
 
-            <!-- UPDATED: Memorial 3 with Image -->
+             <!-- Memorial Card 3 -->
             <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="emily rodriguez stanford university">
-                <img src="https://placehold.co/500x500/fffbeb/b45309?text=Emily+R." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
+                <!-- ... existing card structure with image ... -->
+                 <img src="https://placehold.co/500x500/fffbeb/b45309?text=Emily+R." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Emily Rodriguez</h3>
                     <p class="text-gray-600 mb-4 text-sm">
@@ -59,20 +73,57 @@
                     <div class="text-sm text-gray-500 text-center pt-4 border-t">Stanford University • 2023</div>
                 </div>
             </div>
-            
-            <!-- ... (Repeat image structure for other cards) ... -->
+
+             <!-- Memorial Card 4 -->
+             <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="david williams harvard university">
+                 <img src="https://placehold.co/500x500/fef2f2/991b1b?text=David+W." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">David Williams</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                    "A friend to all, a light in the darkness. Your memory gives us strength."</p>
+                    <div class="text-sm text-gray-500 text-center pt-4 border-t">Harvard University • 2021</div>
+                </div>
+            </div>
+
+             <!-- Memorial Card 5 -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="jessica brown oxford university">
+                 <img src="https://placehold.co/500x500/ecfdf5/065f46?text=Jessica+B." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Jessica Brown</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                    "Your passion for helping others continues to inspire our community."</p>
+                    <div class="text-sm text-gray-500 text-center pt-4 border-t">Oxford University • 2020</div>
+                </div>
+            </div>
+
+             <!-- Memorial Card 6 -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in" data-name="alex thompson cambridge university">
+                 <img src="https://placehold.co/500x500/eef2ff/3730a3?text=Alex+T." alt="Memorial Photo" class="w-full h-56 object-cover cursor-pointer memorial-image">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Alex Thompson</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                    "Gone too soon, but never forgotten. Your spirit lives on in our hearts."</p>
+                    <div class="text-sm text-gray-500 text-center pt-4 border-t">Cambridge University • 2022</div>
+                </div>
+            </div>
 
         </div>
 
-        <!-- Create Memorial CTA -->
+        <!-- RESTORED: Create Memorial CTA -->
         <div class="text-center mt-16">
-            <!-- ... existing CTA ... -->
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Honor a Student's Memory</h2>
+            <p class="text-gray-600 mb-8">Share a tribute for a student who touched your life</p>
+            <a href="./create-memorial.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i data-feather="heart" class="inline w-5 h-5 mr-2"></i>
+                Create Memorial Tribute
+            </a>
         </div>
     </main>
 
-    <!-- NEW: Image Modal -->
+    <!-- Image Modal -->
     <div id="imageModal" class="image-modal">
-        <button id="imageModalClose" class="image-modal-close">
+         <!-- ... existing modal code ... -->
+         <button id="imageModalClose" class="image-modal-close">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
         <div class="image-modal-content">
@@ -86,11 +137,15 @@
     <script src="./footer.js"></script>
     <script src="./script.js"></script>
     <script>
-        feather.replace();
-        
+        feather.replace(); // Initial replace
+
         document.addEventListener('DOMContentLoaded', () => {
+             // Re-run feather after dynamic content might load
+            setTimeout(() => feather.replace(), 100);
+
             // 1. Memorial Search Script
-            const searchInput = document.getElementById('memorialSearchInput');
+            // ... (keep existing search script) ...
+             const searchInput = document.getElementById('memorialSearchInput');
             const memorialsContainer = document.getElementById('memorials-container');
             const allMemorials = memorialsContainer.querySelectorAll('.memorial-card');
 
@@ -106,29 +161,38 @@
                 });
             });
 
-            // 2. NEW: Image Modal Logic
+
+            // 2. Image Modal Logic
+            // ... (keep existing modal script) ...
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModal = document.getElementById('imageModalClose');
 
-            memorialsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('memorial-image')) {
-                    modalImg.src = e.target.src;
-                    modal.classList.add('show');
-                }
-            });
+            if(modal && modalImg && closeModal) { // Check elements exist
+                memorialsContainer.addEventListener('click', (e) => {
+                     // Check if the clicked element or its parent is the image
+                    const imageElement = e.target.closest('.memorial-image');
+                    if (imageElement) {
+                        modalImg.src = imageElement.src;
+                        modal.classList.add('show');
+                        feather.replace(); // Render close icon
+                    }
+                });
 
-            closeModal.addEventListener('click', () => {
-                modal.classList.remove('show');
-            });
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+                closeModal.addEventListener('click', () => {
                     modal.classList.remove('show');
-                }
-            });
+                });
+
+                modal.addEventListener('click', (e) => {
+                     // Close only if clicking the background overlay
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            } else {
+                 console.error("Image modal elements not found in memorials.html!");
+            }
         });
     </script>
 </body>
 </html>
-
