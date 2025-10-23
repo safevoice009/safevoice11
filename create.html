@@ -18,66 +18,70 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Anonymous Post</h1>
             <p class="text-gray-600 mb-8">Share your thoughts, experiences, or support others in complete privacy</p>
 
-            <!-- RESTORED: Privacy Tier Selector -->
+            {/* <!-- RESTORED: Privacy Tier Selector --> */}
             <div class="mb-8">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Privacy Level</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Standard Tier -->
-                    <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors">
-                        <div class="flex items-center gap-2 mb-2">
-                            <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500">
-                            <label class="font-medium text-gray-800">Standard</label>
-                        </div>
-                        <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
-                        <div class="text-blue-600 font-semibold">Free</div>
+                    {/* <!-- Standard Tier --> */}
+                    <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors has-[:checked]:border-blue-500 has-[:checked]:ring-2 has-[:checked]:ring-blue-200">
+                        <label class="flex flex-col h-full"> {/* Make label cover the div */}
+                            <div class="flex items-center gap-2 mb-2">
+                                <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500">
+                                <span class="font-medium text-gray-800">Standard</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2 flex-grow">Basic anonymity with encrypted storage</p> {/* Use flex-grow */}
+                            <div class="text-blue-600 font-semibold mt-auto">Free</div> {/* Use mt-auto */}
+                        </label>
                     </div>
-                    <!-- PGP Tier -->
-                    <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors">
-                        <div class="flex items-center gap-2 mb-2">
-                            <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500">
-                            <label class="font-medium text-gray-800">PGP Encrypted</label>
-                        </div>
-                        <p class="text-sm text-gray-600 mb-2">Client-side encryption</p>
-                        <div class="text-green-600 font-semibold">5 Tokens</div>
+                    {/* <!-- PGP Tier --> */}
+                     <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors has-[:checked]:border-green-500 has-[:checked]:ring-2 has-[:checked]:ring-green-200">
+                         <label class="flex flex-col h-full">
+                            <div class="flex items-center gap-2 mb-2">
+                                <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500">
+                                <span class="font-medium text-gray-800">PGP Encrypted</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2 flex-grow">Client-side encryption for added security</p>
+                            <div class="text-green-600 font-semibold mt-auto">5 Tokens</div>
+                        </label>
                     </div>
-                    <!-- Tor Tier -->
-                    <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors">
-                        <div class="flex items-center gap-2 mb-2">
-                            <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500">
-                            <label class="font-medium text-gray-800">Tor Routed</label>
-                        </div>
-                        <p class="text-sm text-gray-600 mb-2">Maximum privacy routing</p>
-                        <div class="text-purple-600 font-semibold">10 Tokens</div>
+                    {/* <!-- Tor Tier --> */}
+                     <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
+                         <label class="flex flex-col h-full">
+                            <div class="flex items-center gap-2 mb-2">
+                                <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500">
+                                <span class="font-medium text-gray-800">Tor Routed</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2 flex-grow">Maximum privacy via Tor network routing</p>
+                            <div class="text-purple-600 font-semibold mt-auto">10 Tokens</div>
+                        </label>
                     </div>
                 </div>
             </div>
 
-            <!-- Post Form -->
+            {/* <!-- Post Form --> */}
             <form id="createPostForm" class="space-y-6">
-                <!-- Content Type -->
-                <!-- ... existing content type buttons ... -->
+                {/* <!-- Content Type --> */}
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
                     <div class="flex gap-4">
-                        <button type="button" id="btn-type-text" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2" data-type="text">
-                            <i data-feather="file-text" class="w-4 h-4"></i> Text
+                        <button type="button" id="btn-type-text" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2" data-type="text"> {/* Rounded-xl */}
+                            <i data-feather="file-text" class="w-5 h-5"></i> Text
                         </button>
-                        <button type="button" id="btn-type-image" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
-                            <i data-feather="image" class="w-4 h-4"></i> Image
+                        <button type="button" id="btn-type-image" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
+                            <i data-feather="image" class="w-5 h-5"></i> Image
                         </button>
-                        <button type="button" id="btn-type-voice" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
-                            <i data-feather="mic" class="w-4 h-4"></i> Voice
+                        <button type="button" id="btn-type-voice" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
+                            <i data-feather="mic" class="w-5 h-5"></i> Voice
                         </button>
                     </div>
                 </div>
 
 
-                <!-- Dynamic Content Sections -->
-                <!-- ... existing text, image, voice sections ... -->
-                 <!-- Text Input (Default) -->
+                {/* <!-- Dynamic Content Sections --> */}
+                {/* <!-- Text Input --> */}
                 <div id="content-text" class="content-section space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                     <div>
+                        <label for="postContent" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label> {/* Added for */}
                         <textarea
                             id="postContent"
                             placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)"
@@ -86,17 +90,23 @@
                     </div>
                 </div>
 
-                <!-- Image Input (Hidden) -->
+                {/* <!-- Image Input --> */}
                 <div id="content-image" class="content-section space-y-6 hidden">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
-                        <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                        <div id="imagePreview" class="mt-4 hidden max-w-sm h-auto rounded-lg shadow-md overflow-hidden">
-                            <img src="" alt="Image Preview" class="w-full h-auto object-cover">
+                     <div>
+                        <label for="imageUpload" class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                        <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+                         <p class="text-xs text-gray-500 mt-1">Max file size: 5MB.</p>
+                        <div id="imagePreviewWrapper" class="mt-4 hidden"> {/* Wrapper for potential remove button */}
+                             <div id="imagePreview" class="relative max-w-sm h-auto rounded-lg shadow-md overflow-hidden border border-gray-200">
+                                <img src="" alt="Image Preview" class="w-full h-auto object-cover">
+                                 <button type="button" id="removeImageBtn" class="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                     <i data-feather="x" class="w-4 h-4"></i>
+                                 </button>
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Image Caption (Optional)</label>
+                        <label for="imageCaption" class="block text-sm font-medium text-gray-700 mb-2">Image Caption (Optional)</label>
                         <textarea
                             id="imageCaption"
                             placeholder="Add a caption for your image..."
@@ -105,24 +115,27 @@
                     </div>
                 </div>
 
-                <!-- Voice Input (Hidden) -->
+                {/* <!-- Voice Input --> */}
                 <div id="content-voice" class="content-section space-y-6 hidden">
-                    <div>
+                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Record or Upload Voice Note</label>
-                        <div class="p-6 border-2 border-dashed border-gray-300 rounded-xl text-center">
+                        <div class="p-6 border-2 border-dashed border-gray-300 rounded-xl text-center bg-gray-50">
                             <i data-feather="mic" class="w-12 h-12 text-gray-400 mx-auto"></i>
                             <p class="mt-4 text-gray-600">Voice recording and upload functionality is coming soon!</p>
-                            <!-- Placeholder for future Tone.js or MediaRecorder integration -->
+                            {/* Placeholder for future buttons: Record, Stop, Play, Upload */}
+                             <div class="mt-4 space-x-2">
+                                 <button type="button" disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed">Record</button>
+                                 <button type="button" disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed">Upload File</button>
+                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <!-- Topic Selection -->
-                <!-- ... existing topic select ... -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
-                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                {/* <!-- Topic Selection --> */}
+                 <div>
+                    <label for="topicSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
+                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
                         <option value="">Choose a topic...</option>
                         <option value="mental-health">Mental Health & Wellness</option>
                         <option value="academics">Academics & Studies</option>
@@ -136,10 +149,9 @@
                 </div>
 
 
-                <!-- "Other" Topic Input -->
-                <!-- ... existing other topic input ... -->
+                {/* <!-- "Other" Topic Input --> */}
                 <div id="otherTopicWrapper" class="hidden">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Custom Topic</label>
+                    <label for="otherTopicInput" class="block text-sm font-medium text-gray-700 mb-2">Your Custom Topic</label>
                     <input
                         type="text"
                         id="otherTopicInput"
@@ -148,10 +160,9 @@
                     >
                 </div>
 
-                <!-- College Tagging -->
-                <!-- ... existing college input ... -->
+                {/* <!-- College Tagging --> */}
                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
+                    <label for="collegeTag" class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
                     <input
                         type="text"
                         id="collegeTag"
@@ -161,31 +172,29 @@
                 </div>
 
 
-                <!-- Submit Section -->
+                {/* <!-- Submit Section --> */}
                 <div class="border-t pt-6">
-                    <!-- ... existing submit buttons ... -->
-                    <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
-                            </div>
-                            <div class="flex gap-4">
-                                <button type="button" id="saveDraftBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Save Draft</button>
-                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Post Anonymously</button>
-                            </div>
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4"> {/* Added gap and flex-col */}
+                        <div>
+                            <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
                         </div>
+                        <div class="flex gap-4">
+                            <button type="button" id="saveDraftBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base">Save Draft</button> {/* Adjusted padding/size */}
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base">Post Anonymously</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
 
-        <!-- Toast Notifications -->
-        <!-- ... existing toast elements ... -->
-        <div id="draft-toast" class="hidden fixed bottom-10 right-10 bg-gray-800 text-white p-4 rounded-lg shadow-lg">
+        {/* <!-- Toast Notifications --> */}
+         <div id="draft-toast" class="hidden fixed bottom-10 right-10 bg-gray-900 text-white p-4 rounded-lg shadow-lg z-[2100]"> {/* Increased z-index */}
             Draft saved!
         </div>
-        <div id="load-draft-toast" class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white p-4 rounded-lg shadow-lg flex items-center gap-4">
+        <div id="load-draft-toast" class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white p-4 rounded-lg shadow-lg flex items-center gap-4 z-[2100]">
             <p>We found a saved draft. Restore it?</p>
-            <button id="restoreDraftBtn" class="bg-blue-500 px-3 py-1 rounded">Yes</button>
-            <button id="discardDraftBtn" class="bg-gray-600 px-3 py-1 rounded">No</button>
+            <button id="restoreDraftBtn" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm">Yes</button>
+            <button id="discardDraftBtn" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-sm">No</button>
         </div>
 
     </main>
@@ -199,10 +208,11 @@
         feather.replace(); // Initial replace
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-run feather after dynamic elements might load
+             // Re-run feather after dynamic elements might load & for remove button
             setTimeout(() => feather.replace(), 100);
 
             // --- 1. Content Type Toggle Logic ---
+            // ... (keep existing toggle logic) ...
             const typeButtons = document.querySelectorAll('.post-type-btn');
             const contentSections = document.querySelectorAll('.content-section');
             let activePostType = 'text'; // Default
@@ -231,57 +241,77 @@
                 });
             });
 
-            // --- 2. Image Preview Logic ---
+            // --- 2. Image Preview & Remove Logic ---
              const imageUpload = document.getElementById('imageUpload');
+             const imagePreviewWrapper = document.getElementById('imagePreviewWrapper');
              const imagePreviewDiv = document.getElementById('imagePreview');
-             const imagePreviewImg = imagePreviewDiv.querySelector('img');
+             const imagePreviewImg = imagePreviewDiv?.querySelector('img'); // Use optional chaining
+             const removeImageBtn = document.getElementById('removeImageBtn');
 
-             if(imageUpload && imagePreviewDiv && imagePreviewImg) { // Check elements exist
+             if(imageUpload && imagePreviewWrapper && imagePreviewImg && removeImageBtn) {
                 imageUpload.addEventListener('change', (event) => {
                     const file = event.target.files[0];
                     if (file) {
+                         if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                            alert("Image file is too large! Maximum 5MB allowed.");
+                            imageUpload.value = ""; // Clear the input
+                            imagePreviewWrapper.classList.add('hidden'); // Hide preview
+                            imagePreviewImg.src = '';
+                            return;
+                        }
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             imagePreviewImg.src = e.target.result;
-                            imagePreviewDiv.classList.remove('hidden');
+                            imagePreviewWrapper.classList.remove('hidden'); // Show wrapper
+                            feather.replace(); // Render the 'x' icon
                         };
                         reader.readAsDataURL(file);
-                    } else {
-                        imagePreviewDiv.classList.add('hidden');
+                    } else { // No file selected (e.g., user clicked cancel)
+                        imagePreviewWrapper.classList.add('hidden');
                         imagePreviewImg.src = '';
                     }
                 });
+
+                removeImageBtn.addEventListener('click', () => {
+                     imageUpload.value = ''; // Clear the file input
+                     imagePreviewWrapper.classList.add('hidden'); // Hide the preview wrapper
+                     imagePreviewImg.src = ''; // Clear the image source
+                });
+
             } else {
-                console.error("Image upload/preview elements not found!");
+                console.error("Image upload/preview/remove elements not found!");
             }
 
             // --- 3. "Other" Topic Logic ---
-             const topicSelect = document.getElementById('topicSelect');
-             const otherTopicWrapper = document.getElementById('otherTopicWrapper');
-             const otherTopicInput = document.getElementById('otherTopicInput'); // Added
+            // ... (keep existing "Other" topic logic) ...
+            const topicSelect = document.getElementById('topicSelect');
+            const otherTopicWrapper = document.getElementById('otherTopicWrapper');
+            const otherTopicInput = document.getElementById('otherTopicInput');
 
-             if (topicSelect && otherTopicWrapper) { // Check elements exist
+            if (topicSelect && otherTopicWrapper && otherTopicInput) { // Check elements exist
                 topicSelect.addEventListener('change', () => {
                     if (topicSelect.value === 'other') {
                         otherTopicWrapper.classList.remove('hidden');
                     } else {
                         otherTopicWrapper.classList.add('hidden');
-                        otherTopicInput.value = ''; // Clear custom topic if switching away
+                        otherTopicInput.value = ''; // Clear custom topic
                     }
                 });
             } else {
                  console.error("Topic select elements not found!");
             }
 
-            // --- 4. "Save Draft" Logic ---
-             const saveDraftBtn = document.getElementById('saveDraftBtn');
-             const draftToast = document.getElementById('draft-toast');
-             const postContent = document.getElementById('postContent');
-             const imageCaption = document.getElementById('imageCaption');
-             const collegeTag = document.getElementById('collegeTag');
-             const privacyTiers = document.querySelectorAll('input[name="privacyTier"]'); // Added
 
-            if (saveDraftBtn && draftToast) { // Check elements exist
+            // --- 4. "Save Draft" Logic ---
+            // ... (keep existing save draft logic, ensures privacy tier is saved) ...
+            const saveDraftBtn = document.getElementById('saveDraftBtn');
+            const draftToast = document.getElementById('draft-toast');
+            const postContent = document.getElementById('postContent');
+            const imageCaption = document.getElementById('imageCaption');
+            const collegeTag = document.getElementById('collegeTag');
+            const privacyTiers = document.querySelectorAll('input[name="privacyTier"]');
+
+            if (saveDraftBtn && draftToast) {
                 saveDraftBtn.addEventListener('click', () => {
                     let selectedPrivacy = 'standard';
                     privacyTiers.forEach(radio => {
@@ -298,7 +328,6 @@
                         otherTopic: otherTopicInput.value,
                         college: collegeTag.value,
                         privacy: selectedPrivacy
-                        // Image file is not saved, only caption and type
                     };
 
                     localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
@@ -312,13 +341,15 @@
                  console.error("Save draft elements not found!");
             }
 
-            // --- 5. "Load Draft" Logic ---
-             const loadDraftToast = document.getElementById('load-draft-toast');
-             const restoreDraftBtn = document.getElementById('restoreDraftBtn');
-             const discardDraftBtn = document.getElementById('discardDraftBtn');
-             const savedDraft = localStorage.getItem('safeVoiceDraft');
 
-            if (savedDraft && loadDraftToast && restoreDraftBtn && discardDraftBtn) { // Check elements exist
+            // --- 5. "Load Draft" Logic ---
+            // ... (keep existing load draft logic, ensures privacy tier is restored) ...
+            const loadDraftToast = document.getElementById('load-draft-toast');
+            const restoreDraftBtn = document.getElementById('restoreDraftBtn');
+            const discardDraftBtn = document.getElementById('discardDraftBtn');
+            const savedDraft = localStorage.getItem('safeVoiceDraft');
+
+            if (savedDraft && loadDraftToast && restoreDraftBtn && discardDraftBtn) {
                 loadDraftToast.classList.remove('hidden');
 
                 restoreDraftBtn.addEventListener('click', () => {
@@ -337,9 +368,7 @@
 
                      // Restore privacy tier
                     privacyTiers.forEach(radio => {
-                        if (radio.value === draft.privacy) {
-                            radio.checked = true;
-                        }
+                        radio.checked = (radio.value === draft.privacy);
                     });
 
                     // Trigger "Other" input visibility if needed
@@ -349,10 +378,9 @@
                         otherTopicWrapper.classList.add('hidden');
                     }
 
-                    // Note: Cannot restore image file selection
-
                     localStorage.removeItem('safeVoiceDraft');
                     loadDraftToast.classList.add('hidden');
+                    alert('Draft restored!'); // Add feedback
                 });
 
                 discardDraftBtn.addEventListener('click', () => {
@@ -361,20 +389,26 @@
                 });
             }
 
-
             // --- 6. Form Submission (Simulation) ---
              const createPostForm = document.getElementById('createPostForm');
-             if(createPostForm) { // Check form exists
+             if(createPostForm) {
                 createPostForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
+                     // ... (keep existing validation and submission logic) ...
+                     e.preventDefault();
 
-                    // Determine content based on active type
                     let contentValue = '';
+                    let imageFile = null; // Store image file if present
+
                     if (activePostType === 'text') {
                         contentValue = postContent.value.trim();
+                         if (!contentValue) {
+                           alert('Please enter your message.');
+                           return;
+                         }
                     } else if (activePostType === 'image') {
-                        contentValue = imageCaption.value.trim();
-                         if (!imageUpload.files[0] && !contentValue) { // Allow image OR caption, but need one
+                        contentValue = imageCaption.value.trim(); // Caption is optional
+                        imageFile = imageUpload.files[0];
+                         if (!imageFile && !contentValue) { // Must have at least image or caption
                            alert('Please upload an image or add a caption.');
                            return;
                          }
@@ -396,19 +430,12 @@
                         return;
                     }
 
-                    // No need to validate contentValue being empty if image is present
-                    if (activePostType === 'text' && !contentValue) {
-                       alert('Please enter your message.');
-                       return;
-                    }
-
-                    let selectedPrivacy = 'standard';
+                     let selectedPrivacy = 'standard';
                     privacyTiers.forEach(radio => {
                         if (radio.checked) {
                             selectedPrivacy = radio.value;
                         }
                     });
-
 
                     const submitBtn = this.querySelector('button[type="submit"]');
                     submitBtn.disabled = true;
@@ -416,7 +443,21 @@
                     feather.replace();
 
                     try {
-                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        // --- Placeholder for Supabase Upload ---
+                        let imageUrl = null;
+                        if (imageFile) {
+                             console.log("Simulating image upload for:", imageFile.name);
+                             // In real app: await uploadImageToSupabase(imageFile);
+                             await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate upload time
+                             // imageUrl = 'https://path/to/uploaded/image.jpg'; // Get URL from Supabase
+                             console.log("Image upload simulation complete.");
+                        }
+                        // ------------------------------------
+
+                        console.log("Simulating post save...");
+                        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate DB save time
+                        console.log("Post save simulation complete.");
+
 
                         if (window.safeVoiceApp) {
                             window.safeVoiceApp.awardTokens(10, 'post_created');
@@ -429,11 +470,9 @@
                         localStorage.removeItem('safeVoiceDraft');
                         this.reset();
                         otherTopicWrapper.classList.add('hidden');
-                        if(imagePreviewDiv) imagePreviewDiv.classList.add('hidden');
+                        if(imagePreviewWrapper) imagePreviewWrapper.classList.add('hidden'); // Use wrapper
                         if(imageUpload) imageUpload.value = '';
                         document.getElementById('btn-type-text').click(); // Reset to text type
-
-                         // Reset privacy tier to standard
                         privacyTiers.forEach(radio => radio.checked = (radio.value === 'standard'));
 
 
