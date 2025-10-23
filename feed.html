@@ -6,7 +6,6 @@
     <title>SafeVoice Feed - Anonymous Student Discussions</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="./style.css">
-    {/* <!-- NO Supabase CDN here --> */}
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -15,15 +14,15 @@
     <custom-navbar></custom-navbar>
 
     <main class="max-w-6xl mx-auto px-4 py-8">
-        {/* <!-- Feed Header --> */}
+        <!-- Feed Header -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+             <!-- ... existing header ... -->
              <div>
                 <h1 class="text-3xl font-bold text-gray-800">SafeVoice Feed</h1>
                 <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
             </div>
 
             <div class="flex flex-wrap gap-2" id="filter-buttons">
-                {/* <!-- Filter buttons restored --> */}
                 <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
                 <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
                 <button data-filter="latest" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
@@ -33,8 +32,9 @@
             </div>
         </div>
 
-        {/* <!-- Search Bar --> */}
+        <!-- Search Bar -->
         <div class="mb-8 max-w-xl">
+             <!-- ... existing search bar ... -->
              <div class="relative">
                 <input
                     type="text"
@@ -46,17 +46,16 @@
             </div>
         </div>
 
-        {/* <!-- Main Feed Grid --> */}
+        <!-- Main Feed Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* <!-- Posts Column --> */}
+            <!-- Posts Column -->
             <div class="lg:col-span-2 space-y-6" id="posts-container">
-                {/* --- STATIC POSTS RESTORED FOR GOLDEN CODE --- */}
 
-                 {/* <!-- Post Card 1 --> */}
+                <!-- Post Card 1 -->
                 <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis" data-content="the pressure of finals is overwhelming feeling completely burned out with finals approaching. the constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. anyone else struggling with this?">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                            <i data-feather="user" class="w-5 h-5"></i>
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
                         </div>
                         <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
                     </div>
@@ -65,169 +64,166 @@
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
 
-                    <div class="my-4 rounded-lg overflow-hidden border border-gray-200">
-                        <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=Stressed+Student" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
+                    <div class="my-4 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Example+Post+Image" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
                     </div>
 
-                    <div class="flex items-center gap-4 pt-4 mt-4 border-t border-gray-100">
+                    <!-- RESTORED: Reactions & Actions -->
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">24</span>
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">24</span>
                         </button>
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
-                            <i data-feather="zap" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">18</span>
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">18</span>
                         </button>
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
-                            <i data-feather="feather" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">12</span>
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">12</span>
                         </button>
                         <a href="./post.html?id=1" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                            <span class="font-medium">8</span>
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>8</span>
                         </a>
                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-5 h-5"></i>
+                            <i data-feather="share-2" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
 
-                 {/* <!-- Post Card 2 --> */}
+                 <!-- Post Card 2 -->
                 <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health" data-content="found this amazing meditation technique that helped my anxiety after struggling with panic attacks during exams, i discovered a simple breathing exercise that changed everything. want to share it with anyone who might benefit.">
+                     <!-- ... existing post header & content ... -->
                      <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
-                            <i data-feather="user" class="w-5 h-5"></i>
-                        </div>
-                        <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
                     </div>
 
                     <div class="flex items-center gap-2 mb-2">
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">Mental Health</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Mental Health</span>
                     </div>
 
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
 
-                     <div class="flex items-center gap-4 pt-4 mt-4 border-t border-gray-100">
+
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">42</span>
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">42</span>
                         </button>
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
-                            <i data-feather="zap" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">31</span>
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">31</span>
                         </button>
                          <a href="./post.html?id=2" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                            <span class="font-medium">15</span>
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>15</span>
                         </a>
                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-5 h-5"></i>
+                            <i data-feather="share-2" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
 
-                 {/* <!-- Post Card 3 (Memorial) --> */}
+                 <!-- Post Card 3 (Memorial) -->
                 <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial" data-content="remembering sarah - a light that burned too bright today marks one year since we lost our dear friend sarah to depression. she was brilliant, kind, and always there for others. let's honor her memory by being there for each other.">
+                    <!-- ... existing post header & content ... -->
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                        </div>
-                        <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i data-feather="heart" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
                     </div>
 
                     <div class="flex items-center gap-2 mb-2">
-                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full font-medium">Memorial</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Memorial</span>
                     </div>
 
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                     Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
 
-                     <div class="flex items-center gap-4 pt-4 mt-4 border-t border-purple-100">
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-purple-100">
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">156</span>
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">156</span>
                         </button>
                         <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
-                            <i data-feather="feather" class="w-5 h-5"></i>
-                            <span class="reaction-count text-sm font-medium">89</span>
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">89</span>
                         </button>
                          <a href="./post.html?id=3" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                            <span class="font-medium">47</span>
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>47</span>
                         </a>
                          <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
-                            <i data-feather="share-2" class="w-5 h-5"></i>
+                            <i data-feather="share-2" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
-                 {/* --- END STATIC POSTS --- */}
+            </div>
 
-                 {/* <!-- Placeholder for No Posts Message --> */}
-                <div id="no-posts-message" class="hidden text-center py-10 bg-white rounded-2xl shadow p-6">
-                     <i data-feather="info" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
-                     <h3 class="text-xl font-semibold text-gray-800 mb-2">No Matching Posts</h3>
-                     <p class="text-gray-600">Try adjusting your filter or search terms.</p>
-                 </div>
-
-            </div> {/* <!-- End Posts Column --> */}
-
-            {/* <!-- Sidebar Restored --> */}
-            <div class="space-y-6 lg:sticky lg:top-24 h-fit">
-                {/* <!-- Token Balance Card --> */}
+            <!-- RESTORED: Sidebar -->
+            <div class="space-y-6 lg:sticky lg:top-24"> <!-- Added sticky positioning -->
+                <!-- Token Balance Card -->
                 <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-feather="award" class="w-5 h-5"></i>
-                        <h3 class="text-lg font-semibold">Your Token Balance</h3>
                     </div>
-                    <div class="text-4xl font-bold token-pulse mb-1" id="tokenBalanceDisplay">0</div>
+                    <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
+                    <div class="text-3xl font-bold token-pulse" id="tokenBalanceDisplay">0</div>
                     <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
                 </div>
 
-                {/* <!-- Quick Actions --> */}
+                <!-- Quick Actions -->
                 <div class="bg-white rounded-2xl shadow-lg p-6">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
                     <div class="space-y-3">
-                        <a href="./create.html" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 text-center text-sm">
-                            <i data-feather="edit-3" class="w-5 h-5"></i>
-                            <span>Create New Post</span>
+                        <a href="./create.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="edit-3" class="inline w-4 h-4 mr-2"></i>
+                            Create New Post
                         </a>
-                        <a href="./memorials.html" class="flex items-center justify-center gap-2 w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 text-center text-sm">
-                            <i data-feather="heart" class="w-5 h-5"></i>
-                            <span>Visit Memorials</span>
+                        <a href="./memorials.html" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="heart" class="inline w-4 h-4 mr-2"></i>
+                            Visit Memorials
                         </a>
                     </div>
                 </div>
 
-                {/* <!-- Trending Topics --> */}
+                <!-- Trending Topics -->
                 <div class="bg-white rounded-2xl shadow-lg p-6">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Trending Topics</h3>
                     <div class="space-y-2">
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-                            <span class="font-medium text-sm text-gray-700">#MentalHealthAwareness</span>
-                            <span class="text-blue-600 text-xs font-semibold bg-blue-100 px-2 py-0.5 rounded-full">342</span>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#MentalHealthAwareness</span>
+                            <span class="text-blue-600 text-sm">342 posts</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-                            <span class="font-medium text-sm text-gray-700">#ExamStress</span>
-                            <span class="text-blue-600 text-xs font-semibold bg-blue-100 px-2 py-0.5 rounded-full">287</span>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#ExamStress</span>
+                            <span class="text-blue-600 text-sm">287 posts</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors duration-200">
-                            <span class="font-medium text-sm text-gray-700">#StudentLife</span>
-                            <span class="text-blue-600 text-xs font-semibold bg-blue-100 px-2 py-0.5 rounded-full">215</span>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#StudentLife</span>
+                            <span class="text-blue-600 text-sm">215 posts</span>
                         </div>
-                         <a href="#" class="block text-sm text-blue-600 hover:underline text-center mt-2">View all topics</a>
                     </div>
                 </div>
-            </div> {/* <!-- End Sidebar --> */}
-        </div> {/* <!-- End Grid --> */}
+            </div> <!-- End Sidebar -->
+        </div> <!-- End Grid -->
     </main>
 
-    {/* <!-- Image Modal --> */}
+    <!-- Image Modal -->
     <div id="imageModal" class="image-modal">
+        <!-- ... existing modal structure ... -->
         <button id="imageModalClose" class="image-modal-close">
-            <i data-feather="x"></i>
+            <i data-feather="x" class="w-8 h-8"></i>
         </button>
         <div class="image-modal-content">
             <img id="modalImage" src="" alt="Full-screen post image">
@@ -238,17 +234,16 @@
 
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <script src="./script.js"></script> {/* Golden Code version of script.js */}
+    <script src="./script.js"></script>
     <script>
-        // Use feather directly as modules aren't used here
-        if (typeof feather !== 'undefined') feather.replace();
+        feather.replace(); // Initial replacement
 
         document.addEventListener('DOMContentLoaded', () => {
-             // Re-run feather after dynamic content might load & for modal close button
-            setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 100);
+            // Re-run feather after dynamic content might load
+            setTimeout(() => feather.replace(), 100);
 
-            // 1. Update Token Balance Display from global app state
-            const updateTokenDisplay = () => {
+            // 1. Fix Token Balance Display
+            setTimeout(() => {
                 const tokenEl = document.getElementById('tokenBalanceDisplay');
                 if (tokenEl && window.safeVoiceApp) {
                     const balance = typeof window.safeVoiceApp.tokenBalance === 'number'
@@ -258,86 +253,112 @@
                 } else if(tokenEl) {
                     tokenEl.textContent = '0'; // Fallback
                 }
-            };
-            setTimeout(updateTokenDisplay, 200); // Initial update
-             window.addEventListener('safeVoiceTokenUpdate', updateTokenDisplay); // Listen for updates
+            }, 500); // Increased delay slightly
 
-
-            // --- Filter and Search Logic (Client-Side for Golden Code) ---
             const postsContainer = document.getElementById('posts-container');
-            const allPosts = postsContainer ? postsContainer.querySelectorAll('.post-card') : [];
+            const allPosts = postsContainer.querySelectorAll('.post-card');
             const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
             const searchInput = document.getElementById('feedSearchInput');
-             const noPostsMessage = document.getElementById('no-posts-message');
+
+            // 2. Client-Side Topic Filtering
+            // ... (keep existing filter logic) ...
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    searchInput.value = ''; // Clear search on topic filter click
+                    setActiveFilterButton(button);
+                    filterPosts(filter);
+                });
+            });
 
 
-            function setActiveFilterButton(activeButton) {
+            // 3. Client-Side Search
+            // ... (keep existing search logic) ...
+            searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => { // Use debounce
+                const query = e.target.value.toLowerCase().trim();
+                // Deactivate topic filters visually when searching
+                setActiveFilterButton(filterButtons[0]); // Set 'All' as active
+                filterPosts('all', query);
+            }, 300)); // Debounce search input
+
+             function setActiveFilterButton(activeButton) {
                  filterButtons.forEach(btn => {
                     btn.classList.remove('bg-blue-600', 'text-white');
                     btn.classList.add('bg-white', 'text-gray-700', 'border');
                 });
-                if (activeButton) {
-                    activeButton.classList.add('bg-blue-600', 'text-white');
-                    activeButton.classList.remove('bg-white', 'text-gray-700', 'border');
-                }
+                activeButton.classList.add('bg-blue-600', 'text-white');
+                activeButton.classList.remove('bg-white', 'text-gray-700', 'border');
             }
 
-            function filterAndSearchPosts(filter = 'all', query = '') {
+            function filterPosts(filter, query = '') {
                  if (filter === 'trending' || filter === 'latest') {
                     alert('Trending and Latest filters are a future feature! Showing all posts.');
-                    filter = 'all';
-                    const allButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
-                    if (allButton) setActiveFilterButton(allButton);
+                    filter = 'all'; // Show all if these are clicked
+                    setActiveFilterButton(filterButtons[0]); // Reset button to 'All'
                  }
 
-                 let postsFound = false;
                 allPosts.forEach(post => {
                     const topic = post.dataset.topic ? post.dataset.topic.toLowerCase() : '';
                     const content = post.dataset.content ? post.dataset.content.toLowerCase() : '';
+
                     const topicMatch = (filter === 'all' || topic === filter);
                     const queryMatch = (query === '' || content.includes(query));
 
                     if (topicMatch && queryMatch) {
                         post.style.display = 'block';
-                        postsFound = true;
                     } else {
                         post.style.display = 'none';
                     }
                 });
-
-                 if (noPostsMessage) {
-                     noPostsMessage.style.display = postsFound ? 'none' : 'block';
-                 }
             }
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.dataset.filter;
-                    if(searchInput) searchInput.value = ''; // Clear search on filter click
-                    setActiveFilterButton(button);
-                    filterAndSearchPosts(filter);
+            // 4. Image Modal Logic
+            // ... (keep existing modal logic) ...
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModal = document.getElementById('imageModalClose');
+
+            if (modal && modalImg && closeModal) { // Check elements exist
+                postsContainer.addEventListener('click', (e) => {
+                    const imageElement = e.target.closest('.post-image');
+                    if (imageElement) {
+                        modalImg.src = imageElement.src;
+                        modal.classList.add('show');
+                        feather.replace(); // Ensure close icon renders
+                    }
                 });
-            });
 
-            if(searchInput) {
-                searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => {
-                    const query = e.target.value.toLowerCase().trim();
-                    const allButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
-                     if (allButton) setActiveFilterButton(allButton); // Reset to "All" filter when searching
-                    filterAndSearchPosts('all', query);
-                }, 300));
+                closeModal.addEventListener('click', () => {
+                    modal.classList.remove('show');
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            } else {
+                console.error("Image modal elements not found!");
             }
 
-            // --- Image Modal Logic (uses global handler in script.js) ---
-            // No specific modal logic needed here anymore
+            // Make sure initial filter is applied (show all)
+            filterPosts('all');
 
-            // Initial Filter Application
-            const initialAllButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
-            if (initialAllButton) setActiveFilterButton(initialAllButton);
-            filterAndSearchPosts('all'); // Apply 'all' filter on load
-
-             // Re-render icons after potential filtering hides/shows elements
-             setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 400);
+             // Listen for token updates to keep sidebar synced
+             window.addEventListener('safeVoiceTokenUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl) {
+                     tokenEl.textContent = (e.detail.newBalance || 0).toLocaleString();
+                 }
+            });
+             window.addEventListener('safeVoiceUserUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl && e.detail.currentUser) {
+                      tokenEl.textContent = (e.detail.currentUser.tokenBalance || 0).toLocaleString();
+                 } else if (tokenEl) {
+                      tokenEl.textContent = '0'; // Reset if user logs out
+                 }
+            });
 
         }); // End DOMContentLoaded
     </script>
