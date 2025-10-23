@@ -238,7 +238,7 @@
 
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <script src="./script.js"></script> {/* NO Supabase init here */}
+    <script src="./script.js"></script> {/* Golden Code version of script.js */}
     <script>
         // Use feather directly as modules aren't used here
         if (typeof feather !== 'undefined') feather.replace();
@@ -313,7 +313,7 @@
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const filter = button.dataset.filter;
-                    if(searchInput) searchInput.value = '';
+                    if(searchInput) searchInput.value = ''; // Clear search on filter click
                     setActiveFilterButton(button);
                     filterAndSearchPosts(filter);
                 });
@@ -323,7 +323,7 @@
                 searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => {
                     const query = e.target.value.toLowerCase().trim();
                     const allButton = document.querySelector('#filter-buttons .filter-btn[data-filter="all"]');
-                     if (allButton) setActiveFilterButton(allButton);
+                     if (allButton) setActiveFilterButton(allButton); // Reset to "All" filter when searching
                     filterAndSearchPosts('all', query);
                 }, 300));
             }
