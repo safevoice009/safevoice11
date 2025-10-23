@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="bg-gray-50 min-h-screen pt-16">
+<body class="bg-gray-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
     <main class="max-w-4xl mx-auto px-4 py-8">
@@ -24,9 +24,10 @@
             <form id="createMemorialForm" class="space-y-6">
                 <!-- Name Input -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Honoring (Name)</label>
+                    <label for="memorialName" class="block text-sm font-medium text-gray-700 mb-2">Honoring (Name)</label>
                     <input 
                         id="memorialName"
+                        type="text"
                         placeholder="The name of the person you are remembering" 
                         class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
                         required>
@@ -34,7 +35,7 @@
 
                 <!-- Your Tribute -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Tribute</label>
+                    <label for="memorialContent" class="block text-sm font-medium text-gray-700 mb-2">Your Tribute</label>
                     <textarea 
                         id="memorialContent"
                         placeholder="Share a memory, what they meant to you, or a message of support..." 
@@ -42,14 +43,25 @@
                         required></textarea>
                 </div>
 
+                <!-- NEW: Image Upload for Memorial -->
+                <div>
+                    <label for="memorialImage" class="block text-sm font-medium text-gray-700 mb-2">Upload Photo (Optional)</label>
+                    <input type="file" id="memorialImage" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100">
+                    <p class="text-sm text-gray-500 mt-2">Recommended size: Square (e.g., 500x500px). Max file size: 5MB.</p>
+                    <div id="memorialImagePreview" class="mt-4 hidden max-w-xs h-auto rounded-lg shadow-md overflow-hidden">
+                        <img src="" alt="Memorial Photo Preview" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+
                 <!-- College Tagging -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Their College/University (Optional)</label>
+                    <label for="collegeTag" class="block text-sm font-medium text-gray-700 mb-2">Their College/University (Optional)</label>
                     <input 
                         type="text" 
+                        id="collegeTag"
                         placeholder="e.g., Stanford University, Community College..."
                         class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
-                        id="collegeTag">
+                    >
                 </div>
 
                 <!-- Submit Section -->
@@ -73,31 +85,55 @@
     <script>
         feather.replace();
 
-        // Form submission
-        document.getElementById('createMemorialForm').addEventListener('submit', async function(e) {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Image Preview Logic
+            const memorialImageInput = document.getElementById('memorialImage');
+            const memorialImagePreviewDiv = document.getElementById('memorialImagePreview');
+            const memorialImagePreviewImg = memorialImagePreviewDiv.querySelector('img');
+
+            memorialImageInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                        alert("File is too large! Max 5MB.");
+                        memorialImageInput.value = ""; // Clear the input
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        memorialImagePreviewImg.src = e.target.result;
+                        memorialImagePreviewDiv.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    memorialImagePreviewDiv.classList.add('hidden');
+                    memorialImagePreviewImg.src = '';
+                }
+            });
+
+            // Form submission
+            document.getElementById('createMemorialForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const name = document.getElementById('memorialName').value;
                 const content = document.getElementById('memorialContent').value;
-                const college = document.getElementById('collegeTag').value;
+                const imageFile = document.getElementById('memorialImage').files[0];
                 
-                // Validate form
                 if (!name.trim() || !content.trim()) {
                     alert('Please enter a name and your tribute message.');
                     return;
                 }
                 
-                // Simulate post creation
                 const submitBtn = this.querySelector('button[type="submit"]');
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = 'Posting...';
+                submitBtn.innerHTML = '<i data-feather="loader" class="inline w-4 h-4 mr-2 animate-spin"></i> Posting...';
+                feather.replace();
                 
                 try {
-                    // In production, this would call Supabase API
+                    // Simulate API call
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     
                     alert('💜 Thank you for sharing this tribute. It has been posted.');
-                    // Corrected relative path
                     window.location.href = './memorials.html';
                     
                 } catch (error) {
@@ -106,9 +142,11 @@
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i data-feather="heart" class="w-5 h-5"></i> Post Tribute Anonymously';
-                    feather.replace(); // Redraw icon
-            }
+                    feather.replace();
+                }
+            });
         });
     </script>
 </body>
 </html>
+
