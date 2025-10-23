@@ -18,90 +18,105 @@
         <!-- Memorials Hero -->
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">In Loving Memory</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            A sacred space to honor students we've lost, share memories, and find comfort in community support 💜
-        </p>
-    </div>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                A sacred space to honor students we've lost, share memories, and find comfort in community support 💜
+            </p>
+        </div>
 
-    <!-- Memorials Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Memorial 1 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
+        <!-- NEW: Search Bar -->
+        <div class="mb-8 max-w-lg mx-auto">
+            <div class="relative">
+                <input 
+                    type="text" 
+                    id="memorialSearchInput"
+                    placeholder="Search for a name or university..." 
+                    class="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Sarah Johnson</div>
-            <p class="text-gray-600 mb-4">
-            "Her laughter could light up a room, her kindness knew no bounds. We miss you every day, Sarah."</p>
-            <div class="text-sm text-gray-500 text-center">University of California • 2023</p>
-            </div>
+        </div>
 
-        <!-- Memorial 2 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Michael Chen</div>
-            <p class="text-gray-600 mb-4">
-            "Brilliant mind, gentle soul. Your legacy lives on in every life you touched."</p>
-            <div class="text-sm text-gray-500 text-center">MIT • 2022</p>
-            </div>
-
-        <!-- Memorial 3 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Emily Rodriguez</div>
-            <p class="text-gray-600 mb-4">
-            "Your courage inspired us all. We'll never forget your strength and compassion."</p>
-            <div class="text-sm text-gray-500 text-center">Stanford University • 2023</p>
+        <!-- Memorials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="memorials-container">
+            
+            <!-- UPDATED: Memorial 1 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="sarah johnson university of california">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Sarah Johnson</h3>
+                <p class="text-gray-600 mb-4">
+                "Her laughter could light up a room, her kindness knew no bounds. We miss you every day, Sarah."</p>
+                <div class="text-sm text-gray-500 text-center">University of California • 2023</div>
             </div>
 
-        <!-- Memorial 4 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">David Williams</div>
-            <p class="text-gray-600 mb-4">
-            "A friend to all, a light in the darkness. Your memory gives us strength."</p>
-            <div class="text-sm text-gray-500 text-center">Harvard University • 2021</p>
-            </div>
-
-        <!-- Memorial 5 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Jessica Brown</div>
-            <p class="text-gray-600 mb-4">
-            "Your passion for helping others continues to inspire our community."</p>
-            <div class="text-sm text-gray-500 text-center">Oxford University • 2020</p>
+            <!-- UPDATED: Memorial 2 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="michael chen mit">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Michael Chen</h3>
+                <p class="text-gray-600 mb-4">
+                "Brilliant mind, gentle soul. Your legacy lives on in every life you touched."</p>
+                <div class="text-sm text-gray-500 text-center">MIT • 2022</div>
             </div>
 
-        <!-- Memorial 6 -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 fade-in">
-            <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="heart" class="text-white w-8 h-8"></i>
+            <!-- UPDATED: Memorial 3 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="emily rodriguez stanford university">
+                <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Emily Rodriguez</h3>
+                <p class="text-gray-600 mb-4">
+                "Your courage inspired us all. We'll never forget your strength and compassion."</p>
+                <div class="text-sm text-gray-500 text-center">Stanford University • 2023</div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Alex Thompson</div>
-            <p class="text-gray-600 mb-4">
-            "Gone too soon, but never forgotten. Your spirit lives on in our hearts."</p>
-            <div class="text-sm text-gray-500 text-center">Cambridge University • 2022</p>
-            </div>
-    </div>
 
-    <!-- Create Memorial CTA -->
-    <div class="text-center mt-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Honor a Student's Memory</h2>
-        <p class="text-gray-600 mb-8">Share a tribute for a student who touched your life</p>
-        <!-- Corrected relative path -->
-        <a href="./create.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-            <i data-feather="heart" class="inline w-5 h-5 mr-2"></i>
-            Create Memorial Tribute
-        </a>
-    </div>
+            <!-- UPDATED: Memorial 4 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="david williams harvard university">
+                <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">David Williams</h3>
+                <p class="text-gray-600 mb-4">
+                "A friend to all, a light in the darkness. Your memory gives us strength."</p>
+                <div class="text-sm text-gray-500 text-center">Harvard University • 2021</div>
+            </div>
+
+            <!-- UPDATED: Memorial 5 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="jessica brown oxford university">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Jessica Brown</h3>
+                <p class="text-gray-600 mb-4">
+                "Your passion for helping others continues to inspire our community."</p>
+                <div class="text-sm text-gray-500 text-center">Oxford University • 2020</div>
+            </div>
+
+            <!-- UPDATED: Memorial 6 with data-name -->
+            <div class="memorial-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-name="alex thompson cambridge university">
+                <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Alex Thompson</h3>
+                <p class="text-gray-600 mb-4">
+                "Gone too soon, but never forgotten. Your spirit lives on in our hearts."</p>
+                <div class="text-sm text-gray-500 text-center">Cambridge University • 2022</div>
+            </div>
+        </div>
+
+        <!-- Create Memorial CTA -->
+        <div class="text-center mt-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Honor a Student's Memory</h2>
+            <p class="text-gray-600 mb-8">Share a tribute for a student who touched your life</p>
+            <!-- Corrected relative path -->
+            <a href="./create-memorial.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i data-feather="heart" class="inline w-5 h-5 mr-2"></i>
+                Create Memorial Tribute
+            </a>
+        </div>
+    </main>
 
     <custom-footer></custom-footer>
 
@@ -112,14 +127,28 @@
     <script>
         feather.replace();
         
-        // Add memorial interaction
-        document.querySelectorAll('.memorial-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const memorialId = this.dataset.memorialId;
-                // Corrected relative path
-                window.location.href = `./memorial.html?id=${memorialId}`;
+        // --- NEW: Memorial Search Script ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('memorialSearchInput');
+            const memorialsContainer = document.getElementById('memorials-container');
+            const allMemorials = memorialsContainer.querySelectorAll('.memorial-card');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+
+                allMemorials.forEach(card => {
+                    const name = card.dataset.name.toLowerCase();
+                    if (name.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
+        // --- END NEW ---
+
     </script>
 </body>
 </html>
+
