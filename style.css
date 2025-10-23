@@ -10,9 +10,23 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    /* Fixes content overlapping fixed navbar on some pages */
-    padding-top: 68px; 
+    /* --- FIX: Added global padding-top. This pushes all content down 
+           so the fixed navbar doesn't cover it. This fixes the Android issue. --- */
+    padding-top: 68px; /* Height of the navbar */
 }
+
+/* --- NEW: Button Press Feedback --- */
+/* Add transition to all buttons for smooth press */
+button, .btn, a[class*="bg-blue-600"], a[class*="border-blue-600"], a[class*="bg-purple-600"], a[class*="border-purple-600"] {
+    transition: transform 0.1s ease;
+}
+
+/* Add active state for press effect */
+button:active, .btn:active, a[class*="bg-blue-600"]:active, a[class*="border-blue-600"]:active, a[class*="bg-purple-600"]:active, a[class*="border-purple-600"]:active {
+    transform: scale(0.95);
+}
+/* --- END NEW --- */
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -31,19 +45,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
 }
-
-/* --- NEW: Button Press Feedback --- */
-/* Add transition to all buttons for smooth press */
-button, .btn, a[class*="bg-"] {
-    transition: transform 0.1s ease;
-}
-
-/* Add active state for press effect */
-button:active, .btn:active, a[class*="bg-"]:active {
-    transform: scale(0.95);
-}
-/* --- END NEW --- */
-
 
 /* Animation classes */
 .fade-in {
@@ -100,6 +101,55 @@ button:active, .btn:active, a[class*="bg-"]:active {
     100% { background-position: -200% 0; }
 }
 
+/* --- NEW: Image Modal Styles --- */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.image-modal-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+/* --- END NEW --- */
+
+
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
     * {
@@ -123,3 +173,5 @@ a:focus-visible {
         color: #fff !important;
     }
 }
+
+
