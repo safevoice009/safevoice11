@@ -25,31 +25,32 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <!-- Standard Tier -->
                     <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors">
-                    <div class="flex items-center gap-2 mb-2">
-                            <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500">
                             <label class="font-medium text-gray-800">Standard</label>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
-                    <div class="text-blue-600 font-semibold">Free</div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
+                        <div class="text-blue-600 font-semibold">Free</div>
                     </div>
 
                     <!-- PGP Tier -->
                     <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors">
-                    <div class="flex items-center gap-2 mb-2">
-                            <input type="radio" name="privacyTier" value="pgp" class="text-green-600">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500">
                             <label class="font-medium text-gray-800">PGP Encrypted</label>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">Client-side encryption</p>
-                            <div class="text-green-600 font-semibold">5 Tokens</div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Client-side encryption</p>
+                        <div class="text-green-600 font-semibold">5 Tokens</div>
                     </div>
 
-                    <!-- Tor Tier -->
+                    <!-- FIXED: Tor Tier - Corrected HTML structure -->
                     <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors">
-                            <i data-feather="lock" class="w-4 h-4"></i>
-                            <span>Extra Secure</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">Tor network routing</div>
-                            <div class="text-purple-600 font-semibold">10 Tokens</div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500">
+                            <label class="font-medium text-gray-800">Tor Routed</label>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Maximum privacy routing</p>
+                        <div class="text-purple-600 font-semibold">10 Tokens</div>
                     </div>
                 </div>
             </div>
@@ -61,12 +62,12 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
                     <div class="flex gap-4">
                         <button type="button" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium">Text</button>
-                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="text">
-                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="image">
+                            <i data-feather="image" class="inline w-4 h-4 mr-2"></i> <!-- Changed icon -->
                             Image
                         </button>
-                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="image">
-                            <i data-feather="mic" class="w-4 h-4 mr-2"></i>
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="voice">
+                            <i data-feather="mic" class="inline w-4 h-4 mr-2"></i>
                             Voice
                         </button>
                     </div>
@@ -201,3 +202,4 @@
     </script>
 </body>
 </html>
+
