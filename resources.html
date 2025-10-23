@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Resources - SafeVoice</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <!-- Corrected CSS path -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen pt-16">
+    <custom-navbar></custom-navbar>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Emergency Alert -->
+        <div class="bg-red-600 text-white p-6 rounded-2xl mb-8 text-center">
+            <h2 class="text-2xl font-bold mb-2">🚨 Immediate Crisis Support</h2>
+            <p class="text-red-100 mb-4">If you're in immediate danger or considering self-harm, please contact emergency services immediately.</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Emergency Contacts</h3>
+                <ul class="space-y-3 text-left">
+                    <li class="flex items-center gap-2">
+                        <i data-feather="phone" class="w-5 h-5"></i>
+                    </div>
+                    <li class="flex items-center gap-2">
+                        <i data-feather="globe" class="w-4 h-4"></i>
+                        <span class="font-medium">National Suicide Prevention Lifeline</span>
+                    <span class="text-blue-600 font-semibold">988</span>
+                </li>
+                <li class="flex items-center gap-2">
+                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                        <span class="text-gray-600">Call or text 24/7</li>
+                    <li class="flex items-center gap-2">
+                        <i data-feather="heart" class="w-4 h-4"></i>
+                        <span class="font-medium">Crisis Text Line</span>
+                    <span class="text-blue-600 font-semibold">Text HOME to 741741</span>
+                </li>
+                <li class="flex items-center gap-2">
+                        <i data-feather="mail" class="w-4 h-4"></i>
+                        <span class="text-gray-600">Free 24/7 support</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">International Helplines</h3>
+                <div class="space-y-2 text-left">
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                    <span class="font-medium">Your Local Emergency Services</span>
+                    <span class="text-blue-600 font-semibold">911</span>
+                </div>
+            </div>
+
+        <!-- Mental Health Resources -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Therapy Resources -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="heart" class="text-white w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Online Therapy Platforms</div>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">BetterHelp</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Talkspace</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">BetterHelp</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Open Path Collective</a></li>
+                    </ul>
+                </div>
+
+                <!-- Self-Help Resources -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="book" class="text-white w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Self-Help & Education</div>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Headspace (Meditation)</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Calm</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">Calm</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-700">7 Cups (Peer Support)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        <!-- University Resources -->
+        <div class="mt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Campus-Specific Support</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Find Your University Resources</div>
+            <div class="flex gap-4">
+                <input type="text" placeholder="Search for your university..." class="flex-1 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"">
+                    <button class="bg-blue-600 text-white px-6 py-4 rounded-xl font-medium">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Crisis Detection Info -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-2xl mt-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">How SafeVoice Protects You</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="text-center p-4">
+                    <i data-feather="shield" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+                <p class="text-gray-700">
+                Our AI system automatically detects crisis language and provides immediate helpline suggestions. Your privacy is always protected.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <!-- Corrected relative paths for scripts -->
+    <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        feather.replace();
+        
+        // University search functionality
+        const searchInput = document.querySelector('input[placeholder*="university"]');
+        // A more robust selector for the button
+        const searchBtn = document.querySelector('button.bg-blue-600');
+        
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', function() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    alert(`Searching for mental health resources at ${query}`);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
