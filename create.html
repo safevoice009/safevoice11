@@ -18,124 +18,125 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Anonymous Post</h1>
             <p class="text-gray-600 mb-8">Share your thoughts, experiences, or support others in complete privacy</p>
 
-            {/* <!-- RESTORED: Privacy Tier Selector --> */}
+            {/* <!-- Privacy Tier Selector RESTORED --> */}
             <div class="mb-8">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Privacy Level</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* <!-- Standard Tier --> */}
-                    <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors has-[:checked]:border-blue-500 has-[:checked]:ring-2 has-[:checked]:ring-blue-200">
-                        <label class="flex flex-col h-full"> {/* Make label cover the div */}
-                            <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500">
+                     {/* <!-- Standard Tier --> */}
+                    <label class="privacy-tier-label border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors flex flex-col justify-between"> {/* Made label cover the div */}
+                        <div>
+                             <div class="flex items-center gap-2 mb-2">
+                                <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500 h-4 w-4">
                                 <span class="font-medium text-gray-800">Standard</span>
                             </div>
-                            <p class="text-sm text-gray-600 mb-2 flex-grow">Basic anonymity with encrypted storage</p> {/* Use flex-grow */}
-                            <div class="text-blue-600 font-semibold mt-auto">Free</div> {/* Use mt-auto */}
-                        </label>
-                    </div>
-                    {/* <!-- PGP Tier --> */}
-                     <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors has-[:checked]:border-green-500 has-[:checked]:ring-2 has-[:checked]:ring-green-200">
-                         <label class="flex flex-col h-full">
+                            <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
+                        </div>
+                        <div class="text-blue-600 font-semibold mt-auto">Free</div> {/* Use mt-auto */}
+                    </label>
+
+                     {/* <!-- PGP Tier --> */}
+                    <label class="privacy-tier-label border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors flex flex-col justify-between">
+                         <div>
                             <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500">
+                                <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500 h-4 w-4">
                                 <span class="font-medium text-gray-800">PGP Encrypted</span>
                             </div>
-                            <p class="text-sm text-gray-600 mb-2 flex-grow">Client-side encryption for added security</p>
-                            <div class="text-green-600 font-semibold mt-auto">5 Tokens</div>
-                        </label>
-                    </div>
-                    {/* <!-- Tor Tier --> */}
-                     <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors has-[:checked]:border-purple-500 has-[:checked]:ring-2 has-[:checked]:ring-purple-200">
-                         <label class="flex flex-col h-full">
-                            <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500">
+                            <p class="text-sm text-gray-600 mb-2">Client-side encryption for added security</p>
+                         </div>
+                        <div class="text-green-600 font-semibold mt-auto">5 Tokens</div>
+                    </label>
+
+                     {/* <!-- Tor Tier --> */}
+                    <label class="privacy-tier-label border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors flex flex-col justify-between">
+                         <div>
+                             <div class="flex items-center gap-2 mb-2">
+                                <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500 h-4 w-4">
                                 <span class="font-medium text-gray-800">Tor Routed</span>
                             </div>
-                            <p class="text-sm text-gray-600 mb-2 flex-grow">Maximum privacy via Tor network routing</p>
-                            <div class="text-purple-600 font-semibold mt-auto">10 Tokens</div>
-                        </label>
-                    </div>
+                            <p class="text-sm text-gray-600 mb-2">Maximum privacy via Tor network routing</p>
+                         </div>
+                        <div class="text-purple-600 font-semibold mt-auto">10 Tokens</div>
+                    </label>
                 </div>
             </div>
 
+
             {/* <!-- Post Form --> */}
             <form id="createPostForm" class="space-y-6">
-                {/* <!-- Content Type --> */}
+                {/* <!-- Post Type Selection --> */}
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
                     <div class="flex gap-4">
-                        <button type="button" id="btn-type-text" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2" data-type="text"> {/* Rounded-xl */}
+                        <button type="button" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2" data-type="text">
                             <i data-feather="file-text" class="w-5 h-5"></i> Text
                         </button>
-                        <button type="button" id="btn-type-image" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
                             <i data-feather="image" class="w-5 h-5"></i> Image
                         </button>
-                        <button type="button" id="btn-type-voice" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
                             <i data-feather="mic" class="w-5 h-5"></i> Voice
                         </button>
                     </div>
                 </div>
 
-
-                {/* <!-- Dynamic Content Sections --> */}
-                {/* <!-- Text Input --> */}
-                <div id="content-text" class="content-section space-y-6">
-                     <div>
-                        <label for="postContent" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label> {/* Added for */}
-                        <textarea
-                            id="postContent"
-                            placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)"
-                            class="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        ></textarea>
-                    </div>
+                {/* <!-- Content Sections (Text, Image, Voice) --> */}
+                 {/* <!-- Text Input (Default) --> */}
+                <div id="text-input-section">
+                    <label for="postContent" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                    <textarea
+                        id="postContent"
+                        placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)"
+                        class="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    ></textarea>
+                    <div class="text-right text-xs text-gray-500 mt-1">Markdown supported</div>
                 </div>
 
-                {/* <!-- Image Input --> */}
-                <div id="content-image" class="content-section space-y-6 hidden">
-                     <div>
-                        <label for="imageUpload" class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
-                        <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
-                         <p class="text-xs text-gray-500 mt-1">Max file size: 5MB.</p>
-                        <div id="imagePreviewWrapper" class="mt-4 hidden"> {/* Wrapper for potential remove button */}
-                             <div id="imagePreview" class="relative max-w-sm h-auto rounded-lg shadow-md overflow-hidden border border-gray-200">
-                                <img src="" alt="Image Preview" class="w-full h-auto object-cover">
-                                 <button type="button" id="removeImageBtn" class="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                                     <i data-feather="x" class="w-4 h-4"></i>
-                                 </button>
-                            </div>
+                {/* <!-- Image Input (Hidden by default) --> */}
+                <div id="image-input-section" class="hidden space-y-4">
+                    <label class="block text-sm font-medium text-gray-700">Upload Image</label>
+                    <label for="imageUploadInput" class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i data-feather="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
+                            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
                         </div>
+                        <input id="imageUploadInput" type="file" class="hidden" accept="image/png, image/jpeg, image/gif"/>
+                    </label>
+                    {/* Image Preview Area */}
+                    <div id="imagePreviewContainer" class="hidden mt-4 relative w-48 h-48 border rounded-lg overflow-hidden">
+                        <img id="imagePreview" src="#" alt="Image Preview" class="w-full h-full object-cover"/>
+                         <button type="button" id="removeImageBtn" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600">
+                             <i data-feather="x" class="w-4 h-4"></i>
+                         </button>
                     </div>
-                    <div>
-                        <label for="imageCaption" class="block text-sm font-medium text-gray-700 mb-2">Image Caption (Optional)</label>
-                        <textarea
-                            id="imageCaption"
-                            placeholder="Add a caption for your image..."
-                            class="w-full h-24 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        ></textarea>
-                    </div>
+                     {/* Optional: Add text caption for image post */}
+                    <label for="imageCaption" class="block text-sm font-medium text-gray-700 mt-4 mb-2">Image Caption (Optional)</label>
+                    <input type="text" id="imageCaption" placeholder="Add a brief caption..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 </div>
 
-                {/* <!-- Voice Input --> */}
-                <div id="content-voice" class="content-section space-y-6 hidden">
-                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Record or Upload Voice Note</label>
-                        <div class="p-6 border-2 border-dashed border-gray-300 rounded-xl text-center bg-gray-50">
-                            <i data-feather="mic" class="w-12 h-12 text-gray-400 mx-auto"></i>
-                            <p class="mt-4 text-gray-600">Voice recording and upload functionality is coming soon!</p>
-                            {/* Placeholder for future buttons: Record, Stop, Play, Upload */}
-                             <div class="mt-4 space-x-2">
-                                 <button type="button" disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed">Record</button>
-                                 <button type="button" disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed">Upload File</button>
-                             </div>
-                        </div>
+                {/* <!-- Voice Input (Hidden by default - Placeholder UI) --> */}
+                <div id="voice-input-section" class="hidden space-y-4">
+                    <label class="block text-sm font-medium text-gray-700">Record or Upload Voice Note</label>
+                     <div class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 text-gray-500">
+                         <i data-feather="mic" class="w-12 h-12 mb-3 text-gray-400"></i>
+                         <p class="font-semibold">Voice recording and upload</p>
+                         <p class="text-sm">functionality is coming soon!</p>
+                         {/* Placeholder buttons (non-functional) */}
+                         <div class="mt-4 flex gap-4">
+                              <button type="button" class="bg-blue-200 text-blue-800 px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">Start Recording</button>
+                              <button type="button" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">Upload Audio File</button>
+                         </div>
                     </div>
+                     {/* Optional: Add text caption for voice post */}
+                     <label for="voiceCaption" class="block text-sm font-medium text-gray-700 mt-4 mb-2">Voice Note Caption (Optional)</label>
+                    <input type="text" id="voiceCaption" placeholder="Add a brief caption..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 </div>
 
 
                 {/* <!-- Topic Selection --> */}
-                 <div>
+                <div>
                     <label for="topicSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
-                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
+                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"> {/* Added bg-white */}
                         <option value="">Choose a topic...</option>
                         <option value="mental-health">Mental Health & Wellness</option>
                         <option value="academics">Academics & Studies</option>
@@ -144,24 +145,24 @@
                         <option value="memorials">Memorials & Tributes</option>
                         <option value="career">Career & Future</option>
                         <option value="crisis">Crisis Support</option>
-                        <option value="other">Other (Please specify)</option>
+                        <option value="other">Other (Please Specify)</option> {/* Added Other */}
                     </select>
                 </div>
 
-
-                {/* <!-- "Other" Topic Input --> */}
-                <div id="otherTopicWrapper" class="hidden">
-                    <label for="otherTopicInput" class="block text-sm font-medium text-gray-700 mb-2">Your Custom Topic</label>
+                 {/* <!-- Custom Topic Input (Hidden by default) --> */}
+                 <div id="custom-topic-section" class="hidden">
+                    <label for="customTopicInput" class="block text-sm font-medium text-gray-700 mb-2">Custom Topic</label>
                     <input
                         type="text"
-                        id="otherTopicInput"
-                        placeholder="Type your custom topic..."
+                        id="customTopicInput"
+                        placeholder="Enter your custom topic..."
                         class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                 </div>
 
+
                 {/* <!-- College Tagging --> */}
-                 <div>
+                <div>
                     <label for="collegeTag" class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
                     <input
                         type="text"
@@ -171,31 +172,51 @@
                     >
                 </div>
 
-
                 {/* <!-- Submit Section --> */}
-                <div class="border-t pt-6">
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4"> {/* Added gap and flex-col */}
-                        <div>
-                            <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
-                        </div>
-                        <div class="flex gap-4">
-                            <button type="button" id="saveDraftBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base">Save Draft</button> {/* Adjusted padding/size */}
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base">Post Anonymously</button>
-                        </div>
+                <div class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"> {/* Adjusted gap and flex-col */}
+                    <div>
+                         <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
+                         <p class="text-xs text-gray-500 mt-1">Posting anonymously protects your identity.</p>
+                    </div>
+                    <div class="flex gap-4 w-full sm:w-auto"> {/* Buttons take full width on small screens */}
+                        <button type="button" id="saveDraftBtn" class="flex-1 sm:flex-none bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm"> {/* Adjusted padding/size */}
+                            Save Draft
+                        </button>
+                        <button type="submit" id="submitPostBtn" class="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm"> {/* Adjusted padding/size */}
+                            Post Anonymously
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        {/* <!-- Toast Notifications --> */}
-         <div id="draft-toast" class="hidden fixed bottom-10 right-10 bg-gray-900 text-white p-4 rounded-lg shadow-lg z-[2100]"> {/* Increased z-index */}
-            Draft saved!
+        {/* <!-- Restore Draft Modal (Hidden by default) --> */}
+        <div id="restoreDraftModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-[1500]" style="display: none;">
+          <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+              <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                <i data-feather="save" class="h-6 w-6 text-blue-600"></i>
+              </div>
+              <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Saved Draft Found</h3>
+              <div class="mt-2 px-7 py-3">
+                <p class="text-sm text-gray-500">
+                  Would you like to restore the draft you were working on?
+                </p>
+              </div>
+              <div class="items-center px-4 py-3 gap-3 flex justify-center">
+                  <button id="discardDraftBtn"
+                      class="px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-auto hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                      Discard
+                  </button>
+                  <button id="restoreDraftBtn"
+                      class="px-4 py-2 bg-blue-600 text-white text-base font-medium rounded-md w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      Restore
+                  </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="load-draft-toast" class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white p-4 rounded-lg shadow-lg flex items-center gap-4 z-[2100]">
-            <p>We found a saved draft. Restore it?</p>
-            <button id="restoreDraftBtn" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm">Yes</button>
-            <button id="discardDraftBtn" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-sm">No</button>
-        </div>
+
 
     </main>
 
@@ -203,291 +224,272 @@
 
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <script src="./script.js"></script>
+    <script src="./script.js"></script> {/* Golden Code version */}
     <script>
-        feather.replace(); // Initial replace
+        // Use feather directly as modules aren't used here
+        if (typeof feather !== 'undefined') feather.replace();
 
         document.addEventListener('DOMContentLoaded', () => {
-             // Re-run feather after dynamic elements might load & for remove button
-            setTimeout(() => feather.replace(), 100);
+             // Re-run feather after dynamic elements might load
+            setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 100);
 
-            // --- 1. Content Type Toggle Logic ---
-            // ... (keep existing toggle logic) ...
-            const typeButtons = document.querySelectorAll('.post-type-btn');
-            const contentSections = document.querySelectorAll('.content-section');
-            let activePostType = 'text'; // Default
+            const postTypeButtons = document.querySelectorAll('.post-type-btn');
+            const textSection = document.getElementById('text-input-section');
+            const imageSection = document.getElementById('image-input-section');
+            const voiceSection = document.getElementById('voice-input-section');
+             const imageUploadInput = document.getElementById('imageUploadInput');
+             const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+             const imagePreview = document.getElementById('imagePreview');
+             const removeImageBtn = document.getElementById('removeImageBtn');
+             let selectedImageData = null; // Store base64 image data
 
-            typeButtons.forEach(btn => {
+             const topicSelect = document.getElementById('topicSelect');
+             const customTopicSection = document.getElementById('custom-topic-section');
+             const customTopicInput = document.getElementById('customTopicInput');
+
+             const form = document.getElementById('createPostForm');
+             const contentInput = document.getElementById('postContent');
+             const collegeInput = document.getElementById('collegeTag');
+             const imageCaptionInput = document.getElementById('imageCaption');
+             const voiceCaptionInput = document.getElementById('voiceCaption');
+             const saveDraftBtn = document.getElementById('saveDraftBtn');
+             const submitPostBtn = document.getElementById('submitPostBtn');
+
+             // --- Post Type Switching Logic ---
+            postTypeButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    activePostType = this.dataset.type; // Update active type
+                    const type = this.dataset.type;
 
                     // Update button styles
-                    typeButtons.forEach(b => {
+                    postTypeButtons.forEach(b => {
                         b.classList.remove('bg-blue-600', 'text-white');
                         b.classList.add('bg-white', 'text-gray-700', 'border');
                     });
                     this.classList.add('bg-blue-600', 'text-white');
                     this.classList.remove('bg-white', 'text-gray-700', 'border');
 
-                    // Show/hide content sections
-                    contentSections.forEach(section => {
-                        if (section.id === `content-${activePostType}`) {
-                            section.classList.remove('hidden');
-                        } else {
-                            section.classList.add('hidden');
-                        }
-                    });
-                    feather.replace(); // Ensure icons render correctly
+                    // Show/Hide sections
+                    textSection.classList.toggle('hidden', type !== 'text');
+                    imageSection.classList.toggle('hidden', type !== 'image');
+                    voiceSection.classList.toggle('hidden', type !== 'voice');
+
+                     // Re-render icons if needed (e.g., upload icon might re-appear)
+                     setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 50);
                 });
             });
 
-            // --- 2. Image Preview & Remove Logic ---
-             const imageUpload = document.getElementById('imageUpload');
-             const imagePreviewWrapper = document.getElementById('imagePreviewWrapper');
-             const imagePreviewDiv = document.getElementById('imagePreview');
-             const imagePreviewImg = imagePreviewDiv?.querySelector('img'); // Use optional chaining
-             const removeImageBtn = document.getElementById('removeImageBtn');
+             // --- Image Upload Logic ---
+             if (imageUploadInput && imagePreviewContainer && imagePreview && removeImageBtn) {
+                 imageUploadInput.addEventListener('change', function(e) {
+                     const file = e.target.files[0];
+                     if (file) {
+                         // Basic validation (size limit: 5MB)
+                         if (file.size > 5 * 1024 * 1024) {
+                             alert('Image file is too large. Maximum 5MB allowed.');
+                             imageUploadInput.value = ''; // Reset input
+                             return;
+                         }
+                         const reader = new FileReader();
+                         reader.onload = function(event) {
+                             selectedImageData = event.target.result; // Store base64 data
+                             imagePreview.src = selectedImageData;
+                             imagePreviewContainer.classList.remove('hidden');
+                             // Optionally hide the drag/drop area or show filename
+                         }
+                         reader.readAsDataURL(file);
+                     }
+                 });
 
-             if(imageUpload && imagePreviewWrapper && imagePreviewImg && removeImageBtn) {
-                imageUpload.addEventListener('change', (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                         if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                            alert("Image file is too large! Maximum 5MB allowed.");
-                            imageUpload.value = ""; // Clear the input
-                            imagePreviewWrapper.classList.add('hidden'); // Hide preview
-                            imagePreviewImg.src = '';
-                            return;
-                        }
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            imagePreviewImg.src = e.target.result;
-                            imagePreviewWrapper.classList.remove('hidden'); // Show wrapper
-                            feather.replace(); // Render the 'x' icon
-                        };
-                        reader.readAsDataURL(file);
-                    } else { // No file selected (e.g., user clicked cancel)
-                        imagePreviewWrapper.classList.add('hidden');
-                        imagePreviewImg.src = '';
-                    }
-                });
+                 removeImageBtn.addEventListener('click', function() {
+                     selectedImageData = null;
+                     imagePreview.src = '#';
+                     imagePreviewContainer.classList.add('hidden');
+                     imageUploadInput.value = ''; // Reset input
+                 });
+             }
 
-                removeImageBtn.addEventListener('click', () => {
-                     imageUpload.value = ''; // Clear the file input
-                     imagePreviewWrapper.classList.add('hidden'); // Hide the preview wrapper
-                     imagePreviewImg.src = ''; // Clear the image source
-                });
+             // --- Custom Topic Logic ---
+             if (topicSelect && customTopicSection) {
+                 topicSelect.addEventListener('change', function() {
+                     customTopicSection.classList.toggle('hidden', this.value !== 'other');
+                 });
+             }
 
-            } else {
-                console.error("Image upload/preview/remove elements not found!");
-            }
+             // --- Save Draft Logic ---
+             if (saveDraftBtn && form) {
+                 saveDraftBtn.addEventListener('click', () => {
+                     const draft = {
+                         postType: document.querySelector('.post-type-btn.bg-blue-600')?.dataset.type || 'text',
+                         content: contentInput.value,
+                         topic: topicSelect.value,
+                         customTopic: customTopicInput.value,
+                         college: collegeInput.value,
+                         privacy: document.querySelector('input[name="privacyTier"]:checked')?.value || 'standard',
+                         // Don't save image data in localStorage, it can be too large
+                         // imageData: selectedImageData, // Example if you *really* need to (NOT RECOMMENDED)
+                         imageCaption: imageCaptionInput.value,
+                         voiceCaption: voiceCaptionInput.value,
+                     };
+                     try {
+                         localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
+                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Draft saved successfully!', 'success');
+                     } catch (e) {
+                         console.error("Error saving draft:", e);
+                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Error saving draft. Storage might be full.', 'error');
+                     }
+                 });
+             }
 
-            // --- 3. "Other" Topic Logic ---
-            // ... (keep existing "Other" topic logic) ...
-            const topicSelect = document.getElementById('topicSelect');
-            const otherTopicWrapper = document.getElementById('otherTopicWrapper');
-            const otherTopicInput = document.getElementById('otherTopicInput');
+             // --- Restore Draft Logic ---
+             const restoreDraftModal = document.getElementById('restoreDraftModal');
+             const discardDraftBtn = document.getElementById('discardDraftBtn');
+             const restoreDraftBtn = document.getElementById('restoreDraftBtn');
 
-            if (topicSelect && otherTopicWrapper && otherTopicInput) { // Check elements exist
-                topicSelect.addEventListener('change', () => {
-                    if (topicSelect.value === 'other') {
-                        otherTopicWrapper.classList.remove('hidden');
-                    } else {
-                        otherTopicWrapper.classList.add('hidden');
-                        otherTopicInput.value = ''; // Clear custom topic
-                    }
-                });
-            } else {
-                 console.error("Topic select elements not found!");
-            }
+             if (restoreDraftModal && discardDraftBtn && restoreDraftBtn) {
+                 const savedDraft = localStorage.getItem('safeVoiceDraft');
+                 if (savedDraft) {
+                     restoreDraftModal.style.display = 'block';
+                      // Render feather icon in modal
+                     setTimeout(() => { if (typeof feather !== 'undefined') feather.replace({parent: restoreDraftModal}) }, 50);
+                 }
 
+                 discardDraftBtn.addEventListener('click', () => {
+                     localStorage.removeItem('safeVoiceDraft');
+                     restoreDraftModal.style.display = 'none';
+                 });
 
-            // --- 4. "Save Draft" Logic ---
-            // ... (keep existing save draft logic, ensures privacy tier is saved) ...
-            const saveDraftBtn = document.getElementById('saveDraftBtn');
-            const draftToast = document.getElementById('draft-toast');
-            const postContent = document.getElementById('postContent');
-            const imageCaption = document.getElementById('imageCaption');
-            const collegeTag = document.getElementById('collegeTag');
-            const privacyTiers = document.querySelectorAll('input[name="privacyTier"]');
+                 restoreDraftBtn.addEventListener('click', () => {
+                     try {
+                         const draft = JSON.parse(savedDraft || '{}');
 
-            if (saveDraftBtn && draftToast) {
-                saveDraftBtn.addEventListener('click', () => {
-                    let selectedPrivacy = 'standard';
-                    privacyTiers.forEach(radio => {
-                        if (radio.checked) {
-                            selectedPrivacy = radio.value;
-                        }
-                    });
-
-                    const draft = {
-                        type: activePostType,
-                        content: postContent.value,
-                        imageCaption: imageCaption.value,
-                        topic: topicSelect.value,
-                        otherTopic: otherTopicInput.value,
-                        college: collegeTag.value,
-                        privacy: selectedPrivacy
-                    };
-
-                    localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
-
-                    draftToast.classList.remove('hidden');
-                    setTimeout(() => {
-                        draftToast.classList.add('hidden');
-                    }, 2000);
-                });
-            } else {
-                 console.error("Save draft elements not found!");
-            }
+                         // Restore Post Type Button
+                         postTypeButtons.forEach(btn => {
+                              const type = btn.dataset.type;
+                              const isActive = (type === draft.postType);
+                              btn.classList.toggle('bg-blue-600', isActive);
+                              btn.classList.toggle('text-white', isActive);
+                              btn.classList.toggle('bg-white', !isActive);
+                              btn.classList.toggle('text-gray-700', !isActive);
+                              btn.classList.toggle('border', !isActive);
+                         });
+                         // Show/hide correct section based on restored type
+                         textSection.classList.toggle('hidden', draft.postType !== 'text');
+                         imageSection.classList.toggle('hidden', draft.postType !== 'image');
+                         voiceSection.classList.toggle('hidden', draft.postType !== 'voice');
 
 
-            // --- 5. "Load Draft" Logic ---
-            // ... (keep existing load draft logic, ensures privacy tier is restored) ...
-            const loadDraftToast = document.getElementById('load-draft-toast');
-            const restoreDraftBtn = document.getElementById('restoreDraftBtn');
-            const discardDraftBtn = document.getElementById('discardDraftBtn');
-            const savedDraft = localStorage.getItem('safeVoiceDraft');
+                         contentInput.value = draft.content || '';
+                         topicSelect.value = draft.topic || '';
+                         customTopicSection.classList.toggle('hidden', draft.topic !== 'other');
+                         customTopicInput.value = draft.customTopic || '';
+                         collegeInput.value = draft.college || '';
+                         imageCaptionInput.value = draft.imageCaption || '';
+                         voiceCaptionInput.value = draft.voiceCaption || '';
 
-            if (savedDraft && loadDraftToast && restoreDraftBtn && discardDraftBtn) {
-                loadDraftToast.classList.remove('hidden');
+                         // Restore Privacy Tier
+                         const privacyRadio = document.querySelector(`input[name="privacyTier"][value="${draft.privacy || 'standard'}"]`);
+                         if (privacyRadio) privacyRadio.checked = true;
 
-                restoreDraftBtn.addEventListener('click', () => {
-                    const draft = JSON.parse(savedDraft);
+                         // NOTE: Image cannot be restored from localStorage easily/reliably. Inform user.
+                         if (draft.postType === 'image') {
+                              alert("Draft restored. Please re-select your image file.");
+                         }
 
-                    // Restore type button and section visibility
-                    const typeBtnToClick = document.querySelector(`.post-type-btn[data-type="${draft.type}"]`);
-                    if(typeBtnToClick) typeBtnToClick.click();
+                         localStorage.removeItem('safeVoiceDraft'); // Clear after restoring
+                         restoreDraftModal.style.display = 'none';
+                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Draft restored!', 'info');
 
-                    // Restore content
-                    postContent.value = draft.content || '';
-                    imageCaption.value = draft.imageCaption || '';
-                    topicSelect.value = draft.topic || '';
-                    otherTopicInput.value = draft.otherTopic || '';
-                    collegeTag.value = draft.college || '';
+                     } catch (e) {
+                         console.error("Error restoring draft:", e);
+                         localStorage.removeItem('safeVoiceDraft'); // Clear corrupted draft
+                         restoreDraftModal.style.display = 'none';
+                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Could not restore draft.', 'error');
+                     }
+                 });
+             }
 
-                     // Restore privacy tier
-                    privacyTiers.forEach(radio => {
-                        radio.checked = (radio.value === draft.privacy);
-                    });
 
-                    // Trigger "Other" input visibility if needed
-                    if (draft.topic === 'other') {
-                        otherTopicWrapper.classList.remove('hidden');
-                    } else {
-                        otherTopicWrapper.classList.add('hidden');
-                    }
-
-                    localStorage.removeItem('safeVoiceDraft');
-                    loadDraftToast.classList.add('hidden');
-                    alert('Draft restored!'); // Add feedback
-                });
-
-                discardDraftBtn.addEventListener('click', () => {
-                    localStorage.removeItem('safeVoiceDraft');
-                    loadDraftToast.classList.add('hidden');
-                });
-            }
-
-            // --- 6. Form Submission (Simulation) ---
-             const createPostForm = document.getElementById('createPostForm');
-             if(createPostForm) {
-                createPostForm.addEventListener('submit', async function(e) {
-                     // ... (keep existing validation and submission logic) ...
+             // --- Form Submission (Simulation) ---
+             if (form && submitPostBtn) {
+                 form.addEventListener('submit', async function(e) {
                      e.preventDefault();
 
-                    let contentValue = '';
-                    let imageFile = null; // Store image file if present
+                     const postType = document.querySelector('.post-type-btn.bg-blue-600')?.dataset.type || 'text';
+                     const content = (postType === 'text') ? contentInput.value :
+                                     (postType === 'image') ? imageCaptionInput.value :
+                                     voiceCaptionInput.value; // Use caption as main content for now
+                     let topic = topicSelect.value;
+                     if (topic === 'other') {
+                         topic = customTopicInput.value.trim() || 'Other'; // Use custom or default to 'Other'
+                     }
+                     const college = collegeInput.value.trim();
+                     const privacyTier = document.querySelector('input[name="privacyTier"]:checked')?.value || 'standard';
 
-                    if (activePostType === 'text') {
-                        contentValue = postContent.value.trim();
-                         if (!contentValue) {
-                           alert('Please enter your message.');
-                           return;
+                     // Basic Validation
+                     if (postType === 'text' && !content.trim()) {
+                         alert('Please enter your message for a text post.');
+                         return;
+                     }
+                     if (postType === 'image' && !selectedImageData) {
+                         alert('Please select an image to upload for an image post.');
+                         return;
+                     }
+                     if (postType === 'voice') {
+                          alert('Voice posting is not yet implemented.');
+                          return; // Prevent submission for voice yet
+                     }
+                     if (!topic) {
+                         alert('Please select a topic.');
+                         return;
+                     }
+
+
+                     // Simulate post creation
+                     submitPostBtn.disabled = true;
+                     submitPostBtn.innerHTML = `
+                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                         </svg>
+                         Posting...`;
+
+                     try {
+                         console.log("Simulating post creation with data:", {
+                             postType, content, topic, college, privacyTier, hasImage: !!selectedImageData
+                         });
+                         // --- !!! Add Supabase insert logic here in the next step !!! ---
+                         // const { data, error } = await supabase.from('posts').insert([{
+                         //    content: content, // Might be caption if image/voice
+                         //    topic: topic,
+                         //    college: college || null, // Handle optional field
+                         //    image_url: postType === 'image' ? await uploadImageAndGetURL(selectedImageData) : null,
+                         //    voice_url: null, // Add later
+                         //    anonymous_id: window.safeVoiceApp?.currentUser?.anonymousId || window.safeVoiceApp?.generateAnonymousId(),
+                         //    // user_wallet: window.safeVoiceApp?.currentUser?.walletAddress || null
+                         // }]);
+                         // if (error) throw error;
+                         // console.log("Supabase insert response:", data);
+                         await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+
+                         // Clear draft if post is successful
+                         localStorage.removeItem('safeVoiceDraft');
+
+                         if (window.safeVoiceApp) {
+                             window.safeVoiceApp.awardTokens(10, 'post_created');
+                             window.safeVoiceApp.showNotification('🎉 Post created successfully! +10 tokens awarded.', 'success');
                          }
-                    } else if (activePostType === 'image') {
-                        contentValue = imageCaption.value.trim(); // Caption is optional
-                        imageFile = imageUpload.files[0];
-                         if (!imageFile && !contentValue) { // Must have at least image or caption
-                           alert('Please upload an image or add a caption.');
-                           return;
-                         }
-                    } else if (activePostType === 'voice') {
-                        alert('Voice posting is not yet implemented.');
-                        return;
-                    }
+                         // Redirect after a short delay
+                         setTimeout(() => { window.location.href = './feed.html'; }, 500);
 
-                    let topic = topicSelect.value;
-                    if (topic === 'other') {
-                        topic = otherTopicInput.value.trim();
-                        if(!topic) {
-                            alert('Please enter your custom topic.');
-                            return;
-                        }
-                    }
-                    if (!topic) {
-                        alert('Please select a topic.');
-                        return;
-                    }
-
-                     let selectedPrivacy = 'standard';
-                    privacyTiers.forEach(radio => {
-                        if (radio.checked) {
-                            selectedPrivacy = radio.value;
-                        }
-                    });
-
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i data-feather="loader" class="inline w-4 h-4 mr-2 animate-spin"></i> Posting...';
-                    feather.replace();
-
-                    try {
-                        // --- Placeholder for Supabase Upload ---
-                        let imageUrl = null;
-                        if (imageFile) {
-                             console.log("Simulating image upload for:", imageFile.name);
-                             // In real app: await uploadImageToSupabase(imageFile);
-                             await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate upload time
-                             // imageUrl = 'https://path/to/uploaded/image.jpg'; // Get URL from Supabase
-                             console.log("Image upload simulation complete.");
-                        }
-                        // ------------------------------------
-
-                        console.log("Simulating post save...");
-                        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate DB save time
-                        console.log("Post save simulation complete.");
-
-
-                        if (window.safeVoiceApp) {
-                            window.safeVoiceApp.awardTokens(10, 'post_created');
-                            alert('🎉 Post created successfully! +10 tokens awarded.');
-                        } else {
-                            alert('🎉 Post created successfully! (Tokens simulated)');
-                        }
-
-
-                        localStorage.removeItem('safeVoiceDraft');
-                        this.reset();
-                        otherTopicWrapper.classList.add('hidden');
-                        if(imagePreviewWrapper) imagePreviewWrapper.classList.add('hidden'); // Use wrapper
-                        if(imageUpload) imageUpload.value = '';
-                        document.getElementById('btn-type-text').click(); // Reset to text type
-                        privacyTiers.forEach(radio => radio.checked = (radio.value === 'standard'));
-
-
-                        window.location.href = './feed.html';
-                    } catch (error) {
-                        console.error('Post creation failed:', error);
-                        alert('Failed to create post. Please try again.');
-                    } finally {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Post Anonymously';
-                    }
-                });
-            } else {
-                 console.error("Create post form not found!");
-            }
+                     } catch (error) {
+                         console.error('Post creation failed:', error);
+                          if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Failed to create post. Please try again.', 'error');
+                         submitPostBtn.disabled = false;
+                         submitPostBtn.textContent = 'Post Anonymously';
+                     }
+                     // No finally block needed here as redirect happens on success
+                 });
+             }
 
         }); // End DOMContentLoaded
     </script>
