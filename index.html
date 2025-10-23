@@ -11,17 +11,15 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 </head>
-<!-- Body now correctly uses global padding-top from style.css -->
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
     <!-- Hero Section -->
-    <!-- FIX: Removed negative margin. Added min-h-screen directly here
-         and adjusted inner padding to ensure content visibility below navbar. -->
+    <!-- FIX: Reverted negative margin. Using min-h-screen and flex alignment. -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0" id="vanta-bg"></div>
-        <!-- FIX: Added padding top AND bottom inside the relative container -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-10 pb-10">
+        <!-- FIX: Inner container uses padding consistent with body padding-top -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-8 pb-8"> {/* Adjusted padding */}
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
             Safe<span class="text-blue-600">Voice</span>
             </h1>
@@ -41,7 +39,8 @@
 
             <!-- Stats Counter -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                 <!-- ... existing counter divs ... -->
+                 <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
                     <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
                     <div class="text-gray-600">Posts Shared</div>
                 </div>
@@ -145,75 +144,122 @@
     <script src="./footer.js"></script>
     <script src="./script.js"></script>
     <script>
-        feather.replace();
+        feather.replace(); // Initial replace
 
-        // Initialize Vanta.js background
-        VANTA.GLOBE({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x3b82f6,
-            backgroundColor: 0xf8fafc, // Match body background
-            size: 1.00
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+             // Re-run feather after dynamic elements might load
+            setTimeout(() => feather.replace(), 100);
 
-        // Animated counters
-        // ... (keep existing animateCounter function) ...
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16); // 60 fps approx
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target.toLocaleString();
-                    clearInterval(timer);
+            // Initialize Vanta.js background
+            VANTA.GLOBE({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x3b82f6,
+                backgroundColor: 0xf8fafc, // Match body background
+                size: 1.00
+            });
+
+            // Animated counters
+            function animateCounter(element, target, duration = 2000) {
+                 // Check if element exists before animating
+                if (!element) return;
+                let start = 0;
+                // Ensure target is a number, default to 0 if not
+                const endTarget = typeof target === 'number' ? target : 0;
+                const increment = endTarget / (duration / 16); // 60 fps approx
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= endTarget) {
+                        element.textContent = endTarget.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(start).toLocaleString();
+                    }
+                }, 16);
+            }
+
+            // Simulate loading stats with delay
+             setTimeout(() => {
+                const totalPostsEl = document.getElementById('totalPosts');
+                const totalTokensEl = document.getElementById('totalTokens');
+                const activeUsersEl = document.getElementById('activeUsers');
+
+                animateCounter(totalPostsEl, 15247);
+                if (window.safeVoiceApp) {
+                    animateCounter(totalTokensEl, window.safeVoiceApp.tokenBalance || 0);
                 } else {
-                    element.textContent = Math.floor(start).toLocaleString();
+                    animateCounter(totalTokensEl, 0); // Fallback if app not ready
                 }
-            }, 16);
-        }
+                animateCounter(activeUsersEl, 3421);
+
+                 // Update token balance again after SafeVoiceApp might have loaded fully
+                 if (window.safeVoiceApp && totalTokensEl) {
+                     totalTokensEl.textContent = (window.safeVoiceApp.tokenBalance || 0).toLocaleString();
+                 }
+
+            }, 500); // Wait for potential script.js load
 
 
-        // Simulate loading stats
-        setTimeout(() => {
-            animateCounter(document.getElementById('totalPosts'), 15247);
-            // Link token counter to global app state if possible
-             if (window.safeVoiceApp) {
-                 // Use initial value for animation, actual value updated by navbar/script.js
-                 animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance || 893456);
-             } else {
-                 animateCounter(document.getElementById('totalTokens'), 893456); // Fallback
-             }
-            animateCounter(document.getElementById('activeUsers'), 3421);
-        }, 500); // Increased delay slightly
-
-        // Wallet connection logic (delegated to script.js via SafeVoiceApp)
-        document.getElementById('connectWallet').addEventListener('click', function() {
-            if (window.safeVoiceApp) {
-                window.safeVoiceApp.connectWallet().then(success => {
-                    if (success) {
-                         // Update local counter immediately for visual feedback
-                        animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance);
-                        // Navbar updates automatically via event listener
+            // Wallet connection logic
+            const connectWalletBtn = document.getElementById('connectWallet');
+            if(connectWalletBtn) {
+                connectWalletBtn.addEventListener('click', function() {
+                    if (window.safeVoiceApp) {
+                        window.safeVoiceApp.connectWallet().then(success => {
+                            if (success) {
+                                // Update counter immediately
+                                const totalTokensEl = document.getElementById('totalTokens');
+                                if(totalTokensEl) {
+                                    animateCounter(totalTokensEl, window.safeVoiceApp.tokenBalance);
+                                }
+                                // Navbar updates via its own event listener now
+                            }
+                        });
                     }
                 });
             }
-        });
 
-        document.getElementById('anonymousMode').addEventListener('click', function() {
-            if (window.safeVoiceApp) {
-                window.safeVoiceApp.enterAnonymousMode();
-                 // Update local counter immediately
-                animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance);
+            // Anonymous mode logic
+            const anonymousModeBtn = document.getElementById('anonymousMode');
+            if(anonymousModeBtn) {
+                anonymousModeBtn.addEventListener('click', function() {
+                    if (window.safeVoiceApp) {
+                        window.safeVoiceApp.enterAnonymousMode();
+                         // Update counter immediately
+                        const totalTokensEl = document.getElementById('totalTokens');
+                         if(totalTokensEl) {
+                            animateCounter(totalTokensEl, window.safeVoiceApp.tokenBalance);
+                         }
+                    }
+                    window.location.href = './feed.html';
+                });
             }
-            // Navigate after potentially setting state
-            window.location.href = './feed.html';
-        });
+
+            // Listen for token updates from script.js to keep counter synced
+             window.addEventListener('safeVoiceTokenUpdate', (e) => {
+                 const totalTokensEl = document.getElementById('totalTokens');
+                 if(totalTokensEl) {
+                     animateCounter(totalTokensEl, e.detail.newBalance);
+                 }
+            });
+             window.addEventListener('safeVoiceUserUpdate', (e) => {
+                 // Potentially update other stats if needed when user logs in/out
+                 const totalTokensEl = document.getElementById('totalTokens');
+                 if(totalTokensEl && e.detail.currentUser) {
+                      animateCounter(totalTokensEl, e.detail.currentUser.tokenBalance || 0);
+                 } else if (totalTokensEl) {
+                      animateCounter(totalTokensEl, 0); // Reset if user logs out
+                 }
+            });
+
+        }); // End DOMContentLoaded
     </script>
 </body>
 </html>
+
