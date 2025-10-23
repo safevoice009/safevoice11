@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post - SafeVoice</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <!-- Corrected CSS path -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 min-h-screen pt-16">
+    <custom-navbar></custom-navbar>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Anonymous Post</h1>
+            <p class="text-gray-600 mb-8">Share your thoughts, experiences, or support others in complete privacy</p>
+            
+            <!-- Privacy Tier Selector -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Privacy Level</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Standard Tier -->
+                    <div class="border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors">
+                    <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600">
+                            <label class="font-medium text-gray-800">Standard</label>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
+                    <div class="text-blue-600 font-semibold">Free</div>
+                    </div>
+
+                    <!-- PGP Tier -->
+                    <div class="border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors">
+                    <div class="flex items-center gap-2 mb-2">
+                            <input type="radio" name="privacyTier" value="pgp" class="text-green-600">
+                            <label class="font-medium text-gray-800">PGP Encrypted</label>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Client-side encryption</p>
+                            <div class="text-green-600 font-semibold">5 Tokens</div>
+                    </div>
+
+                    <!-- Tor Tier -->
+                    <div class="border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors">
+                            <i data-feather="lock" class="w-4 h-4"></i>
+                            <span>Extra Secure</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Tor network routing</div>
+                            <div class="text-purple-600 font-semibold">10 Tokens</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post Form -->
+            <form id="createPostForm" class="space-y-6">
+                <!-- Content Type -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
+                    <div class="flex gap-4">
+                        <button type="button" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium">Text</button>
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="text">
+                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                            Image
+                        </button>
+                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300" data-type="image">
+                            <i data-feather="mic" class="w-4 h-4 mr-2"></i>
+                            Voice
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content Input -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                    <textarea 
+                        id="postContent"
+                        placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)" 
+                        class="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                        required></textarea>
+                </div>
+
+                <!-- Topic Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
+                    <select class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="">Choose a topic...</option>
+                        <option value="mental-health">Mental Health & Wellness</option>
+                        <option value="academics">Academics & Studies</option>
+                        <option value="relationships">Relationships & Friendships</option>
+                        <option value="social-issues">Social Justice & Issues</option>
+                        <option value="memorials">Memorials & Tributes</option>
+                        <option value="career">Career & Future</option>
+                        <option value="crisis">Crisis Support</option>
+                    </select>
+                </div>
+
+                <!-- College Tagging -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
+                    <input 
+                        type="text" 
+                        placeholder="e.g., Stanford University, Community College..."
+                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                        id="collegeTag">
+                </div>
+
+                <!-- Submit Section -->
+                <div class="border-t pt-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
+                        <div class="flex gap-4">
+                            <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Save Draft</button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">Post Anonymously</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <!-- Corrected relative paths for scripts -->
+    <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        feather.replace();
+        
+        // Post type selection
+        document.querySelectorAll('.post-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.post-type-btn').forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-700', 'border');
+                });
+                
+                this.classList.add('bg-blue-600', 'text-white');
+                this.classList.remove('bg-white', 'text-gray-700', 'border');
+            });
+        });
+
+        // Privacy tier selection
+        document.querySelectorAll('input[name="privacyTier"]').forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        const tier = this.value;
+                        let cost = 0;
+                        
+                        if (tier === 'pgp') cost = 5;
+                if (tier === 'tor') cost = 10;
+                
+                // Update UI based on selection
+                console.log(`Selected privacy tier: ${tier} (Cost: ${cost} tokens)`);
+            });
+        });
+
+        // Form submission
+        document.getElementById('createPostForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const content = document.getElementById('postContent').value;
+                const topic = document.querySelector('select').value;
+                const college = document.getElementById('collegeTag').value;
+                const privacyTier = document.querySelector('input[name="privacyTier"]:checked').value;
+                
+                // Validate form
+                if (!content.trim()) {
+                    alert('Please enter your message');
+                    return;
+                }
+                
+                // Simulate post creation
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Posting...';
+                
+                try {
+                    // In production, this would call Supabase API
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Award tokens
+                    if (window.safeVoiceApp) {
+                        window.safeVoiceApp.awardTokens(10, 'post_created');
+                        
+                        alert('🎉 Post created successfully! +10 tokens awarded.');
+                        // Corrected relative path
+                        window.location.href = './feed.html';
+                    }
+                } catch (error) {
+                    console.error('Post creation failed:', error);
+                    alert('Failed to create post. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Post Anonymously';
+            }
+        });
+    </script>
+</body>
+</html>
