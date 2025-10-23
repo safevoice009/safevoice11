@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVoice - Anonymous Student Social Platform</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <!-- Corrected CSS path -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <custom-navbar></custom-navbar>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0" id="vanta-bg"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
+            Safe<span class="text-blue-600">Voice</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+            Your anonymous sanctuary for mental health support, social issues, and student tributes. Speak freely, earn tokens, build generational wealth. 🛡️
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <button id="connectWallet" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i data-feather="shield" class="inline w-5 h-5 mr-2"></i>
+                Connect Wallet & Start Earning
+            </button>
+            <button id="anonymousMode" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300">
+                <i data-feather="user-x" class="inline w-5 h-5 mr-2"></i>
+                Enter Anonymously
+            </button>
+            </div>
+            
+            <!-- Stats Counter -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
+                <div class="text-gray-600">Posts Shared</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                <div class="text-3xl font-bold text-purple-600 mb-2" id="totalTokens">0</div>
+                <div class="text-gray-600">Tokens Earned</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                <div class="text-3xl font-bold text-green-600 mb-2" id="activeUsers">0</div>
+                <div class="text-gray-600">Active Students</div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Why SafeVoice Stands Out</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="shield" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">True Anonymity</h3>
+                <p class="text-gray-600">No emails, no tracking, no profiling. Just pure, unfiltered student expression.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="heart" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Mental Health First</h3>
+                <p class="text-gray-600">AI-powered crisis detection with instant helpline suggestions and supportive reactions.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="award" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Token Rewards</h3>
+                <p class="text-gray-600">Earn tokens for every positive action. Build generational wealth while supporting peers.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-yellow-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="lock" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Multi-Tier Privacy</h3>
+                <p class="text-gray-600">Choose from Standard, PGP-Encrypted, or Tor-Routed posting for ultimate security.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="users" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Web3 Identity</h3>
+                <p class="text-gray-600">Your wallet is your identity. Portable, censorship-resistant, and future-proof.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-feather="trending-up" class="text-white w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">DAO Governance</h3>
+                <p class="text-gray-600">Token holders vote on platform policies. Community-driven, transparent decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Speak Your Truth?</h2>
+            <p class="text-xl mb-8 opacity-90">Join thousands of students already building a safer, more supportive community.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <!-- Corrected relative paths for links -->
+            <a href="./feed.html" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                <i data-feather="message-square" class="inline w-5 h-5 mr-2"></i>
+                Explore the Feed
+            </a>
+            <a href="./create.html" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300">
+                <i data-feather="edit-3" class="inline w-5 h-5 mr-2"></i>
+                Create Your First Post
+            </a>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <!-- Corrected relative paths for scripts -->
+    <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        feather.replace();
+        
+        // Initialize Vanta.js background
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3b82f6,
+            backgroundColor: 0xf8fafc,
+            size: 1.00
+        });
+
+        // Animated counters
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Simulate loading stats
+        setTimeout(() => {
+            animateCounter(document.getElementById('totalPosts'), 15247);
+            animateCounter(document.getElementById('totalTokens'), 893456);
+            animateCounter(document.getElementById('activeUsers'), 3421);
+        }, 1000);
+
+        // Wallet connection
+        document.getElementById('connectWallet').addEventListener('click', function() {
+            // Simulate wallet connection
+            const tokenReward = 100; // Welcome bonus
+            alert(`🎉 Wallet Connected! You received ${tokenReward} SafeVoice tokens as a welcome gift!`);
+            document.getElementById('totalTokens').textContent = (893456 + tokenReward).toLocaleString();
+        });
+
+        document.getElementById('anonymousMode').addEventListener('click', function() {
+            alert('👤 Entering in Anonymous Mode - Your privacy is protected!');
+            // Corrected relative path for navigation
+            window.location.href = './feed.html';
+        });
+    </script>
+</body>
+</html>
