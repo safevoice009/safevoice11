@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post - SafeVoice</title>
+    <title>SafeVoice Feed - Anonymous Student Discussions</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,483 +13,352 @@
 <body class="bg-gray-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-2xl shadow-lg p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Anonymous Post</h1>
-            <p class="text-gray-600 mb-8">Share your thoughts, experiences, or support others in complete privacy</p>
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Feed Header -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+             <!-- ... existing header ... -->
+             <div>
+                <h1 class="text-3xl font-bold text-gray-800">SafeVoice Feed</h1>
+                <p class="text-gray-600">Real-time anonymous discussions from students worldwide</p>
+            </div>
 
-            {/* <!-- Privacy Tier Selector RESTORED --> */}
-            <div class="mb-8">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Privacy Level</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                     {/* <!-- Standard Tier --> */}
-                    <label class="privacy-tier-label border-2 border-blue-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition-colors flex flex-col justify-between"> {/* Made label cover the div */}
-                        <div>
-                             <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="standard" checked class="text-blue-600 focus:ring-blue-500 h-4 w-4">
-                                <span class="font-medium text-gray-800">Standard</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mb-2">Basic anonymity with encrypted storage</p>
+            <div class="flex flex-wrap gap-2" id="filter-buttons">
+                <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">All</button>
+                <button data-filter="trending" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Trending</button>
+                <button data-filter="latest" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Latest</button>
+                <button data-filter="crisis" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Crisis</button>
+                <button data-filter="mental-health" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Mental Health</button>
+                <button data-filter="memorial" class="filter-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-medium border">Memorials</button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mb-8 max-w-xl">
+             <!-- ... existing search bar ... -->
+             <div class="relative">
+                <input
+                    type="text"
+                    id="feedSearchInput"
+                    placeholder="Search posts by keyword..."
+                    class="w-full p-4 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            </div>
+        </div>
+
+        <!-- Main Feed Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Posts Column -->
+            <div class="lg:col-span-2 space-y-6" id="posts-container">
+
+                <!-- Post Card 1 -->
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="crisis" data-content="the pressure of finals is overwhelming feeling completely burned out with finals approaching. the constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. anyone else struggling with this?">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
                         </div>
-                        <div class="text-blue-600 font-semibold mt-auto">Free</div> {/* Use mt-auto */}
-                    </label>
+                        <div class="text-sm text-gray-500">BraveOwl123 • 2 hours ago • University of California</div>
+                    </div>
 
-                     {/* <!-- PGP Tier --> */}
-                    <label class="privacy-tier-label border-2 border-green-200 rounded-xl p-4 cursor-pointer hover:border-green-400 transition-colors flex flex-col justify-between">
-                         <div>
-                            <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="pgp" class="text-green-600 focus:ring-green-500 h-4 w-4">
-                                <span class="font-medium text-gray-800">PGP Encrypted</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mb-2">Client-side encryption for added security</p>
-                         </div>
-                        <div class="text-green-600 font-semibold mt-auto">5 Tokens</div>
-                    </label>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">The pressure of finals is overwhelming</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Feeling completely burned out with finals approaching. The constant studying, pressure to perform, and lack of sleep is taking a toll on my mental health. Anyone else struggling with this?</p>
 
-                     {/* <!-- Tor Tier --> */}
-                    <label class="privacy-tier-label border-2 border-purple-200 rounded-xl p-4 cursor-pointer hover:border-purple-400 transition-colors flex flex-col justify-between">
-                         <div>
-                             <div class="flex items-center gap-2 mb-2">
-                                <input type="radio" name="privacyTier" value="tor" class="text-purple-600 focus:ring-purple-500 h-4 w-4">
-                                <span class="font-medium text-gray-800">Tor Routed</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mb-2">Maximum privacy via Tor network routing</p>
-                         </div>
-                        <div class="text-purple-600 font-semibold mt-auto">10 Tokens</div>
-                    </label>
+                    <div class="my-4 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Example+Post+Image" alt="Post Image" class="w-full h-auto object-cover cursor-pointer post-image">
+                    </div>
+
+                    <!-- RESTORED: Reactions & Actions -->
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="1" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">24</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="1" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">18</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="1" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">12</span>
+                        </button>
+                        <a href="./post.html?id=1" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>8</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 <!-- Post Card 2 -->
+                <div class="post-card bg-white rounded-2xl shadow-lg p-6 fade-in" data-topic="mental-health" data-content="found this amazing meditation technique that helped my anxiety after struggling with panic attacks during exams, i discovered a simple breathing exercise that changed everything. want to share it with anyone who might benefit.">
+                     <!-- ... existing post header & content ... -->
+                     <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">CalmDolphin456 • 5 hours ago • MIT</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Mental Health</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Found this amazing meditation technique that helped my anxiety</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    After struggling with panic attacks during exams, I discovered a simple breathing exercise that changed everything. Want to share it with anyone who might benefit.</p>
+
+
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="2" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">42</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-orange-500 transition-colors" data-post-id="2" data-reaction="strong">
+                            <i data-feather="zap" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">31</span>
+                        </button>
+                         <a href="./post.html?id=2" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>15</span>
+                        </a>
+                        <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 <!-- Post Card 3 (Memorial) -->
+                <div class="post-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-6 fade-in" data-topic="memorial" data-content="remembering sarah - a light that burned too bright today marks one year since we lost our dear friend sarah to depression. she was brilliant, kind, and always there for others. let's honor her memory by being there for each other.">
+                    <!-- ... existing post header & content ... -->
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i data-feather="heart" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-500">WiseEagle789 • 1 day ago • In Memory</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Memorial</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Remembering Sarah - A light that burned too bright</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    Today marks one year since we lost our dear friend Sarah to depression. She was brilliant, kind, and always there for others. Let's honor her memory by being there for each other.</p>
+
+                    <!-- RESTORED: Reactions & Actions -->
+                     <div class="flex items-center gap-4 pt-4 border-t border-purple-100">
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors" data-post-id="3" data-reaction="support">
+                            <i data-feather="heart" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">156</span>
+                        </button>
+                        <button class="reaction-btn flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors" data-post-id="3" data-reaction="healing">
+                            <i data-feather="feather" class="w-4 h-4"></i>
+                            <span class="reaction-count text-xs">89</span>
+                        </button>
+                         <a href="./post.html?id=3" class="flex items-center gap-1 text-sm text-gray-500 hover:text-purple-600 transition-colors ml-auto">
+                            <i data-feather="message-circle" class="w-4 h-4"></i>
+                            <span>47</span>
+                        </a>
+                         <button class="flex items-center gap-1 text-sm text-gray-500 hover:text-green-600 transition-colors">
+                            <i data-feather="share-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
+            <!-- RESTORED: Sidebar -->
+            <div class="space-y-6 lg:sticky lg:top-24"> <!-- Added sticky positioning -->
+                <!-- Token Balance Card -->
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-feather="award" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Your Token Balance</h3>
+                    <div class="text-3xl font-bold token-pulse" id="tokenBalanceDisplay">0</div>
+                    <p class="text-yellow-100 text-sm">Earn tokens for supporting others and creating helpful content</p>
+                </div>
 
-            {/* <!-- Post Form --> */}
-            <form id="createPostForm" class="space-y-6">
-                {/* <!-- Post Type Selection --> */}
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Post Type</label>
-                    <div class="flex gap-4">
-                        <button type="button" class="post-type-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2" data-type="text">
-                            <i data-feather="file-text" class="w-5 h-5"></i> Text
-                        </button>
-                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="image">
-                            <i data-feather="image" class="w-5 h-5"></i> Image
-                        </button>
-                        <button type="button" class="post-type-btn bg-white text-gray-700 border px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2" data-type="voice">
-                            <i data-feather="mic" class="w-5 h-5"></i> Voice
-                        </button>
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <a href="./create.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="edit-3" class="inline w-4 h-4 mr-2"></i>
+                            Create New Post
+                        </a>
+                        <a href="./memorials.html" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 block text-center">
+                            <i data-feather="heart" class="inline w-4 h-4 mr-2"></i>
+                            Visit Memorials
+                        </a>
                     </div>
                 </div>
 
-                {/* <!-- Content Sections (Text, Image, Voice) --> */}
-                 {/* <!-- Text Input (Default) --> */}
-                <div id="text-input-section">
-                    <label for="postContent" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
-                    <textarea
-                        id="postContent"
-                        placeholder="Share your thoughts, experiences, or offer support to others... (Markdown supported)"
-                        class="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    ></textarea>
-                    <div class="text-right text-xs text-gray-500 mt-1">Markdown supported</div>
-                </div>
-
-                {/* <!-- Image Input (Hidden by default) --> */}
-                <div id="image-input-section" class="hidden space-y-4">
-                    <label class="block text-sm font-medium text-gray-700">Upload Image</label>
-                    <label for="imageUploadInput" class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <i data-feather="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
+                <!-- Trending Topics -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Trending Topics</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#MentalHealthAwareness</span>
+                            <span class="text-blue-600 text-sm">342 posts</span>
                         </div>
-                        <input id="imageUploadInput" type="file" class="hidden" accept="image/png, image/jpeg, image/gif"/>
-                    </label>
-                    {/* Image Preview Area */}
-                    <div id="imagePreviewContainer" class="hidden mt-4 relative w-48 h-48 border rounded-lg overflow-hidden">
-                        <img id="imagePreview" src="#" alt="Image Preview" class="w-full h-full object-cover"/>
-                         <button type="button" id="removeImageBtn" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600">
-                             <i data-feather="x" class="w-4 h-4"></i>
-                         </button>
-                    </div>
-                     {/* Optional: Add text caption for image post */}
-                    <label for="imageCaption" class="block text-sm font-medium text-gray-700 mt-4 mb-2">Image Caption (Optional)</label>
-                    <input type="text" id="imageCaption" placeholder="Add a brief caption..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                </div>
-
-                {/* <!-- Voice Input (Hidden by default - Placeholder UI) --> */}
-                <div id="voice-input-section" class="hidden space-y-4">
-                    <label class="block text-sm font-medium text-gray-700">Record or Upload Voice Note</label>
-                     <div class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 text-gray-500">
-                         <i data-feather="mic" class="w-12 h-12 mb-3 text-gray-400"></i>
-                         <p class="font-semibold">Voice recording and upload</p>
-                         <p class="text-sm">functionality is coming soon!</p>
-                         {/* Placeholder buttons (non-functional) */}
-                         <div class="mt-4 flex gap-4">
-                              <button type="button" class="bg-blue-200 text-blue-800 px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">Start Recording</button>
-                              <button type="button" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">Upload Audio File</button>
-                         </div>
-                    </div>
-                     {/* Optional: Add text caption for voice post */}
-                     <label for="voiceCaption" class="block text-sm font-medium text-gray-700 mt-4 mb-2">Voice Note Caption (Optional)</label>
-                    <input type="text" id="voiceCaption" placeholder="Add a brief caption..." class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                </div>
-
-
-                {/* <!-- Topic Selection --> */}
-                <div>
-                    <label for="topicSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Topic</label>
-                    <select id="topicSelect" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"> {/* Added bg-white */}
-                        <option value="">Choose a topic...</option>
-                        <option value="mental-health">Mental Health & Wellness</option>
-                        <option value="academics">Academics & Studies</option>
-                        <option value="relationships">Relationships & Friendships</option>
-                        <option value="social-issues">Social Justice & Issues</option>
-                        <option value="memorials">Memorials & Tributes</option>
-                        <option value="career">Career & Future</option>
-                        <option value="crisis">Crisis Support</option>
-                        <option value="other">Other (Please Specify)</option> {/* Added Other */}
-                    </select>
-                </div>
-
-                 {/* <!-- Custom Topic Input (Hidden by default) --> */}
-                 <div id="custom-topic-section" class="hidden">
-                    <label for="customTopicInput" class="block text-sm font-medium text-gray-700 mb-2">Custom Topic</label>
-                    <input
-                        type="text"
-                        id="customTopicInput"
-                        placeholder="Enter your custom topic..."
-                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                </div>
-
-
-                {/* <!-- College Tagging --> */}
-                <div>
-                    <label for="collegeTag" class="block text-sm font-medium text-gray-700 mb-2">College/University (Optional)</label>
-                    <input
-                        type="text"
-                        id="collegeTag"
-                        placeholder="e.g., Stanford University, Community College..."
-                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                </div>
-
-                {/* <!-- Submit Section --> */}
-                <div class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"> {/* Adjusted gap and flex-col */}
-                    <div>
-                         <p class="text-sm text-gray-600">Expected Reward: <span class="font-semibold text-green-600">+10 tokens</span></p>
-                         <p class="text-xs text-gray-500 mt-1">Posting anonymously protects your identity.</p>
-                    </div>
-                    <div class="flex gap-4 w-full sm:w-auto"> {/* Buttons take full width on small screens */}
-                        <button type="button" id="saveDraftBtn" class="flex-1 sm:flex-none bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm"> {/* Adjusted padding/size */}
-                            Save Draft
-                        </button>
-                        <button type="submit" id="submitPostBtn" class="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm"> {/* Adjusted padding/size */}
-                            Post Anonymously
-                        </button>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#ExamStress</span>
+                            <span class="text-blue-600 text-sm">287 posts</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">#StudentLife</span>
+                            <span class="text-blue-600 text-sm">215 posts</span>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        {/* <!-- Restore Draft Modal (Hidden by default) --> */}
-        <div id="restoreDraftModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-[1500]" style="display: none;">
-          <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div class="mt-3 text-center">
-              <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
-                <i data-feather="save" class="h-6 w-6 text-blue-600"></i>
-              </div>
-              <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Saved Draft Found</h3>
-              <div class="mt-2 px-7 py-3">
-                <p class="text-sm text-gray-500">
-                  Would you like to restore the draft you were working on?
-                </p>
-              </div>
-              <div class="items-center px-4 py-3 gap-3 flex justify-center">
-                  <button id="discardDraftBtn"
-                      class="px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-auto hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                      Discard
-                  </button>
-                  <button id="restoreDraftBtn"
-                      class="px-4 py-2 bg-blue-600 text-white text-base font-medium rounded-md w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                      Restore
-                  </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
+            </div> <!-- End Sidebar -->
+        </div> <!-- End Grid -->
     </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <!-- ... existing modal structure ... -->
+        <button id="imageModalClose" class="image-modal-close">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <div class="image-modal-content">
+            <img id="modalImage" src="" alt="Full-screen post image">
+        </div>
+    </div>
 
     <custom-footer></custom-footer>
 
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <script src="./script.js"></script> {/* Golden Code version */}
+    <script src="./script.js"></script>
     <script>
-        // Use feather directly as modules aren't used here
-        if (typeof feather !== 'undefined') feather.replace();
+        feather.replace(); // Initial replacement
 
         document.addEventListener('DOMContentLoaded', () => {
-             // Re-run feather after dynamic elements might load
-            setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 100);
+            // Re-run feather after dynamic content might load
+            setTimeout(() => feather.replace(), 100);
 
-            const postTypeButtons = document.querySelectorAll('.post-type-btn');
-            const textSection = document.getElementById('text-input-section');
-            const imageSection = document.getElementById('image-input-section');
-            const voiceSection = document.getElementById('voice-input-section');
-             const imageUploadInput = document.getElementById('imageUploadInput');
-             const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-             const imagePreview = document.getElementById('imagePreview');
-             const removeImageBtn = document.getElementById('removeImageBtn');
-             let selectedImageData = null; // Store base64 image data
+            // 1. Fix Token Balance Display
+            setTimeout(() => {
+                const tokenEl = document.getElementById('tokenBalanceDisplay');
+                if (tokenEl && window.safeVoiceApp) {
+                    const balance = typeof window.safeVoiceApp.tokenBalance === 'number'
+                        ? window.safeVoiceApp.tokenBalance.toLocaleString()
+                        : '0';
+                    tokenEl.textContent = balance;
+                } else if(tokenEl) {
+                    tokenEl.textContent = '0'; // Fallback
+                }
+            }, 500); // Increased delay slightly
 
-             const topicSelect = document.getElementById('topicSelect');
-             const customTopicSection = document.getElementById('custom-topic-section');
-             const customTopicInput = document.getElementById('customTopicInput');
+            const postsContainer = document.getElementById('posts-container');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            const searchInput = document.getElementById('feedSearchInput');
 
-             const form = document.getElementById('createPostForm');
-             const contentInput = document.getElementById('postContent');
-             const collegeInput = document.getElementById('collegeTag');
-             const imageCaptionInput = document.getElementById('imageCaption');
-             const voiceCaptionInput = document.getElementById('voiceCaption');
-             const saveDraftBtn = document.getElementById('saveDraftBtn');
-             const submitPostBtn = document.getElementById('submitPostBtn');
-
-             // --- Post Type Switching Logic ---
-            postTypeButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const type = this.dataset.type;
-
-                    // Update button styles
-                    postTypeButtons.forEach(b => {
-                        b.classList.remove('bg-blue-600', 'text-white');
-                        b.classList.add('bg-white', 'text-gray-700', 'border');
-                    });
-                    this.classList.add('bg-blue-600', 'text-white');
-                    this.classList.remove('bg-white', 'text-gray-700', 'border');
-
-                    // Show/Hide sections
-                    textSection.classList.toggle('hidden', type !== 'text');
-                    imageSection.classList.toggle('hidden', type !== 'image');
-                    voiceSection.classList.toggle('hidden', type !== 'voice');
-
-                     // Re-render icons if needed (e.g., upload icon might re-appear)
-                     setTimeout(() => { if (typeof feather !== 'undefined') feather.replace() }, 50);
+            // 2. Client-Side Topic Filtering
+            // ... (keep existing filter logic) ...
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    searchInput.value = ''; // Clear search on topic filter click
+                    setActiveFilterButton(button);
+                    filterPosts(filter);
                 });
             });
 
-             // --- Image Upload Logic ---
-             if (imageUploadInput && imagePreviewContainer && imagePreview && removeImageBtn) {
-                 imageUploadInput.addEventListener('change', function(e) {
-                     const file = e.target.files[0];
-                     if (file) {
-                         // Basic validation (size limit: 5MB)
-                         if (file.size > 5 * 1024 * 1024) {
-                             alert('Image file is too large. Maximum 5MB allowed.');
-                             imageUploadInput.value = ''; // Reset input
-                             return;
-                         }
-                         const reader = new FileReader();
-                         reader.onload = function(event) {
-                             selectedImageData = event.target.result; // Store base64 data
-                             imagePreview.src = selectedImageData;
-                             imagePreviewContainer.classList.remove('hidden');
-                             // Optionally hide the drag/drop area or show filename
-                         }
-                         reader.readAsDataURL(file);
-                     }
-                 });
 
-                 removeImageBtn.addEventListener('click', function() {
-                     selectedImageData = null;
-                     imagePreview.src = '#';
-                     imagePreviewContainer.classList.add('hidden');
-                     imageUploadInput.value = ''; // Reset input
-                 });
-             }
+            // 3. Client-Side Search
+            // ... (keep existing search logic) ...
+            searchInput.addEventListener('input', SafeVoiceUtils.debounce((e) => { // Use debounce
+                const query = e.target.value.toLowerCase().trim();
+                // Deactivate topic filters visually when searching
+                setActiveFilterButton(filterButtons[0]); // Set 'All' as active
+                filterPosts('all', query);
+            }, 300)); // Debounce search input
 
-             // --- Custom Topic Logic ---
-             if (topicSelect && customTopicSection) {
-                 topicSelect.addEventListener('change', function() {
-                     customTopicSection.classList.toggle('hidden', this.value !== 'other');
-                 });
-             }
+             function setActiveFilterButton(activeButton) {
+                 filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-700', 'border');
+                });
+                activeButton.classList.add('bg-blue-600', 'text-white');
+                activeButton.classList.remove('bg-white', 'text-gray-700', 'border');
+            }
 
-             // --- Save Draft Logic ---
-             if (saveDraftBtn && form) {
-                 saveDraftBtn.addEventListener('click', () => {
-                     const draft = {
-                         postType: document.querySelector('.post-type-btn.bg-blue-600')?.dataset.type || 'text',
-                         content: contentInput.value,
-                         topic: topicSelect.value,
-                         customTopic: customTopicInput.value,
-                         college: collegeInput.value,
-                         privacy: document.querySelector('input[name="privacyTier"]:checked')?.value || 'standard',
-                         // Don't save image data in localStorage, it can be too large
-                         // imageData: selectedImageData, // Example if you *really* need to (NOT RECOMMENDED)
-                         imageCaption: imageCaptionInput.value,
-                         voiceCaption: voiceCaptionInput.value,
-                     };
-                     try {
-                         localStorage.setItem('safeVoiceDraft', JSON.stringify(draft));
-                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Draft saved successfully!', 'success');
-                     } catch (e) {
-                         console.error("Error saving draft:", e);
-                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Error saving draft. Storage might be full.', 'error');
-                     }
-                 });
-             }
-
-             // --- Restore Draft Logic ---
-             const restoreDraftModal = document.getElementById('restoreDraftModal');
-             const discardDraftBtn = document.getElementById('discardDraftBtn');
-             const restoreDraftBtn = document.getElementById('restoreDraftBtn');
-
-             if (restoreDraftModal && discardDraftBtn && restoreDraftBtn) {
-                 const savedDraft = localStorage.getItem('safeVoiceDraft');
-                 if (savedDraft) {
-                     restoreDraftModal.style.display = 'block';
-                      // Render feather icon in modal
-                     setTimeout(() => { if (typeof feather !== 'undefined') feather.replace({parent: restoreDraftModal}) }, 50);
+            function filterPosts(filter, query = '') {
+                 if (filter === 'trending' || filter === 'latest') {
+                    alert('Trending and Latest filters are a future feature! Showing all posts.');
+                    filter = 'all'; // Show all if these are clicked
+                    setActiveFilterButton(filterButtons[0]); // Reset button to 'All'
                  }
 
-                 discardDraftBtn.addEventListener('click', () => {
-                     localStorage.removeItem('safeVoiceDraft');
-                     restoreDraftModal.style.display = 'none';
-                 });
+                allPosts.forEach(post => {
+                    const topic = post.dataset.topic ? post.dataset.topic.toLowerCase() : '';
+                    const content = post.dataset.content ? post.dataset.content.toLowerCase() : '';
 
-                 restoreDraftBtn.addEventListener('click', () => {
-                     try {
-                         const draft = JSON.parse(savedDraft || '{}');
+                    const topicMatch = (filter === 'all' || topic === filter);
+                    const queryMatch = (query === '' || content.includes(query));
 
-                         // Restore Post Type Button
-                         postTypeButtons.forEach(btn => {
-                              const type = btn.dataset.type;
-                              const isActive = (type === draft.postType);
-                              btn.classList.toggle('bg-blue-600', isActive);
-                              btn.classList.toggle('text-white', isActive);
-                              btn.classList.toggle('bg-white', !isActive);
-                              btn.classList.toggle('text-gray-700', !isActive);
-                              btn.classList.toggle('border', !isActive);
-                         });
-                         // Show/hide correct section based on restored type
-                         textSection.classList.toggle('hidden', draft.postType !== 'text');
-                         imageSection.classList.toggle('hidden', draft.postType !== 'image');
-                         voiceSection.classList.toggle('hidden', draft.postType !== 'voice');
+                    if (topicMatch && queryMatch) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            }
 
+            // 4. Image Modal Logic
+            // ... (keep existing modal logic) ...
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModal = document.getElementById('imageModalClose');
 
-                         contentInput.value = draft.content || '';
-                         topicSelect.value = draft.topic || '';
-                         customTopicSection.classList.toggle('hidden', draft.topic !== 'other');
-                         customTopicInput.value = draft.customTopic || '';
-                         collegeInput.value = draft.college || '';
-                         imageCaptionInput.value = draft.imageCaption || '';
-                         voiceCaptionInput.value = draft.voiceCaption || '';
+            if (modal && modalImg && closeModal) { // Check elements exist
+                postsContainer.addEventListener('click', (e) => {
+                    const imageElement = e.target.closest('.post-image');
+                    if (imageElement) {
+                        modalImg.src = imageElement.src;
+                        modal.classList.add('show');
+                        feather.replace(); // Ensure close icon renders
+                    }
+                });
 
-                         // Restore Privacy Tier
-                         const privacyRadio = document.querySelector(`input[name="privacyTier"][value="${draft.privacy || 'standard'}"]`);
-                         if (privacyRadio) privacyRadio.checked = true;
+                closeModal.addEventListener('click', () => {
+                    modal.classList.remove('show');
+                });
 
-                         // NOTE: Image cannot be restored from localStorage easily/reliably. Inform user.
-                         if (draft.postType === 'image') {
-                              alert("Draft restored. Please re-select your image file.");
-                         }
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            } else {
+                console.error("Image modal elements not found!");
+            }
 
-                         localStorage.removeItem('safeVoiceDraft'); // Clear after restoring
-                         restoreDraftModal.style.display = 'none';
-                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Draft restored!', 'info');
+            // Make sure initial filter is applied (show all)
+            filterPosts('all');
 
-                     } catch (e) {
-                         console.error("Error restoring draft:", e);
-                         localStorage.removeItem('safeVoiceDraft'); // Clear corrupted draft
-                         restoreDraftModal.style.display = 'none';
-                         if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Could not restore draft.', 'error');
-                     }
-                 });
-             }
-
-
-             // --- Form Submission (Simulation) ---
-             if (form && submitPostBtn) {
-                 form.addEventListener('submit', async function(e) {
-                     e.preventDefault();
-
-                     const postType = document.querySelector('.post-type-btn.bg-blue-600')?.dataset.type || 'text';
-                     const content = (postType === 'text') ? contentInput.value :
-                                     (postType === 'image') ? imageCaptionInput.value :
-                                     voiceCaptionInput.value; // Use caption as main content for now
-                     let topic = topicSelect.value;
-                     if (topic === 'other') {
-                         topic = customTopicInput.value.trim() || 'Other'; // Use custom or default to 'Other'
-                     }
-                     const college = collegeInput.value.trim();
-                     const privacyTier = document.querySelector('input[name="privacyTier"]:checked')?.value || 'standard';
-
-                     // Basic Validation
-                     if (postType === 'text' && !content.trim()) {
-                         alert('Please enter your message for a text post.');
-                         return;
-                     }
-                     if (postType === 'image' && !selectedImageData) {
-                         alert('Please select an image to upload for an image post.');
-                         return;
-                     }
-                     if (postType === 'voice') {
-                          alert('Voice posting is not yet implemented.');
-                          return; // Prevent submission for voice yet
-                     }
-                     if (!topic) {
-                         alert('Please select a topic.');
-                         return;
-                     }
-
-
-                     // Simulate post creation
-                     submitPostBtn.disabled = true;
-                     submitPostBtn.innerHTML = `
-                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                         </svg>
-                         Posting...`;
-
-                     try {
-                         console.log("Simulating post creation with data:", {
-                             postType, content, topic, college, privacyTier, hasImage: !!selectedImageData
-                         });
-                         // --- !!! Add Supabase insert logic here in the next step !!! ---
-                         // const { data, error } = await supabase.from('posts').insert([{
-                         //    content: content, // Might be caption if image/voice
-                         //    topic: topic,
-                         //    college: college || null, // Handle optional field
-                         //    image_url: postType === 'image' ? await uploadImageAndGetURL(selectedImageData) : null,
-                         //    voice_url: null, // Add later
-                         //    anonymous_id: window.safeVoiceApp?.currentUser?.anonymousId || window.safeVoiceApp?.generateAnonymousId(),
-                         //    // user_wallet: window.safeVoiceApp?.currentUser?.walletAddress || null
-                         // }]);
-                         // if (error) throw error;
-                         // console.log("Supabase insert response:", data);
-                         await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
-
-                         // Clear draft if post is successful
-                         localStorage.removeItem('safeVoiceDraft');
-
-                         if (window.safeVoiceApp) {
-                             window.safeVoiceApp.awardTokens(10, 'post_created');
-                             window.safeVoiceApp.showNotification('🎉 Post created successfully! +10 tokens awarded.', 'success');
-                         }
-                         // Redirect after a short delay
-                         setTimeout(() => { window.location.href = './feed.html'; }, 500);
-
-                     } catch (error) {
-                         console.error('Post creation failed:', error);
-                          if (window.safeVoiceApp) window.safeVoiceApp.showNotification('Failed to create post. Please try again.', 'error');
-                         submitPostBtn.disabled = false;
-                         submitPostBtn.textContent = 'Post Anonymously';
-                     }
-                     // No finally block needed here as redirect happens on success
-                 });
-             }
+             // Listen for token updates to keep sidebar synced
+             window.addEventListener('safeVoiceTokenUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl) {
+                     tokenEl.textContent = (e.detail.newBalance || 0).toLocaleString();
+                 }
+            });
+             window.addEventListener('safeVoiceUserUpdate', (e) => {
+                 const tokenEl = document.getElementById('tokenBalanceDisplay');
+                 if(tokenEl && e.detail.currentUser) {
+                      tokenEl.textContent = (e.detail.currentUser.tokenBalance || 0).toLocaleString();
+                 } else if (tokenEl) {
+                      tokenEl.textContent = '0'; // Reset if user logs out
+                 }
+            });
 
         }); // End DOMContentLoaded
     </script>
