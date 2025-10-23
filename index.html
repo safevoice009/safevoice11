@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeVoice - Anonymous Student Social Platform</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <!-- Corrected CSS path -->
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 </head>
-<!-- ADDED pt-16 TO BODY to fix mobile navbar overlap -->
-<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen pt-16">
+<!-- FIX: Body now correctly uses global padding-top from style.css -->
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
     
     <!-- Hero Section -->
-    <!-- REMOVED pt-16 from here, as it's now on the body -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-16">
+    <!-- FIX: Added negative margin '-mt-[68px]' to pull this section up 
+         behind the navbar, accounting for the new body padding.
+         Added 'pt-[68px]' to the inner div to push content down. -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-[68px]">
         <div class="absolute inset-0 z-0" id="vanta-bg"></div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <!-- FIX: Added 'pt-[68px]' to this inner container -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-[68px]">
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
             Safe<span class="text-blue-600">Voice</span>
             </h1>
@@ -124,7 +126,6 @@
             <h2 class="text-4xl font-bold mb-6">Ready to Speak Your Truth?</h2>
             <p class="text-xl mb-8 opacity-90">Join thousands of students already building a safer, more supportive community.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <!-- Corrected relative paths for links -->
             <a href="./feed.html" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105">
                 <i data-feather="message-square" class="inline w-5 h-5 mr-2"></i>
                 Explore the Feed
@@ -139,7 +140,6 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Corrected relative paths for scripts -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
     <script src="./script.js"></script>
@@ -185,15 +185,20 @@
 
         // Wallet connection
         document.getElementById('connectWallet').addEventListener('click', function() {
-            // Simulate wallet connection
-            const tokenReward = 100; // Welcome bonus
-            alert(`🎉 Wallet Connected! You received ${tokenReward} SafeVoice tokens as a welcome gift!`);
-            document.getElementById('totalTokens').textContent = (893456 + tokenReward).toLocaleString();
+            if (window.safeVoiceApp) {
+                window.safeVoiceApp.connectWallet().then(success => {
+                    if (success) {
+                        // The global app now handles the alert
+                        document.getElementById('totalTokens').textContent = window.safeVoiceApp.tokenBalance.toLocaleString();
+                    }
+                });
+            }
         });
 
         document.getElementById('anonymousMode').addEventListener('click', function() {
-            alert('👤 Entering in Anonymous Mode - Your privacy is protected!');
-            // Corrected relative path for navigation
+            if (window.safeVoiceApp) {
+                window.safeVoiceApp.enterAnonymousMode();
+            }
             window.location.href = './feed.html';
         });
     </script>
