@@ -11,18 +11,17 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 </head>
-<!-- FIX: Body now correctly uses global padding-top from style.css -->
+<!-- Body now correctly uses global padding-top from style.css -->
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
-    
+
     <!-- Hero Section -->
-    <!-- FIX: Added negative margin '-mt-[68px]' to pull this section up 
-         behind the navbar, accounting for the new body padding.
-         Added 'pt-[68px]' to the inner div to push content down. -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-[68px]">
+    <!-- FIX: Removed negative margin. Added min-h-screen directly here
+         and adjusted inner padding to ensure content visibility below navbar. -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0" id="vanta-bg"></div>
-        <!-- FIX: Added 'pt-[68px]' to this inner container -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-[68px]">
+        <!-- FIX: Added padding top AND bottom inside the relative container -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-10 pb-10">
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
             Safe<span class="text-blue-600">Voice</span>
             </h1>
@@ -30,37 +29,38 @@
             Your anonymous sanctuary for mental health support, social issues, and student tributes. Speak freely, earn tokens, build generational wealth. 🛡️
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button id="connectWallet" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                <i data-feather="shield" class="inline w-5 h-5 mr-2"></i>
-                Connect Wallet & Start Earning
-            </button>
-            <button id="anonymousMode" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300">
-                <i data-feather="user-x" class="inline w-5 h-5 mr-2"></i>
-                Enter Anonymously
-            </button>
+                <button id="connectWallet" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <i data-feather="shield" class="inline w-5 h-5 mr-2"></i>
+                    Connect Wallet & Start Earning
+                </button>
+                <button id="anonymousMode" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300">
+                    <i data-feather="user-x" class="inline w-5 h-5 mr-2"></i>
+                    Enter Anonymously
+                </button>
             </div>
-            
+
             <!-- Stats Counter -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-                <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
-                <div class="text-gray-600">Posts Shared</div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-                <div class="text-3xl font-bold text-purple-600 mb-2" id="totalTokens">0</div>
-                <div class="text-gray-600">Tokens Earned</div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-                <div class="text-3xl font-bold text-green-600 mb-2" id="activeUsers">0</div>
-                <div class="text-gray-600">Active Students</div>
-            </div>
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
+                    <div class="text-gray-600">Posts Shared</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                    <div class="text-3xl font-bold text-purple-600 mb-2" id="totalTokens">0</div>
+                    <div class="text-gray-600">Tokens Earned</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+                    <div class="text-3xl font-bold text-green-600 mb-2" id="activeUsers">0</div>
+                    <div class="text-gray-600">Active Students</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="py-20 px-4 bg-white">
-        <div class="max-w-6xl mx-auto">
+        <!-- ... existing features code ... -->
+         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Why SafeVoice Stands Out</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
@@ -122,6 +122,7 @@
 
     <!-- CTA Section -->
     <section class="py-20 px-4 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+        <!-- ... existing CTA code ... -->
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-bold mb-6">Ready to Speak Your Truth?</h2>
             <p class="text-xl mb-8 opacity-90">Join thousands of students already building a safer, more supportive community.</p>
@@ -145,7 +146,7 @@
     <script src="./script.js"></script>
     <script>
         feather.replace();
-        
+
         // Initialize Vanta.js background
         VANTA.GLOBE({
             el: "#vanta-bg",
@@ -157,14 +158,15 @@
             scale: 1.00,
             scaleMobile: 1.00,
             color: 0x3b82f6,
-            backgroundColor: 0xf8fafc,
+            backgroundColor: 0xf8fafc, // Match body background
             size: 1.00
         });
 
         // Animated counters
+        // ... (keep existing animateCounter function) ...
         function animateCounter(element, target, duration = 2000) {
             let start = 0;
-            const increment = target / (duration / 16);
+            const increment = target / (duration / 16); // 60 fps approx
             const timer = setInterval(() => {
                 start += increment;
                 if (start >= target) {
@@ -176,20 +178,28 @@
             }, 16);
         }
 
+
         // Simulate loading stats
         setTimeout(() => {
             animateCounter(document.getElementById('totalPosts'), 15247);
-            animateCounter(document.getElementById('totalTokens'), 893456);
+            // Link token counter to global app state if possible
+             if (window.safeVoiceApp) {
+                 // Use initial value for animation, actual value updated by navbar/script.js
+                 animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance || 893456);
+             } else {
+                 animateCounter(document.getElementById('totalTokens'), 893456); // Fallback
+             }
             animateCounter(document.getElementById('activeUsers'), 3421);
-        }, 1000);
+        }, 500); // Increased delay slightly
 
-        // Wallet connection
+        // Wallet connection logic (delegated to script.js via SafeVoiceApp)
         document.getElementById('connectWallet').addEventListener('click', function() {
             if (window.safeVoiceApp) {
                 window.safeVoiceApp.connectWallet().then(success => {
                     if (success) {
-                        // The global app now handles the alert
-                        document.getElementById('totalTokens').textContent = window.safeVoiceApp.tokenBalance.toLocaleString();
+                         // Update local counter immediately for visual feedback
+                        animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance);
+                        // Navbar updates automatically via event listener
                     }
                 });
             }
@@ -198,10 +208,12 @@
         document.getElementById('anonymousMode').addEventListener('click', function() {
             if (window.safeVoiceApp) {
                 window.safeVoiceApp.enterAnonymousMode();
+                 // Update local counter immediately
+                animateCounter(document.getElementById('totalTokens'), window.safeVoiceApp.tokenBalance);
             }
+            // Navigate after potentially setting state
             window.location.href = './feed.html';
         });
     </script>
 </body>
 </html>
-
