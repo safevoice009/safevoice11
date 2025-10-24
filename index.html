@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/feather-icons"></script> <!-- Unpkg alternative for Feather -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 
-    <!-- === CDN SCRIPT UPDATES === -->
-    <!-- Switched Ethers.js to jsDelivr CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
-    <script>console.log("HTML: Ethers.js script tag processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
+    <!-- === CDN SCRIPT UPDATES (Using unpkg.com) === -->
+    <!-- Switched Ethers.js to unpkg.com CDN -->
+    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
+    <script>console.log("HTML: Ethers.js script tag (unpkg) processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
 
-    <!-- Verified WalletConnect Ethereum Provider CDN URL -->
-    <script>console.log("HTML: About to load WalletConnect script...");</script>
-    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/dist/umd/index.min.js"></script>
-    <script>console.log("HTML: WalletConnect script tag processed. WC Lib present?", typeof window.WalletConnectEthereumProvider !== 'undefined');</script>
+    <!-- Switched WalletConnect Ethereum Provider to unpkg.com CDN -->
+    <script>console.log("HTML: About to load WalletConnect script (unpkg)...");</script>
+    <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.0/dist/index.umd.js"></script>
+    <script>console.log("HTML: WalletConnect script tag (unpkg) processed. WC Lib present?", typeof window.WalletConnectEthereumProvider !== 'undefined');</script>
     <!-- === END CDN SCRIPT UPDATES === -->
 
 </head>
@@ -149,108 +149,53 @@
 
     <!-- Inline Script for Page-Specific Initializations (Runs AFTER script.js due to defer) -->
     <script>
-        // Use DOMContentLoaded to ensure elements are ready before accessing them
         document.addEventListener('DOMContentLoaded', () => {
             console.log("Index HTML: DOMContentLoaded event fired.");
 
-            // Initial Feather Icons Render
             try {
                 if (typeof feather !== 'undefined') {
                     feather.replace();
-                    console.log("Index: Initial Feather icons rendered via inline script.");
-                } else {
-                    console.error("Feather icons library not loaded for inline script initial render.");
-                }
-            } catch (e) {
-                console.error("Error rendering initial Feather icons in inline script:", e);
-            }
+                    console.log("Index: Initial Feather icons rendered.");
+                } else { console.error("Feather library not loaded for initial render."); }
+            } catch (e) { console.error("Error rendering initial Feather icons:", e); }
 
-            // Vanta Initialization
             const vantaElement = document.getElementById('vanta-bg');
-            // Check Vanta library loaded AND the target element exists
             if (vantaElement && typeof VANTA !== 'undefined' && typeof VANTA.GLOBE === 'function') {
                 try {
-                    VANTA.GLOBE({
-                        el: "#vanta-bg",
-                        mouseControls: true, touchControls: true, gyroControls: false,
-                        minHeight: 200.00, minWidth: 200.00,
-                        scale: 1.00, scaleMobile: 1.00,
-                        color: 0x3b82f6, // Your primary blue
-                        backgroundColor: 0xf9fafb, // Light background for the body gradient start
-                        size: 1.00
-                    });
-                    console.log("Vanta Globe initialized successfully via inline script.");
-                } catch (e) {
-                     console.error("Error initializing Vanta Globe in inline script:", e);
-                     if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Fallback bg
-                }
-            } else {
-                console.error("Vanta.js or VANTA.GLOBE not loaded, or #vanta-bg element missing.");
-                 if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Fallback bg
-            }
+                    VANTA.GLOBE({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0x3b82f6, backgroundColor: 0xf9fafb, size: 1.00 });
+                    console.log("Vanta Globe initialized.");
+                } catch (e) { console.error("Error initializing Vanta Globe:", e); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
+            } else { console.error("Vanta.js/GLOBE not loaded or #vanta-bg missing."); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
 
-            // Animated Counter Function (remains the same)
-            function animateCounter(elementId, target, duration = 1500) {
-                 const element = document.getElementById(elementId);
-                 if (!element) { console.warn(`Counter element #${elementId} not found.`); return; }
-                 let startValue = parseInt(element.textContent.replace(/,/g, ''), 10) || 0;
-                 const endTarget = Number(target);
-                 if (isNaN(endTarget)) { console.warn(`Invalid target value for counter ${elementId}:`, target); return;}
-                 if (startValue === endTarget && element.textContent !== '0') return; // Already at target (unless initial 0)
+            function animateCounter(elementId, target, duration = 1500) { /* ... same as V5.4 ... */ const e=document.getElementById(elementId); if(!e){console.warn(`Counter #${elementId} missing.`); return;} let s=parseInt(e.textContent.replace(/,/g,''),10)||0; const E=Number(target); if(isNaN(E)){console.warn(`Invalid target ${elementId}:`,target); return;} if(s===E&&e.textContent!=='0')return; let T=null; function S(t){if(!T)T=t; const p=Math.min((t-T)/duration,1); const c=Math.floor(p*(E-s)+s); e.textContent=c.toLocaleString(); if(p<1)window.requestAnimationFrame(S);} window.requestAnimationFrame(S); }
 
-                 let startTime = null;
-                 function step(timestamp) {
-                     if (!startTime) startTime = timestamp;
-                     const progress = Math.min((timestamp - startTime) / duration, 1);
-                     const currentValue = Math.floor(progress * (endTarget - startValue) + startValue);
-                     element.textContent = currentValue.toLocaleString();
-                     if (progress < 1) {
-                         window.requestAnimationFrame(step);
-                     }
-                 }
-                 window.requestAnimationFrame(step);
-            }
+            const tP=document.getElementById('totalPosts'); const tT=document.getElementById('totalTokens'); const aU=document.getElementById('activeUsers');
+            if(tP)tP.textContent='0'; if(tT)tT.textContent='0'; if(aU)aU.textContent='0';
 
-            // Initial Stat Display & Update Listener (remains the same)
-            const totalPostsEl = document.getElementById('totalPosts');
-            const totalTokensEl = document.getElementById('totalTokens');
-            const activeUsersEl = document.getElementById('activeUsers');
-
-            // Set initial text content before animation
-            if (totalPostsEl) totalPostsEl.textContent = '0';
-            if (totalTokensEl) totalTokensEl.textContent = '0';
-            if (activeUsersEl) activeUsersEl.textContent = '0';
-
-             // Start animations after a brief delay to ensure page is stable
              setTimeout(() => {
                  console.log("Index: Starting counter animations.");
-                 animateCounter('totalPosts', 15247); // Placeholder values
-                 animateCounter('activeUsers', 3421); // Placeholder values
-             }, 300); // Small delay
+                 animateCounter('totalPosts', 15247);
+                 animateCounter('activeUsers', 3421);
+             }, 300);
 
-            // Listen for token updates from the main app
             window.addEventListener('safeVoiceTokenUpdate', (e) => {
-                 console.log("Index: Received token update event", e.detail.newBalance);
+                 console.log("Index: Received token update", e.detail.newBalance);
                  animateCounter('totalTokens', e.detail.newBalance ?? 0);
             });
 
-            // Set initial token balance if app is already loaded and initialized
-            // This needs to wait slightly longer because script.js is deferred
             setTimeout(() => {
-                if (window.safeVoiceApp && window.safeVoiceApp.isInitialized && totalTokensEl) {
-                     const initialBalance = window.safeVoiceApp.tokenBalance ?? 0;
-                     console.log("Index: Setting initial token balance from loaded app", initialBalance);
-                     // Animate from 0 to the initial balance
-                     animateCounter('totalTokens', initialBalance);
+                if (window.safeVoiceApp && window.safeVoiceApp.isInitialized && tT) {
+                     const iB = window.safeVoiceApp.tokenBalance ?? 0;
+                     console.log("Index: Setting initial token balance", iB);
+                     animateCounter('totalTokens', iB);
                 } else {
-                     console.log("Index: SafeVoiceApp not ready or initialized yet for initial token set.");
-                     // Ensure it shows 0 if app loading failed or has no balance yet
-                     if (totalTokensEl) totalTokensEl.textContent = '0';
+                     console.log("Index: SafeVoiceApp not ready for initial token set.");
+                     if (tT) tT.textContent = '0';
                 }
-            }, 500); // Increased delay slightly to wait for deferred script.js
+            }, 500);
 
-            console.log("Index HTML: Inline script finished execution.");
-        }); // End DOMContentLoaded for index.html inline script
+            console.log("Index HTML: Inline script finished.");
+        });
     </script>
 </body>
 </html>
