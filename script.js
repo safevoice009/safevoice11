@@ -1,4 +1,4 @@
-// SafeVoice Global JavaScript V5.4 (WalletConnect Defer + Retry Init + More Logging)
+// SafeVoice Global JavaScript V5.4 (WalletConnect Defer + Retry Init + More Logging) - UNCHANGED
 
 class SafeVoiceApp {
     constructor() {
@@ -462,7 +462,7 @@ class SafeVoiceApp {
 
             // More detailed error feedback
             if (error.message?.includes("User closed modal") || String(error.code).includes('USER_REJECTED') || error.code === 4001) {
-                 this.showNotification('Connection cancelled by user.', 'warning');
+                 this.showNotification('Connection request cancelled by user.', 'warning');
             } else if (error.message?.includes("Expired connection") || String(error.code).includes('SESSION_EXPIRED')) {
                  this.showNotification('Connection timed out. Try again.', 'warning');
             } else if (error.message?.includes("pairing modal closed")) {
