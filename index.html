@@ -17,6 +17,14 @@
     <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
     <script>console.log("HTML: Ethers.js script tag (unpkg) processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
 
+    <!-- ** FIX: Add process polyfill BEFORE WalletConnect ** -->
+    <script>
+      console.log("HTML: Defining process polyfill...");
+      window.process = window.process || { env: { NODE_ENV: 'production' } };
+      console.log("HTML: process polyfill defined.");
+    </script>
+    <!-- ** END FIX ** -->
+
     <!-- Switched WalletConnect Ethereum Provider to unpkg.com CDN -->
     <script>console.log("HTML: About to load WalletConnect script (unpkg)...");</script>
     <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.0/dist/index.umd.js"></script>
@@ -27,7 +35,7 @@
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Unchanged from V5.4) -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div class="absolute inset-0 z-0" id="vanta-bg" style="min-height: 100vh;"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-8 pb-8">
@@ -64,7 +72,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section (Unchanged from V5.4) -->
     <section class="py-20 px-4 bg-white">
          <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Why SafeVoice Stands Out</h2>
@@ -121,7 +129,7 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Section (Unchanged from V5.4) -->
     <section class="py-20 px-4 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-bold mb-6">Ready to Speak Your Truth?</h2>
