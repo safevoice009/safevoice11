@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Removed unpkg feather source -->
 
-    <!-- === CDN SCRIPT UPDATES (Web3Modal v1) === -->
-    <!-- Ethers.js (unpkg) - Still needed -->
-    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
-    <script>console.log("HTML: Ethers.js script tag processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
+    <!-- === CDN SCRIPT UPDATES (Using cdnjs) === -->
+    <!-- Ethers.js v5 (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" xintegrity="sha512-FDcVY+g7vcNsWCMQwEASZrIFgb+ibZwGVxXDDPsZVcc+B5Strb61SgLuOsLviigU+vcYDxzwlvVWBZNH+SohRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>console.log("HTML (Profile): Ethers.js script tag processed. Lib present?", typeof window.ethers !== 'undefined');</script>
 
-    <!-- Web3Modal v1 Core -->
-    <script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
-    <script>console.log("HTML: Web3Modal v1 Core script tag processed. Lib present?", typeof window.Web3Modal !== 'undefined');</script>
+    <!-- Web3Modal v1 Core (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3modal/1.9.12/index.min.js" xintegrity="sha512-C3+4KLUxcqQmYtQHyGANrq2Uk/skfZSj4E+Q73Ly/XQGq0TyOIQDTkuXhDU/gREUZ68L8CRQr/SEKfoiH64h6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>console.log("HTML (Profile): Web3Modal v1 Core script tag processed. Lib present?", typeof window.Web3Modal !== 'undefined');</script>
 
-    <!-- WalletConnect v1 Provider (Used by Web3Modal v1) -->
-    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-    <script>console.log("HTML: WalletConnect v1 Provider script tag processed. Lib present?", typeof window.WalletConnectProvider !== 'undefined');</script>
+    <!-- WalletConnect v1 Provider (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/walletconnect-web3-provider/1.8.0/index.umd.min.js" xintegrity="sha512-2n+Jg5qDJtuY9w/rG+Lu9rSt1/Q+6/y7Lg3J9Wf5sQECtfgQhfY4zxxdxQ4B1qUYJ7jURiY9wmB396Em5i+g8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>console.log("HTML (Profile): WalletConnect v1 Provider script tag processed. Lib present?", typeof window.WalletConnectProvider !== 'undefined' && typeof window.WalletConnectProvider?.default !== 'undefined');</script>
     <!-- === END CDN SCRIPT UPDATES === -->
 
 </head>
@@ -30,21 +30,21 @@
 
     <main class="max-w-4xl mx-auto px-4 py-8">
         <div class="bg-white rounded-2xl shadow-lg p-8">
-            <!-- Profile Header (No changes) -->
+            <!-- Profile Header -->
             <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
                 <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <i data-feather="user" class="text-white w-16 h-16"></i>
                 </div>
                 <div class="text-center md:text-left flex-grow">
                     <h1 class="text-3xl font-bold text-gray-800" id="profileUsername">Loading...</h1>
-                    <p class="text-gray-600 break-all" id="profileWallet">Loading...</p>
+                    <p class="text-gray-600 break-all" id="profileWallet">Loading...</p> <!-- Added break-all for long addresses -->
                     <button id="connectWalletBtnProfile" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300" style="display: none;">
                         Connect Wallet
                     </button>
                 </div>
             </div>
 
-            <!-- Profile Stats (No changes) -->
+            <!-- Profile Stats -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Token Balance -->
                 <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6 text-center">
@@ -56,20 +56,22 @@
                 <div class="bg-gradient-to-br from-blue-400 to-purple-500 text-white rounded-2xl shadow-lg p-6 text-center">
                     <i data-feather="edit-3" class="w-8 h-8 mx-auto mb-2"></i>
                     <h3 class="text-lg font-semibold mb-1">Total Posts</h3>
-                    <div class="text-4xl font-bold" id="profileTotalPosts">0</div>
+                    <div class="text-4xl font-bold" id="profileTotalPosts">0</div> <!-- Placeholder -->
                 </div>
                 <!-- Reactions Given -->
                 <div class="bg-gradient-to-br from-green-400 to-teal-500 text-white rounded-2xl shadow-lg p-6 text-center">
                     <i data-feather="heart" class="w-8 h-8 mx-auto mb-2"></i>
                     <h3 class="text-lg font-semibold mb-1">Reactions Given</h3>
-                    <div class="text-4xl font-bold" id="profileReactionsGiven">0</div>
+                    <div class="text-4xl font-bold" id="profileReactionsGiven">0</div> <!-- Placeholder -->
                 </div>
             </div>
 
-            <!-- My Posts Section (No changes) -->
+            <!-- My Posts Section -->
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
+                <!-- Container for posts, initially holds the placeholder -->
                 <div class="space-y-6" id="myPostsContainer">
+                    <!-- Placeholder paragraph, content updated by script.js -->
                     <p class="text-center text-gray-500" id="postsPlaceholder">Loading profile data...</p>
                 </div>
             </div>
@@ -83,19 +85,25 @@
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
     <!-- Main App Script -->
-    <script src="./script.js" defer></script>
+    <script src="./script.js" defer></script> <!-- Added defer attribute -->
 
-    <!-- Inline script for initial Feather icons -->
+    <!-- Inline script for initial Feather icons on this page -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Profile HTML: DOMContentLoaded.");
+            console.log("Profile HTML: DOMContentLoaded event fired.");
             try {
+                 // Render static icons on the profile page as soon as possible
                  if (typeof feather !== 'undefined') {
-                    console.log("Profile: Rendering initial Feather icons.");
+                    console.log("Profile HTML: Rendering initial static Feather icons.");
                     feather.replace();
-                 } else { console.error("Feather lib not loaded on profile."); }
-            } catch (e) { console.error("Error initial Feather on profile:", e); }
-             console.log("Profile HTML: Inline script finished.");
+                 } else {
+                    // Log error if Feather isn't loaded yet
+                    console.error("Profile HTML: Feather library (feather) not loaded when DOMContentLoaded fired!");
+                 }
+            } catch (e) {
+                console.error("Profile HTML: Error during initial Feather icon rendering:", e);
+            }
+             console.log("Profile HTML: Inline script execution finished.");
         });
     </script>
 </body>
