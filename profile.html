@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/feather-icons"></script> <!-- Unpkg alternative for Feather -->
 
-    <!-- === CDN SCRIPT UPDATES === -->
-    <!-- Switched Ethers.js to jsDelivr CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
-    <script>console.log("HTML: Ethers.js script tag processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
+    <!-- === CDN SCRIPT UPDATES (Using unpkg.com) === -->
+    <!-- Switched Ethers.js to unpkg.com CDN -->
+    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
+    <script>console.log("HTML: Ethers.js script tag (unpkg) processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
 
-    <!-- Verified WalletConnect Ethereum Provider CDN URL -->
-    <script>console.log("HTML: About to load WalletConnect script...");</script>
-    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/dist/umd/index.min.js"></script>
-    <script>console.log("HTML: WalletConnect script tag processed. WC Lib present?", typeof window.WalletConnectEthereumProvider !== 'undefined');</script>
+    <!-- Switched WalletConnect Ethereum Provider to unpkg.com CDN -->
+    <script>console.log("HTML: About to load WalletConnect script (unpkg)...");</script>
+    <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.0/dist/index.umd.js"></script>
+    <script>console.log("HTML: WalletConnect script tag (unpkg) processed. WC Lib present?", typeof window.WalletConnectEthereumProvider !== 'undefined');</script>
     <!-- === END CDN SCRIPT UPDATES === -->
 
 </head>
-<body class="bg-gray-50 min-h-screen pt-16"> <!-- Added padding top -->
+<body class="bg-gray-50 min-h-screen pt-16">
     <custom-navbar></custom-navbar>
 
     <main class="max-w-4xl mx-auto px-4 py-8">
@@ -35,7 +35,6 @@
                 <div class="text-center md:text-left flex-grow">
                     <h1 class="text-3xl font-bold text-gray-800" id="profileUsername">Loading...</h1>
                     <p class="text-gray-600 break-all" id="profileWallet">Loading...</p>
-                    <!-- Button display managed by script.js -->
                     <button id="connectWalletBtnProfile" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300" style="display: none;">
                         Connect Wallet
                     </button>
@@ -68,7 +67,6 @@
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
                 <div class="space-y-6" id="myPostsContainer">
-                    <!-- Content updated dynamically by script.js -->
                     <p class="text-center text-gray-500" id="postsPlaceholder">Loading profile data...</p>
                 </div>
             </div>
@@ -78,30 +76,23 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Component Scripts MUST load before main script -->
+    <!-- Component Scripts -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <!-- Main App Script - defer ensures it runs after HTML parsing AND WC script likely loaded -->
+    <!-- Main App Script -->
     <script src="./script.js" defer></script>
 
-    <!-- Inline script ONLY for initial Feather icons render -->
+    <!-- Inline script for initial Feather icons -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Profile HTML: DOMContentLoaded event fired.");
+            console.log("Profile HTML: DOMContentLoaded.");
             try {
                  if (typeof feather !== 'undefined') {
-                    // Render ONLY the static icons present in the initial HTML
-                    console.log("Profile: Rendering initial Feather icons via inline script.");
+                    console.log("Profile: Rendering initial Feather icons.");
                     feather.replace();
-                 } else {
-                    console.error("Feather icons library not loaded on profile page for inline script render.");
-                 }
-            } catch (e) {
-                 console.error("Error rendering initial Feather icons on profile page:", e);
-            }
-             // The main script.js (deferred) will handle rendering dynamic icons
-             // like the loader in the posts section after it initializes and updates the UI.
-             console.log("Profile HTML: Inline script finished execution.");
+                 } else { console.error("Feather lib not loaded on profile."); }
+            } catch (e) { console.error("Error initial Feather on profile:", e); }
+             console.log("Profile HTML: Inline script finished.");
         });
     </script>
 </body>
