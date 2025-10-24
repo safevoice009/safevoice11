@@ -8,34 +8,29 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script> <!-- Unpkg alternative for Feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 
-    <!-- === CDN SCRIPT UPDATES (Using unpkg.com) === -->
-    <!-- Switched Ethers.js to unpkg.com CDN -->
+    <!-- === CDN SCRIPT UPDATES (Web3Modal v1) === -->
+    <!-- Ethers.js (unpkg) - Still needed -->
     <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
-    <script>console.log("HTML: Ethers.js script tag (unpkg) processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
+    <script>console.log("HTML: Ethers.js script tag processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
 
-    <!-- ** FIX: Add process polyfill BEFORE WalletConnect ** -->
-    <script>
-      console.log("HTML: Defining process polyfill...");
-      window.process = window.process || { env: { NODE_ENV: 'production' } };
-      console.log("HTML: process polyfill defined.");
-    </script>
-    <!-- ** END FIX ** -->
+    <!-- Web3Modal v1 Core -->
+    <script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
+    <script>console.log("HTML: Web3Modal v1 Core script tag processed. Lib present?", typeof window.Web3Modal !== 'undefined');</script>
 
-    <!-- Switched WalletConnect Ethereum Provider to unpkg.com CDN -->
-    <script>console.log("HTML: About to load WalletConnect script (unpkg)...");</script>
-    <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.0/dist/index.umd.js"></script>
-    <script>console.log("HTML: WalletConnect script tag (unpkg) processed. WC Lib present?", typeof window.WalletConnectEthereumProvider !== 'undefined');</script>
+    <!-- WalletConnect v1 Provider (Used by Web3Modal v1) -->
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script>console.log("HTML: WalletConnect v1 Provider script tag processed. Lib present?", typeof window.WalletConnectProvider !== 'undefined');</script>
     <!-- === END CDN SCRIPT UPDATES === -->
 
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
-    <!-- Hero Section (Unchanged from V5.4) -->
+    <!-- Hero Section (No changes) -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div class="absolute inset-0 z-0" id="vanta-bg" style="min-height: 100vh;"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-8 pb-8">
@@ -72,76 +67,51 @@
         </div>
     </section>
 
-    <!-- Features Section (Unchanged from V5.4) -->
+    <!-- Features Section (No changes) -->
     <section class="py-20 px-4 bg-white">
          <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Why SafeVoice Stands Out</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="shield" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">True Anonymity</h3>
-                    <p class="text-gray-600">No emails, no tracking, no profiling. Just pure, unfiltered student expression.</p>
+                <!-- Features... -->
+                 <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="shield" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">True Anonymity</h3><p class="text-gray-600">No emails, no tracking, no profiling. Pure expression.</p>
                 </div>
-                <!-- Feature 2 -->
                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="heart" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Mental Health First</h3>
-                    <p class="text-gray-600">AI-powered crisis detection with instant helpline suggestions and supportive reactions.</p>
+                    <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="heart" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Mental Health First</h3><p class="text-gray-600">AI crisis detection & supportive reactions.</p>
                 </div>
-                <!-- Feature 3 -->
                 <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="award" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Token Rewards</h3>
-                    <p class="text-gray-600">Earn tokens for every positive action. Build generational wealth while supporting peers.</p>
+                    <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="award" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Token Rewards</h3><p class="text-gray-600">Earn tokens for positive actions. Build wealth.</p>
                 </div>
-                <!-- Feature 4 -->
                 <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-yellow-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="lock" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Multi-Tier Privacy</h3>
-                    <p class="text-gray-600">Choose from Standard, PGP-Encrypted, or Tor-Routed posting for ultimate security.</p>
+                    <div class="w-16 h-16 bg-yellow-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="lock" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Multi-Tier Privacy</h3><p class="text-gray-600">Standard, PGP, or Tor options.</p>
                 </div>
-                <!-- Feature 5 -->
                 <div class="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="users" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Web3 Identity</h3>
-                    <p class="text-gray-600">Your wallet is your identity. Portable, censorship-resistant, and future-proof.</p>
+                    <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="users" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Web3 Identity</h3><p class="text-gray-600">Your wallet, your identity. Censorship-resistant.</p>
                 </div>
-                <!-- Feature 6 -->
                 <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4">
-                        <i data-feather="trending-up" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">DAO Governance</h3>
-                    <p class="text-gray-600">Token holders vote on platform policies. Community-driven, transparent decision-making.</p>
+                    <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="trending-up" class="text-white w-8 h-8"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">DAO Governance</h3><p class="text-gray-600">Community-driven platform evolution.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section (Unchanged from V5.4) -->
+    <!-- CTA Section (No changes) -->
     <section class="py-20 px-4 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-bold mb-6">Ready to Speak Your Truth?</h2>
-            <p class="text-xl mb-8 opacity-90">Join thousands of students already building a safer, more supportive community.</p>
+            <p class="text-xl mb-8 opacity-90">Join thousands of students building a safer community.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="./feed.html" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105">
-                    <i data-feather="message-square" class="inline w-5 h-5 mr-2"></i>
-                    Explore the Feed
+                    <i data-feather="message-square" class="inline w-5 h-5 mr-2"></i> Explore Feed
                 </a>
                 <a href="./create.html" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300">
-                    <i data-feather="edit-3" class="inline w-5 h-5 mr-2"></i>
-                    Create Your First Post
+                    <i data-feather="edit-3" class="inline w-5 h-5 mr-2"></i> Create Post
                 </a>
             </div>
         </div>
@@ -149,58 +119,39 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Component Scripts MUST load before main script -->
+    <!-- Component Scripts -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <!-- Main App Script - defer ensures it runs after HTML parsing AND WC script likely loaded -->
+    <!-- Main App Script -->
     <script src="./script.js" defer></script>
 
-    <!-- Inline Script for Page-Specific Initializations (Runs AFTER script.js due to defer) -->
+    <!-- Inline Script (Page Specific) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Index HTML: DOMContentLoaded event fired.");
+            console.log("Index HTML: DOMContentLoaded.");
 
-            try {
-                if (typeof feather !== 'undefined') {
-                    feather.replace();
-                    console.log("Index: Initial Feather icons rendered.");
-                } else { console.error("Feather library not loaded for initial render."); }
-            } catch (e) { console.error("Error rendering initial Feather icons:", e); }
+            try { if (typeof feather !== 'undefined') feather.replace(); else console.error("Feather lib not loaded."); } catch (e) { console.error("Error initial Feather:", e); }
 
             const vantaElement = document.getElementById('vanta-bg');
             if (vantaElement && typeof VANTA !== 'undefined' && typeof VANTA.GLOBE === 'function') {
-                try {
-                    VANTA.GLOBE({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0x3b82f6, backgroundColor: 0xf9fafb, size: 1.00 });
-                    console.log("Vanta Globe initialized.");
-                } catch (e) { console.error("Error initializing Vanta Globe:", e); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
-            } else { console.error("Vanta.js/GLOBE not loaded or #vanta-bg missing."); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
+                try { VANTA.GLOBE({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0x3b82f6, backgroundColor: 0xf9fafb, size: 1.00 }); console.log("Vanta Globe initialized."); } catch (e) { console.error("Error initializing Vanta:", e); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
+            } else { console.error("Vanta lib/GLOBE missing or #vanta-bg missing."); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
 
-            function animateCounter(elementId, target, duration = 1500) { /* ... same as V5.4 ... */ const e=document.getElementById(elementId); if(!e){console.warn(`Counter #${elementId} missing.`); return;} let s=parseInt(e.textContent.replace(/,/g,''),10)||0; const E=Number(target); if(isNaN(E)){console.warn(`Invalid target ${elementId}:`,target); return;} if(s===E&&e.textContent!=='0')return; let T=null; function S(t){if(!T)T=t; const p=Math.min((t-T)/duration,1); const c=Math.floor(p*(E-s)+s); e.textContent=c.toLocaleString(); if(p<1)window.requestAnimationFrame(S);} window.requestAnimationFrame(S); }
+            function animateCounter(elementId, target, duration = 1500) { const e=document.getElementById(elementId); if(!e){return;} let s=parseInt(e.textContent.replace(/,/g,''),10)||0; const E=Number(target); if(isNaN(E))return; if(s===E&&e.textContent!=='0')return; let T=null; function S(t){if(!T)T=t; const p=Math.min((t-T)/duration,1); const c=Math.floor(p*(E-s)+s); e.textContent=c.toLocaleString(); if(p<1)window.requestAnimationFrame(S);} window.requestAnimationFrame(S); }
 
             const tP=document.getElementById('totalPosts'); const tT=document.getElementById('totalTokens'); const aU=document.getElementById('activeUsers');
             if(tP)tP.textContent='0'; if(tT)tT.textContent='0'; if(aU)aU.textContent='0';
 
-             setTimeout(() => {
-                 console.log("Index: Starting counter animations.");
-                 animateCounter('totalPosts', 15247);
-                 animateCounter('activeUsers', 3421);
-             }, 300);
+             setTimeout(() => { animateCounter('totalPosts', 15247); animateCounter('activeUsers', 3421); }, 300);
 
-            window.addEventListener('safeVoiceTokenUpdate', (e) => {
-                 console.log("Index: Received token update", e.detail.newBalance);
-                 animateCounter('totalTokens', e.detail.newBalance ?? 0);
-            });
+            window.addEventListener('safeVoiceTokenUpdate', (e) => { animateCounter('totalTokens', e.detail.newBalance ?? 0); });
 
+            // Set initial token value after a slightly longer delay
             setTimeout(() => {
                 if (window.safeVoiceApp && window.safeVoiceApp.isInitialized && tT) {
-                     const iB = window.safeVoiceApp.tokenBalance ?? 0;
-                     console.log("Index: Setting initial token balance", iB);
-                     animateCounter('totalTokens', iB);
-                } else {
-                     console.log("Index: SafeVoiceApp not ready for initial token set.");
-                     if (tT) tT.textContent = '0';
-                }
-            }, 500);
+                     animateCounter('totalTokens', window.safeVoiceApp.tokenBalance ?? 0);
+                } else { if (tT) tT.textContent = '0'; }
+            }, 600);
 
             console.log("Index HTML: Inline script finished.");
         });
