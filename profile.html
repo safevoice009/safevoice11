@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... existing head ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SafeVoice</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Ethers.js needed ONLY if connecting wallet from here, included in script.js now -->
+    <!-- <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" type="application/javascript"></script> -->
 </head>
-<body class="bg-gray-50 min-h-screen pt-16"> <!-- Increased pt slightly if needed -->
+<body class="bg-gray-50 min-h-screen pt-16"> <!-- Ensure enough padding for fixed navbar -->
     <custom-navbar></custom-navbar>
 
     <main class="max-w-4xl mx-auto px-4 py-8">
         <div class="bg-white rounded-2xl shadow-lg p-8">
             <!-- Profile Header -->
             <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
-                <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <i data-feather="user" class="text-white w-16 h-16"></i>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h1 class="text-3xl font-bold text-gray-800" id="profileUsername">Loading...</h1>
-                    <p class="text-gray-600" id="profileWallet">Loading...</p>
-                    <!-- Button ID changed for specific targeting -->
+                    <p class="text-gray-600 break-all" id="profileWallet">Loading...</p>
+                    <!-- Button ID changed, logic handled by script.js -->
                     <button id="connectWalletBtnProfile" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300" style="display: none;">
                         Connect Wallet
                     </button>
@@ -48,13 +57,9 @@
             <!-- My Posts Section -->
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
-                <div class="space-y-6" id="myPostsContainer"> <!-- Added ID -->
-                    <!-- Placeholder for posts -->
-                    <div class="bg-gray-100 p-6 rounded-2xl text-center text-gray-500">
-                        <i data-feather="loader" class="w-8 h-8 mx-auto mb-2 animate-spin"></i>
-                        <p>Loading your posts...</p>
-                        <p class="text-sm">(Post loading requires Supabase integration)</p>
-                    </div>
+                <div class="space-y-6" id="myPostsContainer">
+                    <!-- Default message, updated by script.js -->
+                    <p class="text-center text-gray-500">Loading profile data...</p>
                 </div>
             </div>
 
@@ -63,18 +68,24 @@
 
     <custom-footer></custom-footer>
 
+    <!-- Component Scripts -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
+    <!-- Main App Script (Handles profile update via DOMContentLoaded & events) -->
     <script src="./script.js"></script>
-    <script>
-        // --- REMOVED LOGIC FROM HERE ---
-        // Moved into script.js DOMContentLoaded
 
-        // --- RETAIN FEATHER REPLACE ---
+    <!-- Inline script only for initial Feather icons -->
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            feather.replace();
-             // Just ensure feather icons are rendered, profile data handled by script.js event
+             // Just render static icons initially.
+             // Profile data display is handled by updateProfileUI() in script.js
+             if (typeof feather !== 'undefined') {
+                 feather.replace();
+             } else {
+                 console.error("Feather icons library not loaded.");
+             }
         });
     </script>
 </body>
 </html>
+
