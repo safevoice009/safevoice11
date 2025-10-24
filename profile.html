@@ -15,6 +15,14 @@
     <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
     <script>console.log("HTML: Ethers.js script tag (unpkg) processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
 
+    <!-- ** FIX: Add process polyfill BEFORE WalletConnect ** -->
+    <script>
+      console.log("HTML: Defining process polyfill...");
+      window.process = window.process || { env: { NODE_ENV: 'production' } };
+      console.log("HTML: process polyfill defined.");
+    </script>
+    <!-- ** END FIX ** -->
+
     <!-- Switched WalletConnect Ethereum Provider to unpkg.com CDN -->
     <script>console.log("HTML: About to load WalletConnect script (unpkg)...");</script>
     <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.0/dist/index.umd.js"></script>
@@ -27,7 +35,7 @@
 
     <main class="max-w-4xl mx-auto px-4 py-8">
         <div class="bg-white rounded-2xl shadow-lg p-8">
-            <!-- Profile Header -->
+            <!-- Profile Header (Unchanged from V5.4) -->
             <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
                 <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <i data-feather="user" class="text-white w-16 h-16"></i>
@@ -41,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- Profile Stats -->
+            <!-- Profile Stats (Unchanged from V5.4) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Token Balance -->
                 <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-lg p-6 text-center">
@@ -63,7 +71,7 @@
                 </div>
             </div>
 
-            <!-- My Posts Section -->
+            <!-- My Posts Section (Unchanged from V5.4) -->
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
                 <div class="space-y-6" id="myPostsContainer">
@@ -76,13 +84,13 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Component Scripts -->
+    <!-- Component Scripts (Unchanged from V5.4) -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <!-- Main App Script -->
+    <!-- Main App Script (Unchanged from V5.4) -->
     <script src="./script.js" defer></script>
 
-    <!-- Inline script for initial Feather icons -->
+    <!-- Inline script for initial Feather icons (Unchanged from V5.4) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log("Profile HTML: DOMContentLoaded.");
