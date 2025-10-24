@@ -8,29 +8,30 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Removed unpkg feather source as npm source is sufficient -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script>console.log("HTML: Vanta Globe Lib loaded:", typeof VANTA !== 'undefined');</script>
 
-    <!-- === CDN SCRIPT UPDATES (Web3Modal v1) === -->
-    <!-- Ethers.js (unpkg) - Still needed -->
-    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
-    <script>console.log("HTML: Ethers.js script tag processed. Ethers Lib present?", typeof window.ethers !== 'undefined');</script>
+    <!-- === CDN SCRIPT UPDATES (Using cdnjs) === -->
+    <!-- Ethers.js v5 (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" xintegrity="sha512-FDcVY+g7vcNsWCMQwEASZrIFgb+ibZwGVxXDDPsZVcc+B5Strb61SgLuOsLviigU+vcYDxzwlvVWBZNH+SohRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>console.log("HTML: Ethers.js script tag processed. Lib present?", typeof window.ethers !== 'undefined');</script>
 
-    <!-- Web3Modal v1 Core -->
-    <script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
+    <!-- Web3Modal v1 Core (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3modal/1.9.12/index.min.js" xintegrity="sha512-C3+4KLUxcqQmYtQHyGANrq2Uk/skfZSj4E+Q73Ly/XQGq0TyOIQDTkuXhDU/gREUZ68L8CRQr/SEKfoiH64h6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>console.log("HTML: Web3Modal v1 Core script tag processed. Lib present?", typeof window.Web3Modal !== 'undefined');</script>
 
-    <!-- WalletConnect v1 Provider (Used by Web3Modal v1) -->
-    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-    <script>console.log("HTML: WalletConnect v1 Provider script tag processed. Lib present?", typeof window.WalletConnectProvider !== 'undefined');</script>
+    <!-- WalletConnect v1 Provider (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/walletconnect-web3-provider/1.8.0/index.umd.min.js" xintegrity="sha512-2n+Jg5qDJtuY9w/rG+Lu9rSt1/Q+6/y7Lg3J9Wf5sQECtfgQhfY4zxxdxQ4B1qUYJ7jURiY9wmB396Em5i+g8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>console.log("HTML: WalletConnect v1 Provider script tag processed. Lib present?", typeof window.WalletConnectProvider !== 'undefined' && typeof window.WalletConnectProvider?.default !== 'undefined');</script>
     <!-- === END CDN SCRIPT UPDATES === -->
 
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <custom-navbar></custom-navbar>
 
-    <!-- Hero Section (No changes) -->
+    <!-- Hero Section (No changes structure) -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div class="absolute inset-0 z-0" id="vanta-bg" style="min-height: 100vh;"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-8 pb-8">
@@ -50,6 +51,7 @@
                     Enter Anonymously
                 </button>
             </div>
+            <!-- Counters -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                  <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
                     <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
@@ -72,27 +74,32 @@
          <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Why SafeVoice Stands Out</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Features... -->
+                <!-- Feature 1 -->
                  <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="shield" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">True Anonymity</h3><p class="text-gray-600">No emails, no tracking, no profiling. Pure expression.</p>
                 </div>
+                <!-- Feature 2 -->
                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="heart" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Mental Health First</h3><p class="text-gray-600">AI crisis detection & supportive reactions.</p>
                 </div>
+                <!-- Feature 3 -->
                 <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="award" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Token Rewards</h3><p class="text-gray-600">Earn tokens for positive actions. Build wealth.</p>
                 </div>
+                <!-- Feature 4 -->
                 <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-yellow-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="lock" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Multi-Tier Privacy</h3><p class="text-gray-600">Standard, PGP, or Tor options.</p>
                 </div>
+                <!-- Feature 5 -->
                 <div class="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="users" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Web3 Identity</h3><p class="text-gray-600">Your wallet, your identity. Censorship-resistant.</p>
                 </div>
+                <!-- Feature 6 -->
                 <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4"><i data-feather="trending-up" class="text-white w-8 h-8"></i></div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">DAO Governance</h3><p class="text-gray-600">Community-driven platform evolution.</p>
@@ -123,38 +130,138 @@
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
     <!-- Main App Script -->
-    <script src="./script.js" defer></script>
+    <script src="./script.js" defer></script> <!-- Added defer attribute -->
 
-    <!-- Inline Script (Page Specific) -->
+    <!-- Inline Script (Page Specific - Index) -->
     <script>
+        // Use DOMContentLoaded to ensure elements exist before manipulation
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Index HTML: DOMContentLoaded.");
+            console.log("Index HTML: DOMContentLoaded event fired.");
 
-            try { if (typeof feather !== 'undefined') feather.replace(); else console.error("Feather lib not loaded."); } catch (e) { console.error("Error initial Feather:", e); }
+            // Initialize Feather Icons
+            try {
+                 if (typeof feather !== 'undefined') {
+                     console.log("Index HTML: Rendering initial Feather icons.");
+                     feather.replace(); // Render static icons immediately
+                 } else {
+                     console.error("Index HTML: Feather library (feather) not loaded when DOMContentLoaded fired!");
+                 }
+            } catch (e) { console.error("Index HTML: Error during initial Feather icon rendering:", e); }
 
+            // Initialize Vanta Globe background
             const vantaElement = document.getElementById('vanta-bg');
             if (vantaElement && typeof VANTA !== 'undefined' && typeof VANTA.GLOBE === 'function') {
-                try { VANTA.GLOBE({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0x3b82f6, backgroundColor: 0xf9fafb, size: 1.00 }); console.log("Vanta Globe initialized."); } catch (e) { console.error("Error initializing Vanta:", e); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
-            } else { console.error("Vanta lib/GLOBE missing or #vanta-bg missing."); if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; }
+                try {
+                    VANTA.GLOBE({
+                        el: "#vanta-bg",
+                        mouseControls: true,
+                        touchControls: true,
+                        gyroControls: false,
+                        minHeight: 200.00,
+                        minWidth: 200.00,
+                        scale: 1.00,
+                        scaleMobile: 1.00,
+                        color: 0x3b82f6,      // Brighter blue color
+                        backgroundColor: 0xf9fafb, // Light background for contrast
+                        size: 1.10             // Slightly larger globe
+                    });
+                    console.log("Index HTML: Vanta Globe background initialized successfully.");
+                } catch (e) {
+                    // Fallback in case Vanta initialization fails
+                    console.error("Index HTML: Error initializing Vanta Globe background:", e);
+                    if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Set fallback background
+                }
+            } else {
+                 // Log error if Vanta library or target element is missing
+                 console.error("Index HTML: Vanta library (VANTA.GLOBE) or target element #vanta-bg not found.");
+                 if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Set fallback
+            }
 
-            function animateCounter(elementId, target, duration = 1500) { const e=document.getElementById(elementId); if(!e){return;} let s=parseInt(e.textContent.replace(/,/g,''),10)||0; const E=Number(target); if(isNaN(E))return; if(s===E&&e.textContent!=='0')return; let T=null; function S(t){if(!T)T=t; const p=Math.min((t-T)/duration,1); const c=Math.floor(p*(E-s)+s); e.textContent=c.toLocaleString(); if(p<1)window.requestAnimationFrame(S);} window.requestAnimationFrame(S); }
+            // Animated Counter Function (more robust)
+            function animateCounter(elementId, targetValue, duration = 1500) {
+                 const element = document.getElementById(elementId);
+                 if (!element) {
+                     console.warn(`animateCounter: Element with ID '${elementId}' not found.`);
+                     return; // Exit if element doesn't exist
+                 }
+                 const startValue = parseInt(element.textContent.replace(/,/g, ''), 10) || 0; // Get current value or default 0
+                 const endValue = Number(targetValue); // Ensure target is a number
 
-            const tP=document.getElementById('totalPosts'); const tT=document.getElementById('totalTokens'); const aU=document.getElementById('activeUsers');
-            if(tP)tP.textContent='0'; if(tT)tT.textContent='0'; if(aU)aU.textContent='0';
+                 // Validate target value
+                 if (isNaN(endValue)) {
+                     console.warn(`animateCounter: Invalid target value '${targetValue}' for element '${elementId}'.`);
+                     element.textContent = startValue.toLocaleString(); // Reset to start value just in case
+                     return;
+                 }
+                 // Avoid unnecessary animation if start and end are the same (unless starting from 0 initially)
+                 if (startValue === endValue && element.textContent !== '0') {
+                     // console.log(`animateCounter: Start and end values are the same (${endValue}) for '${elementId}'. No animation needed.`);
+                     element.textContent = endValue.toLocaleString(); // Ensure correct formatting
+                     return;
+                 }
 
-             setTimeout(() => { animateCounter('totalPosts', 15247); animateCounter('activeUsers', 3421); }, 300);
+                 let startTime = null;
+                 // Animation step function using requestAnimationFrame for smooth animation
+                 function step(timestamp) {
+                     if (!startTime) startTime = timestamp; // Set start time on first frame
+                     const progress = Math.min((timestamp - startTime) / duration, 1); // Calculate progress (0 to 1)
+                     // Calculate intermediate value using easing (optional, linear for now)
+                     const currentValue = Math.floor(progress * (endValue - startValue) + startValue);
+                     element.textContent = currentValue.toLocaleString(); // Update element text with formatted number
 
-            window.addEventListener('safeVoiceTokenUpdate', (e) => { animateCounter('totalTokens', e.detail.newBalance ?? 0); });
+                     // Continue animation if progress is less than 1
+                     if (progress < 1) {
+                         window.requestAnimationFrame(step);
+                     } else {
+                         // Ensure final value is exactly the target
+                         element.textContent = endValue.toLocaleString();
+                     }
+                 }
+                 // Start the animation loop
+                 window.requestAnimationFrame(step);
+             } // End animateCounter
 
-            // Set initial token value after a slightly longer delay
+            // --- Initialize Counters ---
+            const totalPostsEl = document.getElementById('totalPosts');
+            const totalTokensEl = document.getElementById('totalTokens');
+            const activeUsersEl = document.getElementById('activeUsers');
+
+            // Set initial text content to '0' before starting animation
+            if(totalPostsEl) totalPostsEl.textContent = '0';
+            if(totalTokensEl) totalTokensEl.textContent = '0';
+            if(activeUsersEl) activeUsersEl.textContent = '0';
+
+             // Animate static counters after a short delay
+             setTimeout(() => {
+                 console.log("Index HTML: Animating static counters (Posts, Users).");
+                 animateCounter('totalPosts', 15247); // Target value for posts
+                 animateCounter('activeUsers', 3421); // Target value for users
+             }, 300); // 300ms delay
+
+            // --- Listen for Token Updates ---
+            // Update the token counter whenever the balance changes in the main app
+            window.addEventListener('safeVoiceTokenUpdate', (event) => {
+                 const newBalance = event.detail.newBalance ?? 0; // Get new balance, default 0
+                 console.log(`Index HTML: Received 'safeVoiceTokenUpdate' event with balance: ${newBalance}. Animating counter.`);
+                 animateCounter('totalTokens', newBalance); // Animate to the new balance
+            });
+
+            // --- Set Initial Token Value ---
+            // Wait slightly longer to ensure script.js has initialized and potentially loaded cached user state
             setTimeout(() => {
-                if (window.safeVoiceApp && window.safeVoiceApp.isInitialized && tT) {
-                     animateCounter('totalTokens', window.safeVoiceApp.tokenBalance ?? 0);
-                } else { if (tT) tT.textContent = '0'; }
-            }, 600);
+                if (window.safeVoiceApp && window.safeVoiceApp.isInitialized) {
+                    console.log(`Index HTML: Setting initial token counter value from safeVoiceApp.tokenBalance: ${window.safeVoiceApp.tokenBalance}`);
+                    // Animate from 0 to the initial balance
+                    animateCounter('totalTokens', window.safeVoiceApp.tokenBalance ?? 0);
+                } else {
+                    // Fallback if app isn't ready
+                    console.warn("Index HTML: safeVoiceApp not ready after delay, setting token counter to 0.");
+                    if (totalTokensEl) totalTokensEl.textContent = '0';
+                }
+            }, 700); // Increased delay slightly (700ms)
 
-            console.log("Index HTML: Inline script finished.");
-        });
+            console.log("Index HTML: Inline script execution finished.");
+        }); // End DOMContentLoaded listener
     </script>
 </body>
 </html>
