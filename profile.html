@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - SafeVoice</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico"> <!-- Adjust path if needed -->
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Feather Icons EARLY -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- Ethers.js needed ONLY if connecting wallet from here, included in script.js now -->
-    <!-- <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" type="application/javascript"></script> -->
+    <!-- Ethers loaded globally via script.js -->
+    <!-- ADD WALLETCONNECT Ethereum Provider -->
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/dist/umd/index.min.js"></script>
 </head>
-<body class="bg-gray-50 min-h-screen pt-16"> <!-- Ensure enough padding for fixed navbar -->
+<body class="bg-gray-50 min-h-screen pt-16"> <!-- Added padding top -->
     <custom-navbar></custom-navbar>
 
     <main class="max-w-4xl mx-auto px-4 py-8">
@@ -22,10 +24,10 @@
                 <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <i data-feather="user" class="text-white w-16 h-16"></i>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left flex-grow"> <!-- Added flex-grow -->
                     <h1 class="text-3xl font-bold text-gray-800" id="profileUsername">Loading...</h1>
                     <p class="text-gray-600 break-all" id="profileWallet">Loading...</p>
-                    <!-- Button ID changed, logic handled by script.js -->
+                    <!-- Button display managed by script.js -->
                     <button id="connectWalletBtnProfile" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300" style="display: none;">
                         Connect Wallet
                     </button>
@@ -58,8 +60,8 @@
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">My Posts</h2>
                 <div class="space-y-6" id="myPostsContainer">
-                    <!-- Default message, updated by script.js -->
-                    <p class="text-center text-gray-500">Loading profile data...</p>
+                    <!-- Content updated dynamically by script.js -->
+                    <p class="text-center text-gray-500" id="postsPlaceholder">Loading profile data...</p>
                 </div>
             </div>
 
@@ -68,22 +70,25 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Component Scripts -->
+    <!-- Component Scripts MUST load before main script -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <!-- Main App Script (Handles profile update via DOMContentLoaded & events) -->
+    <!-- Main App Script -->
     <script src="./script.js"></script>
 
-    <!-- Inline script only for initial Feather icons -->
+    <!-- Inline script ONLY for initial Feather icons render -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-             // Just render static icons initially.
-             // Profile data display is handled by updateProfileUI() in script.js
-             if (typeof feather !== 'undefined') {
-                 feather.replace();
-             } else {
-                 console.error("Feather icons library not loaded.");
-             }
+            console.log("Profile page DOM ready, rendering static Feather icons.");
+            try {
+                 if (typeof feather !== 'undefined') {
+                    feather.replace();
+                 } else {
+                    console.error("Feather icons library not loaded on profile page.");
+                 }
+            } catch (e) {
+                 console.error("Error rendering initial Feather icons on profile page:", e);
+            }
         });
     </script>
 </body>
