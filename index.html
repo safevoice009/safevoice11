@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeVoice - Anonymous Student Social Platform</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico"> <!-- Assuming you have a static folder or adjust path -->
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Feather Icons EARLY -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Load Vanta dependencies EARLY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <!-- Load Ethers.js EARLY -->
     <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" type="application/javascript"></script>
+    <!-- ADD WALLETCONNECT Ethereum Provider -->
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.11.0/dist/umd/index.min.js"></script>
+
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
-    <!-- Navbar and Footer web components load themselves -->
+    <!-- Navbar and Footer web components -->
     <custom-navbar></custom-navbar>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Vanta background div -->
-        <div class="absolute inset-0 z-0" id="vanta-bg"></div>
-        <!-- Content div -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-16 pb-8"> <!-- Adjusted padding -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"> <!-- Added padding-top -->
+        <div class="absolute inset-0 z-0" id="vanta-bg" style="min-height: 100vh;"></div> <!-- Ensure Vanta div takes height -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-8 pb-8"> <!-- Adjust padding if needed -->
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
                 Safe<span class="text-blue-600">Voice</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
                 Your anonymous sanctuary for mental health support, social issues, and student tributes. Speak freely, earn tokens, build generational wealth. 🛡️
             </p>
-            <!-- Buttons (Logic handled by script.js) -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <button id="connectWalletBtnIndex" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     <i data-feather="shield" class="inline w-5 h-5 mr-2"></i>
@@ -39,7 +43,6 @@
                     Enter Anonymously
                 </button>
             </div>
-            <!-- Stats Counter -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                  <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
                     <div class="text-3xl font-bold text-blue-600 mb-2" id="totalPosts">0</div>
@@ -134,86 +137,107 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Component Scripts -->
+    <!-- Component Scripts MUST load before main script -->
     <script src="./navbar.js"></script>
     <script src="./footer.js"></script>
-    <!-- Main App Script (Handles button logic via DOMContentLoaded) -->
+    <!-- Main App Script -->
     <script src="./script.js"></script>
 
-    <!-- Inline Script for Page-Specific Initializations -->
+    <!-- Inline Script for Page-Specific Initializations (Runs AFTER script.js) -->
     <script>
+        // Ensure this runs after the main SafeVoiceApp is initialized in script.js
         document.addEventListener('DOMContentLoaded', () => {
-             // Ensure Feather icons render for static elements
-             if (typeof feather !== 'undefined') {
-                 feather.replace();
-             } else {
-                  console.error("Feather icons library not loaded.");
-             }
 
-            // Initialize Vanta.js background
-             const vantaElement = document.getElementById('vanta-bg');
-             if (vantaElement && typeof VANTA !== 'undefined' && typeof VANTA.GLOBE === 'function') {
-                VANTA.GLOBE({
-                    el: "#vanta-bg",
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x3b82f6,      // Blue
-                    backgroundColor: 0xf9fafb, // Light gray/off-white background
-                    size: 1.00
-                });
+            // Initial Feather Icons Render
+            try {
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                    console.log("Index: Initial Feather icons rendered.");
+                } else {
+                    console.error("Feather icons library not loaded for initial render.");
+                }
+            } catch (e) {
+                console.error("Error rendering initial Feather icons:", e);
+            }
+
+
+            // Vanta Initialization
+            const vantaElement = document.getElementById('vanta-bg');
+            if (vantaElement && typeof VANTA !== 'undefined' && typeof VANTA.GLOBE === 'function') {
+                try {
+                    VANTA.GLOBE({
+                        el: "#vanta-bg",
+                        mouseControls: true, touchControls: true, gyroControls: false,
+                        minHeight: 200.00, minWidth: 200.00,
+                        scale: 1.00, scaleMobile: 1.00,
+                        color: 0x3b82f6, backgroundColor: 0xf9fafb, size: 1.00 // Light background
+                    });
+                    console.log("Vanta Globe initialized.");
+                } catch (e) {
+                     console.error("Error initializing Vanta Globe:", e);
+                     if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Fallback bg
+                }
             } else {
-                console.error("Vanta.js or VANTA.GLOBE not loaded, or #vanta-bg element missing.");
+                console.error("Vanta.js or VANTA.GLOBE not loaded, or #vanta-bg missing.");
                 if(vantaElement) vantaElement.style.backgroundColor = '#f9fafb'; // Fallback bg
             }
 
-            // Animated counters (can run safely here)
-            function animateCounter(elementId, target, duration = 2000) {
-                const element = document.getElementById(elementId);
-                if (!element) {
-                     console.warn(`Counter element #${elementId} not found.`);
-                     return;
-                }
-                let start = 0;
-                const endTarget = typeof target === 'number' ? target : 0;
-                if (endTarget === 0) { // If target is 0, just set it
-                    element.textContent = '0';
-                    return;
-                }
-                const increment = endTarget / (duration / 16); // ~60fps
-                let current = 0;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= endTarget) {
-                        element.textContent = endTarget.toLocaleString();
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(current).toLocaleString();
-                    }
-                }, 16);
+            // Animated Counter Function
+            function animateCounter(elementId, target, duration = 1500) {
+                 const element = document.getElementById(elementId);
+                 if (!element) { console.warn(`Counter element #${elementId} not found.`); return; }
+                 let startValue = parseInt(element.textContent.replace(/,/g, ''), 10) || 0;
+                 // Ensure target is a valid number
+                 const endTarget = Number(target);
+                 if (isNaN(endTarget)) { console.warn(`Invalid target value for counter ${elementId}:`, target); return;}
+                 if (startValue === endTarget) return;
+
+                 let startTime = null;
+                 function step(timestamp) {
+                     if (!startTime) startTime = timestamp;
+                     const progress = Math.min((timestamp - startTime) / duration, 1);
+                     const currentValue = Math.floor(progress * (endTarget - startValue) + startValue);
+                     element.textContent = currentValue.toLocaleString();
+                     if (progress < 1) {
+                         window.requestAnimationFrame(step);
+                     }
+                 }
+                 window.requestAnimationFrame(step);
             }
 
-            // Initial stat values (placeholders)
-            animateCounter('totalPosts', 15247);
-            animateCounter('totalTokens', 0); // Will be updated by event listener
-            animateCounter('activeUsers', 3421);
+            // Initial Stat Display & Update Listener
+            const totalPostsEl = document.getElementById('totalPosts');
+            const totalTokensEl = document.getElementById('totalTokens');
+            const activeUsersEl = document.getElementById('activeUsers');
 
-            // Listeners to update counters based on app state changes
-            // (These depend on script.js dispatching events)
-             window.addEventListener('safeVoiceTokenUpdate', (e) => {
-                 animateCounter('totalTokens', e.detail.newBalance || 0);
-             });
-            // Add listeners for other stats if needed in the future
+            if (totalPostsEl) totalPostsEl.textContent = '0';
+            if (totalTokensEl) totalTokensEl.textContent = '0';
+            if (activeUsersEl) activeUsersEl.textContent = '0';
 
-             // Update tokens immediately if app is already loaded
-             if (window.safeVoiceApp) {
-                  const tokenEl = document.getElementById('totalTokens');
-                  if(tokenEl) tokenEl.textContent = (window.safeVoiceApp.tokenBalance || 0).toLocaleString();
-             }
+             setTimeout(() => {
+                 animateCounter('totalPosts', 15247); // Placeholder
+                 animateCounter('activeUsers', 3421); // Placeholder
+             }, 300);
+
+            // Listen for token updates from the main app
+            window.addEventListener('safeVoiceTokenUpdate', (e) => {
+                 console.log("Index: Received token update event", e.detail.newBalance);
+                 animateCounter('totalTokens', e.detail.newBalance ?? 0);
+            });
+
+            // Set initial token balance if app is already loaded
+            setTimeout(() => {
+                if (window.safeVoiceApp && totalTokensEl) {
+                     const initialBalance = window.safeVoiceApp.tokenBalance ?? 0;
+                     console.log("Index: Setting initial token balance from loaded app", initialBalance);
+                     // Set directly, animation happens via event later if needed, or trigger here
+                    totalTokensEl.textContent = initialBalance.toLocaleString();
+                    // animateCounter('totalTokens', initialBalance); // Uncomment to animate from 0 on load
+                } else {
+                     console.log("Index: SafeVoiceApp not ready for initial token set.");
+                }
+            }, 100); // Slightly longer delay
+
 
         }); // End DOMContentLoaded for index.html inline script
     </script>
